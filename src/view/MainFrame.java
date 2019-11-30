@@ -46,7 +46,7 @@ public class MainFrame extends JFrame{
 		
 		TabbedPane tabs = TabbedPane.getInstance();
 		tabs.addNewTab("Predmeti", spane);
-		tabs.setTabPlacement(TabbedPane.BOTTOM);
+		tabs.setTabPlacement(TabbedPane.TOP);
 		this.add(tabs);
 	}
 	
