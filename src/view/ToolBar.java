@@ -16,10 +16,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+
+import controller.SubjectController;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class ToolBar extends JToolBar{
-
+	//TODO VEZANI AKCELERATORI???
 	private static final long serialVersionUID = -6297787221312734786L;
 	
 	private JButton btn1 = null, btn2 = null, btn3 = null, btn4 = null;
@@ -51,6 +55,7 @@ public class ToolBar extends JToolBar{
 		btn1.setBorderPainted(false);
 		btn1.setToolTipText("Dodaj");
 		btn1.setPreferredSize(new Dimension(35, 35));
+		
 		items.add(btn1);
 		
 		this.addSeparator();
@@ -90,10 +95,38 @@ public class ToolBar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//ZAVISI KOJI JE TAB SELEKTOVAN
-				if(TabbedPane.getInstance().isRunning("Profesori")) {
+				if(TabbedPane.getInstance().isRunning("Predmeti")) {
 					NewSubjectDialog sd = new  NewSubjectDialog(MainFrame.getInsance(), "Novi predmet", true);
 					sd.setVisible(true);
 				}
+			}
+		});
+		
+		btn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(TabbedPane.getInstance().isRunning("Predmeti")) {
+					EditSubjectDialog ed = new EditSubjectDialog(MainFrame.getInsance(), "Izmena predmeta", true);
+					ed.setVisible(true);
+				}
+			}
+		});
+		
+		btn3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(TabbedPane.getInstance().isRunning("Predmeti")) {
+					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da želite da obrišete predmet?",
+							"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
+					if(code == JOptionPane.YES_OPTION) {
+						SubjectController sc = SubjectController.getSubjectController();
+						sc.removeSubject();
+					}
+						
+				}
+				
 			}
 		});
 	}
