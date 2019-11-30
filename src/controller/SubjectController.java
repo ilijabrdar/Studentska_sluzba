@@ -5,10 +5,12 @@ import javax.security.auth.Subject;
 import model.BazaPredmeta;
 import model.Predmet;
 import view.MainFrame;
+import view.SubjectTable;
 
 public class SubjectController {
 	
 	private static SubjectController instance = null;
+	private int selectedRow;
 	
 	public static SubjectController getSubjectController() {
 		if(instance == null)
@@ -18,19 +20,24 @@ public class SubjectController {
 	
 	private SubjectController() {}
 	
-	public boolean addSubject(Predmet p) {
-		boolean retVal = false;
-		retVal = BazaPredmeta.getBazaPredmeta().addSubject(p);
+	public void addSubject(Predmet p) {
+		BazaPredmeta.getBazaPredmeta().addSubject(p);
 		MainFrame.getInsance().updateTable();
-		return retVal;
 	}
 	
-	public boolean removeSubject(int r) {
-		if(r < 0)
-			return false;
-		Predmet subj = BazaPredmeta.getBazaPredmeta().getRow(r);
-		return BazaPredmeta.getBazaPredmeta().removeSubject(subj);
+	public void removeSubject() {
+		Predmet subj = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
+		BazaPredmeta.getBazaPredmeta().removeSubject(subj);
+		MainFrame.getInsance().updateTable();
 	}
 	
-	//IZMENI PREDMET
+	public Predmet getSelectedSubject() {
+		selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
+		return BazaPredmeta.getBazaPredmeta().getRow(selectedRow); 
+	}
+	
+	public void editSubject(Predmet subj) {
+		BazaPredmeta.getBazaPredmeta().editSubject(selectedRow, subj);
+		MainFrame.getInsance().updateTable();
+	}
 }

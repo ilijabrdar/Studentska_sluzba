@@ -79,14 +79,18 @@ public class BazaPredmeta {
 		return this.columns.get(col);
 	}
 	
-	public boolean addSubject(Predmet subj) {
-		if(subjects.contains(subj))
-			return false;
-		else
-			return subjects.add(subj);
+	public void addSubject(Predmet subj) {
+		subjects.add(subj);
 	}
 	
-	public boolean removeSubject(Predmet subj) {
-		return subjects.remove(subj);
+	public void editSubject(int index, Predmet subj) {
+		System.out.println(index);
+		subjects.remove(index);
+		subjects.add(index, subj);
+		
+	}
+	
+	public void removeSubject(Predmet subj) {
+		subjects.remove(subj);
 	}
 }

@@ -8,26 +8,38 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 
+import model.BazaPredmeta;
+import model.Predmet;
+
 public class SubjectTable extends JTable{
 
 	private static final long serialVersionUID = -5839231427187920524L;
 	
-	public SubjectTable() {
+	private static SubjectTable instance = null;
+	
+	private SubjectTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelSubjects());
 	}
 	
+	public static SubjectTable getSubjectTable() {
+		if(instance == null)
+			instance = new SubjectTable();
+		return instance;
+	}
+	
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
 		if (isRowSelected(row)) {
-			c.setBackground(Color.RED);
+			c.setBackground(Color.blue);
 		} else {
 			c.setBackground(Color.WHITE);
 		}
 		return c;
 	}
+	
 
 }
