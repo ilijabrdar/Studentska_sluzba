@@ -118,7 +118,7 @@ public class ToolBar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(TabbedPane.getInstance().isRunning("Predmeti")) {
-					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da ûelite da obriöete predmet?",
+					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da ≈æelite da obri≈°ete predmet?",
 							"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 					if(code == JOptionPane.YES_OPTION) {
 						SubjectController sc = SubjectController.getSubjectController();

@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Component;
 
+import javax.swing.Icon;
 import javax.swing.JTabbedPane;
 
 public class TabbedPane extends JTabbedPane {
@@ -29,5 +30,11 @@ public class TabbedPane extends JTabbedPane {
 		if(name.equals(this.getTitleAt(currentTab)))
 			return true;
 		return false;
+	}
+	
+	//ovo je dodato za ikonice
+	@Override
+	public void addTab(String title, Icon icon, Component component) {
+		addTab(title, icon, component, null);
 	}
 }
