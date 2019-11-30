@@ -33,6 +33,12 @@ public class MainFrame extends JFrame{
 		
 		ToolBar toolbar = new ToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
+
+		StatusBar status = new StatusBar();
+		this.add(status, BorderLayout.SOUTH);
+		
+		Menu menu = new Menu();
+		this.setJMenuBar(menu);
 		
 		stable = SubjectTable.getSubjectTable();
 		
