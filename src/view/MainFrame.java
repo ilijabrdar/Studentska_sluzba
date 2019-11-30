@@ -34,12 +34,12 @@ public class MainFrame extends JFrame{
 		ToolBar toolbar = new ToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
 		
-		stable = new SubjectTable();
+		stable = SubjectTable.getSubjectTable();
 		
 		JScrollPane spane = new JScrollPane(stable);
 		
 		TabbedPane tabs = TabbedPane.getInstance();
-		tabs.addNewTab("Profesori", spane);
+		tabs.addNewTab("Predmeti", spane);
 		tabs.setTabPlacement(TabbedPane.BOTTOM);
 		this.add(tabs);
 	}
