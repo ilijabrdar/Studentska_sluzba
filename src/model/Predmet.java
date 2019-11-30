@@ -47,11 +47,31 @@ public class Predmet {
 	public int getGodina() {
 		return godina;
 	}
+	
+	public String getStrGodina() {
+		switch (godina) {
+		case 1: return "Prva"; 
+		case 2: return "Druga"; 
+		case 3: return "Treća"; 
+		case 4: return "Četvrta";
+		default: return "Prva";
+		}
+	}
 
 	public void setGodina(int godina) {
 		this.godina = godina;
 	}
 
+	public void setStrGodina(String god) {
+		switch (god) {
+		case "Prva" : godina = 1; break;
+		case "Druga" : godina = 2; break;
+		case "Treća" : godina = 3; break;
+		case "Četvrta" : godina = 4; break;
+		default: godina = 1;
+		}
+	}
+	
 	public Profesor getProf() {
 		return prof;
 	}
