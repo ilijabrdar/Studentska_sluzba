@@ -1,21 +1,20 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 enum Status {B,S}
 
 public class Student extends Osoba {
 	
 	private String index;
-	private Date datum_upisa;
+	private String datum_upisa;
 	private int godina_studija;
 	private Status status;
 	private double prosek;
 	ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	
 	public Student(String ime, String prezime, String datum, String adresa, int telefon, String email, String index,
-			Date datum_upisa, int godina_studija, Status status, double prosek, ArrayList<Predmet> predmeti) {
+			String datum_upisa, int godina_studija, Status status, double prosek, ArrayList<Predmet> predmeti) {
 		super(ime, prezime, datum, adresa, telefon, email);
 		this.index = index;
 		this.datum_upisa = datum_upisa;
@@ -33,11 +32,11 @@ public class Student extends Osoba {
 		this.index = index;
 	}
 
-	public Date getDatum_upisa() {
+	public String getDatum_upisa() {
 		return datum_upisa;
 	}
 
-	public void setDatum_upisa(Date datum_upisa) {
+	public void setDatum_upisa(String datum_upisa) {
 		this.datum_upisa = datum_upisa;
 	}
 
