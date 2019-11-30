@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -17,6 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -30,9 +33,9 @@ public class NewSubjectDialog extends JDialog {
 
 	private static final long serialVersionUID = 133958153971296240L;
 	
-	private JTextField txt1 = null, txt2 = null, txt3 = null;
-	private JComboBox<String> combo1 = null, combo2 = null;
-	private JButton btnOK = null, btnCENCEL = null;
+	protected JTextField txt1 = null, txt2 = null, txt3 = null;
+	protected JComboBox<String> combo1 = null, combo2 = null;
+	protected JButton btnOK = null, btnCENCEL = null;
 	
 	public NewSubjectDialog(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
@@ -40,10 +43,14 @@ public class NewSubjectDialog extends JDialog {
 		setLocationRelativeTo(owner);
 		setResizable(false);
 		this.setLayout(new BorderLayout());
-		
 		setContent();
-		addActions();
+		addActionsWind();
+		addActionsFields();
+		addActionsOK();
+		addActionsCENCEL();
 	}
+	
+	JDialog getDialog() { return this; }
 	
 	public void setContent() {
 		JLabel lab1 = new JLabel("Šifra*");
@@ -53,10 +60,13 @@ public class NewSubjectDialog extends JDialog {
 		JLabel lab5 = new JLabel("Profesor*");
 		
 		txt1 = new JTextField();
+		txt1.setName("Sifra");
 		txt1.setPreferredSize(new Dimension(300, 28));
 		txt2 = new JTextField();
+		txt2.setName("Naziv");
 		txt2.setPreferredSize(new Dimension(300, 28));
 		txt3 = new JTextField();
+		txt3.setName("Profa");
 		txt3.setPreferredSize(new Dimension(280, 28));
 		
 		String [] semesters = new String[] {"Letnji", "Zimski"};
@@ -108,6 +118,7 @@ public class NewSubjectDialog extends JDialog {
 		JPanel closingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		closingPanel.setBackground(Color.white);
 		btnOK = new JButton("Sačuvaj");
+		btnOK.setEnabled(false);
 		btnCENCEL = new JButton("Odustani");
 		closingPanel.add(btnOK);
 		closingPanel.add(btnCENCEL);
@@ -116,22 +127,18 @@ public class NewSubjectDialog extends JDialog {
 		this.add(closingPanel, BorderLayout.SOUTH);
 	}
 	
-	public void addActions() {
-		txt1.addFocusListener(new FocusListener() {
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				
-				
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
-				
-				
-			}
-		});
-		
+	public void addActionsWind() {
+		this.addWindowListener(new DialogWindowListener());
+	}
+	
+	public void addActionsFields() {
+		MyKeyListener kl = new MyKeyListener(btnOK);
+		txt1.addKeyListener(kl);
+		txt2.addKeyListener(kl);
+		txt3.addKeyListener(kl);
+	}
+	
+	public void addActionsOK() {
 		btnOK.addActionListener(new ActionListener() {
 			
 			@Override
@@ -139,21 +146,31 @@ public class NewSubjectDialog extends JDialog {
 				String sifra = txt1.getText();
 				String naziv = txt2.getText();
 				String semestar = (String)combo1.getSelectedItem();
-				int godina;
-				switch ((String) combo2.getSelectedItem()) {
-				case "Prva" : godina = 1; break;
-				case "Druga" : godina = 2; break;
-				case "Treća" : godina = 3; break;
-				case "Četvrta" : godina = 4; break;
-				default: godina = 1;
-			}
+				String godina = (String) combo2.getSelectedItem();
 				//RESENJE ZA PROFESORE OSTALO
 				//1RESENJE ZA STUDENTE OSTALO
 				SubjectController sc = SubjectController.getSubjectController();
-				sc.addSubject(new Predmet(sifra, naziv, semestar, godina, null));
+				Predmet p = new Predmet(sifra, naziv, semestar, 0, null);
+				p.setStrGodina(godina);
+				sc.addSubject(p);
+				
 				//System.out.println(BazaPredmeta.getBazaPredmeta().getSubjects());
 			}
 		});
+		
 	}
 	
+	public void addActionsCENCEL() {
+		btnCENCEL.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int code = JOptionPane.showConfirmDialog(getDialog(), "Da li ste sigurni da želite da obustavite unos?\nIzmene neće biti sačuvane.",
+						"Novi predmet", JOptionPane.YES_NO_OPTION);
+				
+				if(code == JOptionPane.YES_OPTION)
+					getDialog().dispose();
+			}
+		});
+	}
 }
