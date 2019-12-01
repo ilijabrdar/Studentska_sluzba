@@ -60,9 +60,9 @@ public class MainFrame extends JFrame{
 
 		
 		TabbedPane tabs = TabbedPane.getInstance();
-		tabs.addTab("Predmeti",imageIcon_subject, spane);
 		tabs.addTab("Studenti",imageIcon_student, student_pane);
 		tabs.addTab("Profesori", imageIcon_profesor, profesor_pane);
+		tabs.addTab("Predmeti",imageIcon_subject, spane);
 		tabs.setTabPlacement(TabbedPane.TOP);
 		this.add(tabs);
 	}
