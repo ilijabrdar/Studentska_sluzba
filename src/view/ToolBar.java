@@ -106,28 +106,35 @@ public class ToolBar extends JToolBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(TabbedPane.getInstance().isRunning("Predmeti")) {
+				int row = SubjectTable.getSubjectTable().getSelectedRow();
+				if(TabbedPane.getInstance().isRunning("Predmeti") &&  row >= 0) {
 					EditSubjectDialog ed = new EditSubjectDialog(MainFrame.getInsance(), "Izmena predmeta", true);
 					ed.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre izmene selektujete predmet.", "Greöka", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		
 		btn3.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(TabbedPane.getInstance().isRunning("Predmeti")) {
+				int row = SubjectTable.getSubjectTable().getSelectedRow();
+				if(TabbedPane.getInstance().isRunning("Predmeti") && row >= 0) {
 					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da ≈æelite da obri≈°ete predmet?",
 							"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 					if(code == JOptionPane.YES_OPTION) {
 						SubjectController sc = SubjectController.getSubjectController();
 						sc.removeSubject();
-					}
-						
+					}	
+				} else {
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre izmene selektujete predmet.", "Greöka", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
 		});
+		}
 	}
-}
