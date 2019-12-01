@@ -33,7 +33,7 @@ public class NewSubjectDialog extends JDialog {
 
 	private static final long serialVersionUID = 133958153971296240L;
 	
-	protected JTextField txt1 = null, txt2 = null, txt3 = null;
+	protected JTextField txt1 = null, txt2 = null;
 	protected JComboBox<String> combo1 = null, combo2 = null;
 	protected JButton btnOK = null, btnCENCEL = null;
 	
@@ -57,7 +57,6 @@ public class NewSubjectDialog extends JDialog {
 		JLabel lab2 = new JLabel("Naziv*");
 		JLabel lab3 = new JLabel("Semestar*");
 		JLabel lab4 = new JLabel("Godina studija*");
-		JLabel lab5 = new JLabel("Profesor*");
 		
 		txt1 = new JTextField();
 		txt1.setName("Sifra");
@@ -65,10 +64,7 @@ public class NewSubjectDialog extends JDialog {
 		txt2 = new JTextField();
 		txt2.setName("Naziv");
 		txt2.setPreferredSize(new Dimension(300, 28));
-		txt3 = new JTextField();
-		txt3.setName("Profa");
-		txt3.setPreferredSize(new Dimension(280, 28));
-		
+	
 		String [] semesters = new String[] {"Letnji", "Zimski"};
 		combo1 = new JComboBox<String>(semesters);
 		combo1.setPreferredSize(new Dimension(100, 28));
@@ -103,17 +99,11 @@ public class NewSubjectDialog extends JDialog {
 		pane4.add(Box.createHorizontalStrut(7));
 		pane4.add(combo2);
 		
-		JPanel pane5 = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		pane5.setOpaque(false);
-		pane5.add(lab5);
-		pane5.add(txt3);
-		
 		bigPanel.add(pane1);
 		bigPanel.add(pane2);
 		bigPanel.add(pane3);
 		bigPanel.add(pane4);
-		bigPanel.add(pane5);
-		bigPanel.add(Box.createVerticalStrut(30));
+		bigPanel.add(Box.createVerticalStrut(50));
 		
 		JPanel closingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		closingPanel.setBackground(Color.white);
@@ -135,7 +125,6 @@ public class NewSubjectDialog extends JDialog {
 		MyKeyListener kl = new MyKeyListener(btnOK);
 		txt1.addKeyListener(kl);
 		txt2.addKeyListener(kl);
-		txt3.addKeyListener(kl);
 	}
 	
 	public void addActionsOK() {
@@ -147,14 +136,10 @@ public class NewSubjectDialog extends JDialog {
 				String naziv = txt2.getText();
 				String semestar = (String)combo1.getSelectedItem();
 				String godina = (String) combo2.getSelectedItem();
-				//RESENJE ZA PROFESORE OSTALO
-				//1RESENJE ZA STUDENTE OSTALO
 				SubjectController sc = SubjectController.getSubjectController();
 				Predmet p = new Predmet(sifra, naziv, semestar, 0, null);
 				p.setStrGodina(godina);
-				sc.addSubject(p);
-				
-				//System.out.println(BazaPredmeta.getBazaPredmeta().getSubjects());
+				sc.addSubject(p);	
 			}
 		});
 		

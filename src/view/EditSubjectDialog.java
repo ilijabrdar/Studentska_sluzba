@@ -26,7 +26,6 @@ public class EditSubjectDialog extends NewSubjectDialog {
 		txt2.setText(subj.getNaziv());
 		combo1.setSelectedItem(subj.getSemestar());
 		combo2.setSelectedItem(subj.getStrGodina());
-		txt3.setText(""); //TODO PROFESOR????
 	}
 	
 	@Override
@@ -39,8 +38,6 @@ public class EditSubjectDialog extends NewSubjectDialog {
 				String naziv = txt2.getText();
 				String semestar = (String)combo1.getSelectedItem();
 				String godina = (String) combo2.getSelectedItem();
-				//RESENJE ZA PROFESORE OSTALO
-				//1RESENJE ZA STUDENTE OSTALO
 				SubjectController sc = SubjectController.getSubjectController();
 				Predmet p = new Predmet(sifra, naziv, semestar, 0, null);
 				p.setStrGodina(godina);

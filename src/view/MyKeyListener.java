@@ -10,13 +10,12 @@ import javax.swing.JTextField;
 public class MyKeyListener implements KeyListener {
 
 	private JButton btn = null;
-	private int flag1, flag2, flag3;
+	private int flag1, flag2;
 	
 	public MyKeyListener(JButton btn) {
 		this.btn = btn;
 		flag1 = 0;
 		flag2 = 0;
-		flag3 = 0;
 	}
 	
 	@Override
@@ -61,20 +60,7 @@ public class MyKeyListener implements KeyListener {
 					flag2 = 0;
 			}
 		
-		if(txt.getName().equals("Profa"))
-			if(content.equals("")) {
-				txt.setBackground(Color.red);
-				flag3 = 0;
-			}
-			else {
-				txt.setBackground(Color.white);
-				if(content.matches("[A-Z]+[a-z]+ [A-Z]+[a-z]+"))  //TODO Check if professor exists
-					flag3 = 1;
-				else
-					flag3 = 0;
-			}
-		
-		if(flag1 == 1 && flag2 == 1 && flag3 == 1)
+		if(flag1 == 1 && flag2 == 1)
 			btn.setEnabled(true);
 		else
 			btn.setEnabled(false);

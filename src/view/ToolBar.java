@@ -131,7 +131,7 @@ public class ToolBar extends JToolBar{
 					}	
 				} else {
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
-							"Pre izmene selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
+							"Pre brisanja selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}

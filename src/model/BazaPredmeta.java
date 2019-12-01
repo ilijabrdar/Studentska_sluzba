@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BazaPredmeta {
 
@@ -16,6 +17,7 @@ public class BazaPredmeta {
 	
 	private BazaPredmeta() {
 		columns = new ArrayList<String>();
+		//subjects = new ArrayList<Predmet>();
 		subjects = new ArrayList<Predmet>();
 		initCols();
 		initSubj();
@@ -32,7 +34,8 @@ public class BazaPredmeta {
 		this.columns.add("Naziv");
 		this.columns.add("Semestar");
 		this.columns.add("Godina");
-		this.columns.add("Profesor");
+		//this.columns.add("Profesori");
+		this.columns.add("Studenti");
 	}
 
 	public ArrayList<String> getColumns() {

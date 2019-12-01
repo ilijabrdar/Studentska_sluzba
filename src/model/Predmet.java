@@ -9,7 +9,7 @@ public class Predmet {
 	private String semestar;
 	private int godina;
 	private Profesor prof;
-	//private ArrayList<Student> studenti;
+	private ArrayList<Student> studenti;
 	
 	public Predmet(String sifra, String naziv, String semestar, int godina, Profesor prof) {
 		this.sifra = sifra;
@@ -78,6 +78,14 @@ public class Predmet {
 
 	public void setProf(Profesor prof) {
 		this.prof = prof;
+	}
+
+	public ArrayList<Student> getStudenti() {
+		return studenti;
+	}
+
+	public void setStudenti(ArrayList<Student> studenti) {
+		this.studenti = studenti;
 	}
 
 	@Override
