@@ -95,6 +95,13 @@ public class ToolBar extends JToolBar{
 					NewSubjectDialog sd = new  NewSubjectDialog(MainFrame.getInsance(), "Novi predmet", true);
 					sd.setVisible(true);
 				}
+				else if (TabbedPane.getInstance().isRunning("Studenti")) {
+					// TODO: dodavanje studenta
+				}
+				
+				else if (TabbedPane.getInstance().isRunning("Profesori")) {
+					// TODO: dodavanje profesora
+				}
 			}
 		});
 		
@@ -102,14 +109,33 @@ public class ToolBar extends JToolBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = SubjectTable.getSubjectTable().getSelectedRow();
-				if(TabbedPane.getInstance().isRunning("Predmeti") &&  row >= 0) {
+				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
+				int row_student = StudentsTable.getStudentsTable().getSelectedRow();
+				int row_profesor = ProfesorTable.getProfesorTable().getSelectedRow();
+				
+				if(TabbedPane.getInstance().isRunning("Predmeti") &&  row_subject >= 0) {
 					EditSubjectDialog ed = new EditSubjectDialog(MainFrame.getInsance(), "Izmena predmeta", true);
 					ed.setVisible(true);
 				}
-				else {
+				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) {
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
 							"Pre izmene selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				else if (TabbedPane.getInstance().isRunning("Studenti") &&  row_student >= 0) {
+					// TODO: izmena studenta
+				}
+				else if (TabbedPane.getInstance().isRunning("Studenti") && row_student == -1) {
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre izmene selektujete studenta.", "Greška", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				else if (TabbedPane.getInstance().isRunning("Profesori") &&  row_profesor >= 0) {
+					// TODO: izmena studenta
+				}
+				else if (TabbedPane.getInstance().isRunning("Profesori") && row_profesor == -1) {
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre izmene selektujete profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

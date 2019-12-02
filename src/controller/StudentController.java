@@ -33,7 +33,7 @@ public class StudentController {
 			return;
 		
 		Student s = BazaStudenata.getBazaStudenata().getRow(rowSelectedIndex);
-		//TODO: zavrsi izmenu
+		//TODO: zavrsi izmenu studenata
 		MainFrame.getInsance().updateTable();
 	}
 	

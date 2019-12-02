@@ -82,12 +82,12 @@ public class BazaProfesora {
 		profesori.add(p);
 	}
 	
-	public void editStudent(int index, Profesor p) {
+	public void editProfesor(int index, Profesor p) {
 		profesori.remove(index);
 		profesori.add(index, p);
 	}
 	
-	public void removeStudent(Profesor p) {
+	public void removeProfesor(Profesor p) {
 		profesori.remove(p);
 	}
 }
