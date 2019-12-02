@@ -68,7 +68,16 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void updateTable() {
-		AbstractTableModel model = (AbstractModelSubjects) stable.getModel();
+		//AbstractTableModel model = (AbstractModelSubjects) stable.getModel(); 
+		AbstractTableModel model;
+		if (TabbedPane.getInstance().isRunning("Predmeti"))
+			model = (AbstractModelSubjects) stable.getModel();
+		else if (TabbedPane.getInstance().isRunning("Studenti"))
+			model = (AbstractModelStudents) student_table.getModel();
+		else //onda se Profesori runnuju, mora ovako zbog inicijalizacije promenljive model
+			model = (AbstractModelProfesor) profesor_table.getModel();
+		
+		
 		model.fireTableDataChanged();
 		validate();
 	}

@@ -7,20 +7,16 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.StudentController;
 import controller.SubjectController;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class ToolBar extends JToolBar{
 	//TODO VEZANI AKCELERATORI???
@@ -90,7 +86,7 @@ public class ToolBar extends JToolBar{
 		this.add(right, BorderLayout.EAST);
 	}
 	
-	public void setActions() {
+	public void setActions() { //OVDE SE DEFINISE KOJA AKCIJA CE SE POKRENUTI U ZAVISNOSTI KOJI TAB JE OTVOREN
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -113,7 +109,7 @@ public class ToolBar extends JToolBar{
 				}
 				else {
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
-							"Pre izmene selektujete predmet.", "Gre�ka", JOptionPane.ERROR_MESSAGE);
+							"Pre izmene selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -121,18 +117,35 @@ public class ToolBar extends JToolBar{
 		btn3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = SubjectTable.getSubjectTable().getSelectedRow();
-				if(TabbedPane.getInstance().isRunning("Predmeti") && row >= 0) {
+				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
+				int row_student = StudentsTable.getStudentsTable().getSelectedRow();
+				
+				if(TabbedPane.getInstance().isRunning("Predmeti") && row_subject >= 0) {
 					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da želite da obrišete predmet?",
 							"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 					if(code == JOptionPane.YES_OPTION) {
 						SubjectController sc = SubjectController.getSubjectController();
 						sc.removeSubject();
 					}	
-				} else {
+				} 
+				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) { //row_subject=-1 ako nijedan red nije selektovan
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
-							"Pre brisanja selektujete predmet.", "Gre�ka", JOptionPane.ERROR_MESSAGE);
+							"Pre brisanja selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
 				}
+				
+				else if (TabbedPane.getInstance().isRunning("Studenti") && row_student >= 0) {
+					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da želite da obrišete studenta?",
+							"Brisanje studenta", JOptionPane.YES_NO_OPTION);
+					if(code == JOptionPane.YES_OPTION) {
+						StudentController sc = StudentController.getInstance();
+						sc.izbrisiStudenta(row_student);
+					}	
+				}
+				else if (TabbedPane.getInstance().isRunning("Studenti") && row_student == -1) { 
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre brisanja selektujete studenta.", "Greška", JOptionPane.ERROR_MESSAGE);
+				}
+				
 				
 			}
 		});
