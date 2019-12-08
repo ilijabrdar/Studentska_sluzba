@@ -30,22 +30,24 @@ import model.BazaPredmeta;
 import model.Predmet;
 
 public class NewSubjectDialog extends JDialog {
-
+//TODO Mozda bolje da je singleton?
 	private static final long serialVersionUID = 133958153971296240L;
 	
 	protected JTextField txt1 = null, txt2 = null;
 	protected JComboBox<String> combo1 = null, combo2 = null;
 	protected JButton btnOK = null, btnCENCEL = null;
+	protected int flag1, flag2;
 	
-	public NewSubjectDialog(Frame owner, String title, boolean modal) {
+	public NewSubjectDialog(Frame owner, String title, boolean modal, int f1, int f2) {
 		super(owner, title, modal);
+		flag1 = f1; flag2 = f2;
 		setSize(400, 400);
 		setLocationRelativeTo(owner);
 		setResizable(false);
 		this.setLayout(new BorderLayout());
 		setContent();
 		addActionsWind();
-		addActionsFields();
+		addActionsFields(flag1, flag2);
 		addActionsOK();
 		addActionsCENCEL();
 	}
@@ -121,8 +123,8 @@ public class NewSubjectDialog extends JDialog {
 		this.addWindowListener(new DialogWindowListener());
 	}
 	
-	public void addActionsFields() {
-		MyKeyListener kl = new MyKeyListener(btnOK);
+	public void addActionsFields(int flag1, int flag2) {
+		MyKeyListener kl = new MyKeyListener(btnOK, flag1, flag2);
 		txt1.addKeyListener(kl);
 		txt2.addKeyListener(kl);
 	}
@@ -132,14 +134,15 @@ public class NewSubjectDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String sifra = txt1.getText();
-				String naziv = txt2.getText();
+				String sifra = txt1.getText().trim();
+				String naziv = txt2.getText().trim();
 				String semestar = (String)combo1.getSelectedItem();
 				String godina = (String) combo2.getSelectedItem();
 				SubjectController sc = SubjectController.getSubjectController();
-				Predmet p = new Predmet(sifra, naziv, semestar, 0, null);
+				Predmet p = new Predmet(sifra, naziv, semestar, 0);
 				p.setStrGodina(godina);
-				sc.addSubject(p);	
+				sc.addSubject(p, getDialog());	
+				sc.saveToFile("subjectListing.txt");
 			}
 		});
 		

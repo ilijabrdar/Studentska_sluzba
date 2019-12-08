@@ -1,13 +1,18 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class BazaPredmeta {
 
 	private static BazaPredmeta instance = null;
 	private ArrayList<String> columns;
 	private ArrayList<Predmet> subjects;
+	private ArrayList<Profesor> profs;
 	
 	public static BazaPredmeta getBazaPredmeta() {
 		if (instance == null)
@@ -17,24 +22,50 @@ public class BazaPredmeta {
 	
 	private BazaPredmeta() {
 		columns = new ArrayList<String>();
-		//subjects = new ArrayList<Predmet>();
 		subjects = new ArrayList<Predmet>();
+		profs = new ArrayList<Profesor>();
 		initCols();
 		initSubj();
 	}
 	
 	private void initSubj() {
-		//SVAKI PUT KADA SE POKRENE POVUCI CE IZ FAJLA PODATKE
-		Profesor p = new Profesor("X", "Y", "", "", 1, "", "", 1, "", "", null);
-		subjects.add(new Predmet("as12", "nesto", "letnji", 1, p));
+		BufferedReader reader = null;
+		String[] data;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream("subjectListing.txt"), "utf-8"));
+			String line = null;
+			while((line = reader.readLine()) != null) {
+				data = line.split("\\|");
+				String sifra = data[0].trim();
+				String naziv = data[1].trim();
+				String semestar = data[2].trim();
+				int godina = Integer.parseInt(data[3].trim());
+				Predmet p = new Predmet(sifra, naziv, semestar, godina);
+				subjects.add(p);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 	}
 	
 	private void initCols() {
-		this.columns.add("Šifra");
+		this.columns.add("Å ifra");
 		this.columns.add("Naziv");
 		this.columns.add("Semestar");
 		this.columns.add("Godina");
-		//this.columns.add("Profesori");
+		this.columns.add("Profesori");
 		this.columns.add("Studenti");
 	}
 
@@ -82,8 +113,11 @@ public class BazaPredmeta {
 		return this.columns.get(col);
 	}
 	
-	public void addSubject(Predmet subj) {
-		subjects.add(subj);
+	public boolean addSubject(Predmet subj) {
+		for(int i = 0; i < subjects.size(); i++)
+			if (subjects.get(i).getSifra().equalsIgnoreCase(subj.getSifra()))
+				return false;
+		return subjects.add(subj);
 	}
 	
 	public void editSubject(int index, Predmet subj) {
