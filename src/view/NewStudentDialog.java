@@ -30,24 +30,24 @@ public class NewStudentDialog extends JDialog {
 
 	private static final long serialVersionUID = 6377454185713167341L;
 	
-	private JButton btnOK = null;
-	private JButton btnCANCEL = null;
+	protected JButton btnOK = null;
+	protected JButton btnCANCEL = null;
 	
-	private JTextField txt_ime = null;
-	private JTextField txt_prezime = null;
-	private JTextField txt_datum_rodjenja = null;
-	private JTextField txt_telefon = null;
-	private JTextField txt_adresa = null;
-	private JTextField txt_email = null;
+	protected JTextField txt_ime = null;
+	protected JTextField txt_prezime = null;
+	protected JTextField txt_datum_rodjenja = null;
+	protected JTextField txt_telefon = null;
+	protected JTextField txt_adresa = null;
+	protected JTextField txt_email = null;
 	
-	private JTextField txt_indeks = null;
-	private JTextField txt_datum_upisa = null;
-	private JTextField txt_prosek = null;
+	protected JTextField txt_indeks = null;
+	protected JTextField txt_datum_upisa = null;
+	protected JTextField txt_prosek = null;
 	
-	private JComboBox<String> trenutna_godina_studija = null;	
+	protected JComboBox<String> trenutna_godina_studija = null;	
 	
-	private JRadioButton rb_s = null;
-	private JRadioButton rb_b = null;
+	protected JRadioButton rb_s = null;
+	protected JRadioButton rb_b = null;
 	
 	
 	
@@ -115,7 +115,7 @@ public class NewStudentDialog extends JDialog {
 		txt_indeks.setPreferredSize(new Dimension (300,28));
 		
 		txt_datum_upisa = new JTextField();
-		txt_datum_upisa.setName("Datum upisa");
+		txt_datum_upisa.setName("Datum upisa"); // TODO: provera ispravnosti formata datuma upisa i rodjenja
 		txt_datum_upisa.setPreferredSize(new Dimension (300,28));
 		
 		txt_prosek = new JTextField();
@@ -251,14 +251,13 @@ public class NewStudentDialog extends JDialog {
 					String datum_upisa = txt_datum_upisa.getText();
 					
 					int trenutna_godina;
-					if ( trenutna_godina_studija.getSelectedIndex()==1)
+					if ( trenutna_godina_studija.getSelectedIndex()==0)
 						trenutna_godina = 1;
-					else if (trenutna_godina_studija.getSelectedIndex()==2)
+					else if (trenutna_godina_studija.getSelectedIndex()==1)
 						trenutna_godina = 2;
 					
-					else if (trenutna_godina_studija.getSelectedIndex()==3)
+					else if (trenutna_godina_studija.getSelectedIndex()==2)
 						trenutna_godina = 3;
-					
 					else
 						trenutna_godina=4;
 					

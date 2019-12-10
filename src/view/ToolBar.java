@@ -127,7 +127,8 @@ public class ToolBar extends JToolBar{
 				}
 				
 				else if (TabbedPane.getInstance().isRunning("Studenti") &&  row_student >= 0) {
-					// TODO: izmena studenta
+					EditStudentDialog edit_student = new EditStudentDialog(MainFrame.getInsance(), "Izmena studenta", true);
+					edit_student.setVisible(true);
 				}
 				else if (TabbedPane.getInstance().isRunning("Studenti") && row_student == -1) {
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
