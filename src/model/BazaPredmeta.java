@@ -13,6 +13,7 @@ public class BazaPredmeta {
 	private ArrayList<String> columns;
 	private ArrayList<Predmet> subjects;
 	private ArrayList<Profesor> profs;
+	private ArrayList<Predmet> backup;
 	
 	public static BazaPredmeta getBazaPredmeta() {
 		if (instance == null)
@@ -24,11 +25,14 @@ public class BazaPredmeta {
 		columns = new ArrayList<String>();
 		subjects = new ArrayList<Predmet>();
 		profs = new ArrayList<Profesor>();
+		backup = new ArrayList<Predmet>();
 		initCols();
-		initSubj();
+		initBackup();
+		for(Predmet p : backup)
+			subjects.add(p);
 	}
 	
-	private void initSubj() {
+	private void initBackup() {
 		BufferedReader reader = null;
 		String[] data;
 		try {
@@ -39,9 +43,9 @@ public class BazaPredmeta {
 				String sifra = data[0].trim();
 				String naziv = data[1].trim();
 				String semestar = data[2].trim();
-				int godina = Integer.parseInt(data[3].trim());
+				String godina = data[3].trim();
 				Predmet p = new Predmet(sifra, naziv, semestar, godina);
-				subjects.add(p);
+				backup.add(p);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -81,6 +85,14 @@ public class BazaPredmeta {
 		return subjects;
 	}
 
+	public ArrayList<Predmet> getBackup() {
+		return backup;
+	}
+
+	public void setBackup(ArrayList<Predmet> backup) {
+		this.backup = backup;
+	}
+
 	public void setSubjects(ArrayList<Predmet> subjects) {
 		this.subjects = subjects;
 	}
@@ -95,7 +107,7 @@ public class BazaPredmeta {
 		case 2:
 			return subj.getSemestar();
 		case 3:
-			return Integer.toString(subj.getGodina());
+			return subj.getGodina();
 		case 4:
 			//return subj.getProf().toString();
 			//POPRAVITI KAD DOBIJES KLASU BAZA PROFESORA
@@ -114,20 +126,50 @@ public class BazaPredmeta {
 	}
 	
 	public boolean addSubject(Predmet subj) {
-		for(int i = 0; i < subjects.size(); i++)
-			if (subjects.get(i).getSifra().equalsIgnoreCase(subj.getSifra()))
+		for(int i = 0; i < backup.size(); i++)
+			if (backup.get(i).getSifra().equalsIgnoreCase(subj.getSifra()))
 				return false;
-		return subjects.add(subj);
+		return backup.add(subj);
 	}
 	
 	public void editSubject(int index, Predmet subj) {
-		System.out.println(index);
-		subjects.remove(index);
-		subjects.add(index, subj);
-		
+		Predmet p = subjects.get(index);
+		p.setSifra(subj.getSifra());
+		p.setNaziv(subj.getNaziv());
+		p.setSemestar(subj.getSemestar());
+		p.setGodina(subj.getGodina());
+	}
+	
+	public void findSubject(String sifra, String naziv, String semestar, String godina) {
+		ArrayList<Predmet> search = new ArrayList<Predmet>();
+		for (int i = 0; i < backup.size(); i++) {
+			Predmet p = backup.get(i);
+			String sif = sifra;
+			String sem = semestar;
+			String naz = naziv;
+			String god = godina;
+			if (sif.equals(""))
+				sif = p.getSifra().toLowerCase();
+			if (naz.equals(""))
+				naz = p.getNaziv().toLowerCase();
+			if (sem.equals(""))
+				sem = p.getSemestar().toLowerCase();
+			if (god.equals(""))
+				god = p.getGodina();
+			
+			if(p.getSifra().toLowerCase().contains(sif) && p.getNaziv().toLowerCase().contains(naz)
+				&& p.getSemestar().toLowerCase().contains(sem) && p.getGodina().contains(god)) 
+				search.add(p);
+		}
+		subjects = search;
+	}
+	
+	public void swapTables() {
+		subjects = backup;
 	}
 	
 	public void removeSubject(Predmet subj) {
 		subjects.remove(subj);
+		backup.remove(subj);
 	}
 }

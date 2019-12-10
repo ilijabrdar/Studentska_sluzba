@@ -40,6 +40,7 @@ public class SubjectController {
 	}
 	
 	public void removeSubject() {
+		selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
 		Predmet subj = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
 		BazaPredmeta.getBazaPredmeta().removeSubject(subj);
 		MainFrame.getInsance().updateTable();
@@ -55,16 +56,45 @@ public class SubjectController {
 		MainFrame.getInsance().updateTable();
 	}
 	
+	public void findSubject(String search) {
+		String[] params = search.split("\\;");
+		String sifra = "", naziv = "", semestar = "", godina = "";
+		for(String p : params) {
+			String[] subParams = p.split("\\:");
+			switch(subParams[0].trim().toLowerCase()) {
+			case "šifra":
+				sifra = subParams[1].trim().toLowerCase();
+				break;
+			case "naziv":
+				naziv = subParams[1].trim().toLowerCase();
+				break;
+			case "semestar":
+				semestar = subParams[1].trim().toLowerCase();
+				break;
+			case "godina":
+				godina = subParams[1].trim();
+			}
+		}
+		BazaPredmeta bp = BazaPredmeta.getBazaPredmeta();
+		bp.findSubject(sifra, naziv, semestar, godina);
+		MainFrame.getInsance().updateTable();
+	}
+	
+	public void retriveTable() {
+		BazaPredmeta.getBazaPredmeta().swapTables();
+		MainFrame.getInsance().updateTable();
+	}
+	
 	public void saveToFile(String file) {
 		PrintWriter out = null;
-		ArrayList<Predmet> subj = BazaPredmeta.getBazaPredmeta().getSubjects();
+		ArrayList<Predmet> subj = BazaPredmeta.getBazaPredmeta().getBackup();
 		try {
 			out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
 			for (Predmet p : subj) {
 				String sifra = p.getSifra();
 				String naziv = p.getNaziv();
 				String semestar = p.getSemestar();
-				int godina = p.getGodina();
+				String godina = p.getGodina();
 				StringBuilder sb = new StringBuilder(500);
 				sb.append(sifra);
 				sb.append("|");
@@ -72,13 +102,12 @@ public class SubjectController {
 				sb.append("|");
 				sb.append(semestar);
 				sb.append("|");
-				sb.append(String.valueOf(godina));
+				sb.append(godina);
 				out.println(sb.toString());
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (out != null) {

@@ -23,6 +23,7 @@ public class ToolBar extends JToolBar{
 	private static final long serialVersionUID = -6297787221312734786L;
 	
 	private JButton btn1 = null, btn2 = null, btn3 = null, btn4 = null;
+	private JTextField search = null;
 	
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
@@ -70,7 +71,7 @@ public class ToolBar extends JToolBar{
 		btn3.setPreferredSize(new Dimension(35, 35));
 		items.add(btn3);
 		
-		JTextField search = new JTextField();
+		search = new JTextField();
 		search.setPreferredSize(new Dimension(200, 28));
 		this.add(search);
 		
@@ -174,6 +175,22 @@ public class ToolBar extends JToolBar{
 				}
 				
 				
+			}
+		});
+		
+		btn4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(TabbedPane.getInstance().isRunning("Predmeti")) {
+					SubjectController sc = SubjectController.getSubjectController();
+					if(search.getText().trim().length() !=0) {
+						sc.findSubject(search.getText());
+					}
+					else {
+						sc.retriveTable();
+					}
+				}
 			}
 		});
 		}

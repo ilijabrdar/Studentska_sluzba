@@ -7,11 +7,11 @@ public class Predmet {
 	private String sifra;
 	private String naziv;
 	private String semestar;
-	private int godina;
+	private String godina;
 	private ArrayList<Profesor> profs;
 	private ArrayList<Student> studenti;
 	
-	public Predmet(String sifra, String naziv, String semestar, int godina) {
+	public Predmet(String sifra, String naziv, String semestar, String godina) {
 		this.sifra = sifra;
 		this.naziv = naziv;
 		this.semestar = semestar;
@@ -44,31 +44,31 @@ public class Predmet {
 		this.semestar = semestar;
 	}
 
-	public int getGodina() {
+	public String getGodina() {
 		return godina;
 	}
 	
 	public String getStrGodina() {
 		switch (godina) {
-		case 1: return "Prva"; 
-		case 2: return "Druga"; 
-		case 3: return "Treća"; 
-		case 4: return "Četvrta";
+		case "1": return "Prva"; 
+		case "2": return "Druga"; 
+		case "3": return "Treća"; 
+		case "4": return "Četvrta";
 		default: return "Prva";
 		}
 	}
-
-	public void setGodina(int godina) {
+	
+	public void setGodina(String godina) {
 		this.godina = godina;
 	}
-
+	
 	public void setStrGodina(String god) {
 		switch (god) {
-		case "Prva" : godina = 1; break;
-		case "Druga" : godina = 2; break;
-		case "Treća" : godina = 3; break;
-		case "Četvrta" : godina = 4; break;
-		default: godina = 1;
+		case "Prva" : godina = "1"; break;
+		case "Druga" : godina = "2"; break;
+		case "Treća" : godina = "3"; break;
+		case "Četvrta" : godina = "4"; break;
+		default: godina = "1";
 		}
 	}
 	

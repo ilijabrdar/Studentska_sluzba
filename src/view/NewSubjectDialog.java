@@ -139,7 +139,7 @@ public class NewSubjectDialog extends JDialog {
 				String semestar = (String)combo1.getSelectedItem();
 				String godina = (String) combo2.getSelectedItem();
 				SubjectController sc = SubjectController.getSubjectController();
-				Predmet p = new Predmet(sifra, naziv, semestar, 0);
+				Predmet p = new Predmet(sifra, naziv, semestar, godina);
 				p.setStrGodina(godina);
 				sc.addSubject(p, getDialog());	
 				sc.saveToFile("subjectListing.txt");
