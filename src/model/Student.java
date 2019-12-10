@@ -2,9 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-enum Status {B,S}
+
 
 public class Student extends Osoba {
+	
+	public enum Status {B,S}
 	
 	private String index;
 	private String datum_upisa;
@@ -13,7 +15,8 @@ public class Student extends Osoba {
 	private double prosek;
 	ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	
-	public Student(String ime, String prezime, String datum, String adresa, int telefon, String email, String index,
+	
+	public Student(String ime, String prezime, String datum, String adresa, String telefon, String email, String index,
 			String datum_upisa, int godina_studija, Status status, double prosek, ArrayList<Predmet> predmeti) {
 		super(ime, prezime, datum, adresa, telefon, email);
 		this.index = index;

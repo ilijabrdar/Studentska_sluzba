@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import model.Student.Status;
+
 public class BazaStudenata {
 	
 	private static BazaStudenata instance = new BazaStudenata();
@@ -21,7 +23,7 @@ public class BazaStudenata {
 	
 
 	private void initStudents() {
-		Student s = new Student("Marko", "Markovic","", "adresa",063,"email","ra102-2019","", 12,Status.B ,9.1, null);
+		Student s = new Student("Marko", "Markovic","", "adresa","063","email","ra102-2019","", 12, Status.B ,9.1, null);
 		students.add(s);
 	}
 	

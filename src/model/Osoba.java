@@ -5,10 +5,10 @@ public class Osoba {
 	protected String prezime;
 	protected String datum;
 	protected String adresa;
-	protected int telefon;
+	protected String telefon;
 	protected String email;
 	
-	public Osoba(String ime, String prezime, String datum, String adresa, int telefon, String email) {
+	public Osoba(String ime, String prezime, String datum, String adresa, String telefon, String email) {
 		this.ime = ime;
 		this.prezime = prezime;
 		this.datum = datum;
@@ -49,11 +49,11 @@ public class Osoba {
 		this.adresa = adresa;
 	}
 
-	public int getTelefon() {
+	public String getTelefon() {
 		return telefon;
 	}
 
-	public void setTelefon(int telefon) {
+	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
 
