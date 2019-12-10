@@ -25,12 +25,12 @@ public class BazaPredmeta {
 	
 	private void initSubj() {
 		//SVAKI PUT KADA SE POKRENE POVUCI CE IZ FAJLA PODATKE
-		Profesor p = new Profesor("X", "Y", "", "", 1, "", "", 1, "", "", null);
+		Profesor p = new Profesor("X", "Y", "", "", "1", "", "", 1, "", "", null);
 		subjects.add(new Predmet("as12", "nesto", "letnji", 1, p));
 	}
 	
 	private void initCols() {
-		this.columns.add("Šifra");
+		this.columns.add("ï¿½ifra");
 		this.columns.add("Naziv");
 		this.columns.add("Semestar");
 		this.columns.add("Godina");

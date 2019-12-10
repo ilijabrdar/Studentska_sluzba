@@ -28,12 +28,11 @@ public class StudentController {
 		MainFrame.getInsance().updateTable();
 	}
 	
-	public void izmeniStudenta(int rowSelectedIndex) {
+	public void izmeniStudenta(int rowSelectedIndex, Student novi) {
 		if (rowSelectedIndex < 0)
 			return;
 		
-		Student s = BazaStudenata.getBazaStudenata().getRow(rowSelectedIndex);
-		//TODO: zavrsi izmenu studenata
+		BazaStudenata.getBazaStudenata().editStudent(rowSelectedIndex, novi);
 		MainFrame.getInsance().updateTable();
 	}
 	

@@ -21,7 +21,7 @@ public class BazaProfesora {
 	
 	
 	private void initProfesori() {
-		Profesor p = new Profesor("Darko", "Darkovic","", "adresa",063,"email","kancelarija", 105,"Doktor","Prof.",null );
+		Profesor p = new Profesor("Darko", "Darkovic","", "adresa","063","email","kancelarija", 105,"Doktor","Prof.",null );
 		profesori.add(p);
 	}
 	

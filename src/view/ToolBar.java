@@ -82,6 +82,8 @@ public class ToolBar extends JToolBar{
 		right.add(search);
 		right.add(btn4);
 		
+		
+		
 		this.add(items, BorderLayout.WEST);
 		this.add(right, BorderLayout.EAST);
 	}
@@ -96,7 +98,8 @@ public class ToolBar extends JToolBar{
 					sd.setVisible(true);
 				}
 				else if (TabbedPane.getInstance().isRunning("Studenti")) {
-					// TODO: dodavanje studenta
+					NewStudentDialog student_dialog = new NewStudentDialog(MainFrame.getInsance(), "Novi predmet", true);
+					student_dialog.setVisible(true);
 				}
 				
 				else if (TabbedPane.getInstance().isRunning("Profesori")) {
@@ -176,4 +179,6 @@ public class ToolBar extends JToolBar{
 			}
 		});
 		}
+
+	
 	}
