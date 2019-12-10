@@ -286,6 +286,8 @@ public class NewStudentDialog extends JDialog {
 					txt_indeks.setText("");
 					txt_datum_upisa.setText("");
 					txt_prosek.setText("");
+					
+					getDialog().dispose();
 				
 				}
 				catch(Exception ee) {
