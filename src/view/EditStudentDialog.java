@@ -13,6 +13,8 @@ import model.Student.Status;
 
 public class EditStudentDialog extends NewStudentDialog {
 
+	private static final long serialVersionUID = -6423347424244063431L;
+
 	public EditStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		
