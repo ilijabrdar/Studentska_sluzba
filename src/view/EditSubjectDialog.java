@@ -14,7 +14,7 @@ public class EditSubjectDialog extends NewSubjectDialog {
 	private static final long serialVersionUID = 1L;
 	
 	public EditSubjectDialog(Frame owner, String title, boolean modal) {
-		super(owner, title, modal);
+		super(owner, title, modal, 1, 1);
 		initDialog();
 		btnOK.setEnabled(true);
 		addActionsOK();
@@ -39,9 +39,10 @@ public class EditSubjectDialog extends NewSubjectDialog {
 				String semestar = (String)combo1.getSelectedItem();
 				String godina = (String) combo2.getSelectedItem();
 				SubjectController sc = SubjectController.getSubjectController();
-				Predmet p = new Predmet(sifra, naziv, semestar, 0, null);
+				Predmet p = new Predmet(sifra, naziv, semestar, 0);
 				p.setStrGodina(godina);
 				sc.editSubject(p);
+				sc.saveToFile("subjectListing.txt");
 			}
 		});
 	}

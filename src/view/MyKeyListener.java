@@ -12,10 +12,10 @@ public class MyKeyListener implements KeyListener {
 	private JButton btn = null;
 	private int flag1, flag2;
 	
-	public MyKeyListener(JButton btn) {
+	public MyKeyListener(JButton btn, int f1, int f2) {
 		this.btn = btn;
-		flag1 = 0;
-		flag2 = 0;
+		flag1 = f1;
+		flag2 = f2;
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class MyKeyListener implements KeyListener {
 			}
 			else {
 				txt.setBackground(Color.white);
-				if(content.matches("[A-Za-z0-9]+"))
+				if(content.matches("[A-Za-zČĆŽĐŠčćžšđ0-9]+"))
 					flag1 = 1;
 				else
 					flag1= 0;
@@ -54,7 +54,7 @@ public class MyKeyListener implements KeyListener {
 			}
 			else {
 				txt.setBackground(Color.white);
-				if(content.matches("[A-Z][a-z]+"))
+				if(content.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+( (- )?[a-zčćžšđ]+)*( [0-9])?"))
 					flag2 = 1;
 				else
 					flag2 = 0;

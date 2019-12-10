@@ -94,7 +94,7 @@ public class ToolBar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				//ZAVISI KOJI JE TAB SELEKTOVAN
 				if(TabbedPane.getInstance().isRunning("Predmeti")) {
-					NewSubjectDialog sd = new  NewSubjectDialog(MainFrame.getInsance(), "Novi predmet", true);
+					NewSubjectDialog sd = new  NewSubjectDialog(MainFrame.getInsance(), "Novi predmet", true, 0, 0);
 					sd.setVisible(true);
 				}
 				else if (TabbedPane.getInstance().isRunning("Studenti")) {
@@ -155,6 +155,7 @@ public class ToolBar extends JToolBar{
 					if(code == JOptionPane.YES_OPTION) {
 						SubjectController sc = SubjectController.getSubjectController();
 						sc.removeSubject();
+						sc.saveToFile("subjectListing.txt");
 					}	
 				} 
 				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) { //row_subject=-1 ako nijedan red nije selektovan

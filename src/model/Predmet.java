@@ -8,16 +8,16 @@ public class Predmet {
 	private String naziv;
 	private String semestar;
 	private int godina;
-	private Profesor prof;
+	private ArrayList<Profesor> profs;
 	private ArrayList<Student> studenti;
 	
-	public Predmet(String sifra, String naziv, String semestar, int godina, Profesor prof) {
+	public Predmet(String sifra, String naziv, String semestar, int godina) {
 		this.sifra = sifra;
 		this.naziv = naziv;
 		this.semestar = semestar;
 		this.godina = godina;
-		this.prof = prof;
-		// LISTA STUDENATA!!!!!
+		profs = new ArrayList<Profesor>();
+		studenti = new ArrayList<Student>();
 	}
 
 	public String getSifra() {
@@ -72,12 +72,12 @@ public class Predmet {
 		}
 	}
 	
-	public Profesor getProf() {
-		return prof;
+	public ArrayList<Profesor> getProfs() {
+		return profs;
 	}
 
-	public void setProf(Profesor prof) {
-		this.prof = prof;
+	public void setProfs(ArrayList<Profesor> profs) {
+		this.profs = profs;
 	}
 
 	public ArrayList<Student> getStudenti() {
@@ -90,8 +90,7 @@ public class Predmet {
 
 	@Override
 	public String toString() {
-		return "Predmet [sifra=" + sifra + ", naziv=" + naziv + ", semestar=" + semestar + ", godina=" + godina
-				+ ", prof=" + prof + "]";
+		return "Predmet [sifra=" + sifra + ", naziv=" + naziv + ", semestar=" + semestar + ", godina=" + godina + "]";
 	}
 	
 	
