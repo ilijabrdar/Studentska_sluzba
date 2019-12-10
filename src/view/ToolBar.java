@@ -104,7 +104,8 @@ public class ToolBar extends JToolBar{
 				}
 				
 				else if (TabbedPane.getInstance().isRunning("Profesori")) {
-					// TODO: dodavanje profesora
+					NewProfesorDialog profesor_dialog = new NewProfesorDialog(MainFrame.getInsance(), "Novi profesor", true);
+					profesor_dialog.setVisible(true);
 				}
 			}
 		});
@@ -136,7 +137,7 @@ public class ToolBar extends JToolBar{
 				}
 				
 				else if (TabbedPane.getInstance().isRunning("Profesori") &&  row_profesor >= 0) {
-					// TODO: izmena studenta
+					// TODO: izmena profesora
 				}
 				else if (TabbedPane.getInstance().isRunning("Profesori") && row_profesor == -1) {
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 

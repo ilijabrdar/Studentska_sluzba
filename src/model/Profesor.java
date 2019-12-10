@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Profesor extends Osoba {
 	
 	private String kanc;
-	private int licna;
+	private String licna;
 	private String titula;
 	private String zvanje;
 	private ArrayList<Predmet> predmeti;
 	
-	public Profesor(String i, String p, String d, String a, String t, String e, String k, int l, String tit, String z, ArrayList<Predmet> pr) {
+	public Profesor(String i, String p, String d, String a, String t, String e, String k, String l, String tit, String z, ArrayList<Predmet> pr) {
 		super(i, p, d, a, t, e);
 		this.kanc = k;
 		this.licna = l;
@@ -27,11 +27,11 @@ public class Profesor extends Osoba {
 		this.kanc = kanc;
 	}
 
-	public int getLicna() {
+	public String getLicna() {
 		return licna;
 	}
 
-	public void setLicna(int licna) {
+	public void setLicna(String licna) {
 		this.licna = licna;
 	}
 
