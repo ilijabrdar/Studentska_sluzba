@@ -43,7 +43,10 @@ public class SubjectController {
 		selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
 		Predmet subj = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
 		BazaPredmeta.getBazaPredmeta().removeSubject(subj);
-		MainFrame.getInsance().updateTable();
+		if(BazaPredmeta.getBazaPredmeta().getSubjects().isEmpty())
+			retriveTable();
+		else
+			MainFrame.getInsance().updateTable();
 	}
 	
 	public Predmet getSelectedSubject() {

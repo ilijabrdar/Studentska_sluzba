@@ -34,7 +34,7 @@ public class SubjectTable extends JTable{
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
 		if (isRowSelected(row)) {
-			c.setBackground(Color.blue);
+			c.setBackground(Color.LIGHT_GRAY);
 		} else {
 			c.setBackground(Color.WHITE);
 		}

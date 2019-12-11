@@ -137,6 +137,8 @@ public class NewSubjectDialog extends JDialog {
 				p.setStrGodina(godina);
 				sc.addSubject(p, getDialog());	
 				sc.saveToFile("subjectListing.txt");
+				sc.retriveTable();
+				dispose();
 			}
 		});
 		

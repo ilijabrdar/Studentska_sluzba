@@ -43,6 +43,7 @@ public class EditSubjectDialog extends NewSubjectDialog {
 				p.setStrGodina(godina);
 				sc.editSubject(p);
 				sc.saveToFile("subjectListing.txt");
+				dispose();
 			}
 		});
 	}

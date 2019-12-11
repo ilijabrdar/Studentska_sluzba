@@ -46,6 +46,7 @@ public class MainFrame extends JFrame{
 		this.setJMenuBar(menu);
 		
 		stable = SubjectTable.getSubjectTable();
+		stable.setAutoCreateRowSorter(true);
 		student_table = StudentsTable.getStudentsTable();
 		profesor_table = ProfesorTable.getProfesorTable();
 
