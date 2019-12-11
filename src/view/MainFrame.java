@@ -50,6 +50,8 @@ public class MainFrame extends JFrame{
 		student_table = StudentsTable.getStudentsTable();
 		profesor_table = ProfesorTable.getProfesorTable();
 
+		student_table.setAutoCreateRowSorter(true);
+		profesor_table.setAutoCreateRowSorter(true);
 
 		JScrollPane spane = new JScrollPane(stable);
 		JScrollPane student_pane = new JScrollPane(student_table);

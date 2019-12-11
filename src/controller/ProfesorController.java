@@ -28,12 +28,11 @@ private static ProfesorController instance = new ProfesorController();
 		MainFrame.getInsance().updateTable();
 	}
 	
-	public void izmeniProfesora (int rowSelectedIndex) {
+	public void izmeniProfesora (int rowSelectedIndex, Profesor novi) {
 		if (rowSelectedIndex < 0)
 			return;
 		
-		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
-		//TODO: zavrsi izmenu profesora
+		BazaProfesora.getBazaProfesora().editProfesor(rowSelectedIndex, novi);
 		MainFrame.getInsance().updateTable();
 	}
 
