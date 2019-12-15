@@ -4,11 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.AbstractTableModel;
+
+import controller.SubjectController;
 
 public class MainFrame extends JFrame{
 
@@ -36,7 +41,17 @@ public class MainFrame extends JFrame{
 		setTitle("Studentska sluba");
 		setIconImage(kit.getImage("imgs/ftn.png"));
 		
-		ToolBar toolbar = new ToolBar();
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				JFrame frame = (JFrame) arg0.getComponent();
+				JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene?", "Studentska služba", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				SubjectController sc = SubjectController.getSubjectController();
+				sc.saveToFile("subjectListing.txt");
+			}
+		});
+		
+		ToolBar toolbar = ToolBar.getInstance();
 		this.add(toolbar, BorderLayout.NORTH);
 
 		StatusBar status = new StatusBar();

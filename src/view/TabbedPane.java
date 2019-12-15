@@ -4,6 +4,8 @@ import java.awt.Component;
 
 import javax.swing.Icon;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class TabbedPane extends JTabbedPane {
 	
@@ -19,6 +21,14 @@ public class TabbedPane extends JTabbedPane {
 	
 	private TabbedPane() {
 		super();
+		this.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				ToolBar tb = ToolBar.getInstance();
+				tb.updateToolBar(isRunning("Predmeti"));
+			}
+		});
 	}
 	
 	public void addNewTab(String title, Component component) {

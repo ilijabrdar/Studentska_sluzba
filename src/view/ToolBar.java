@@ -22,23 +22,40 @@ public class ToolBar extends JToolBar{
 	//TODO VEZANI AKCELERATORI???
 	private static final long serialVersionUID = -6297787221312734786L;
 	
-	private JButton btn1 = null, btn2 = null, btn3 = null, btn4 = null;
+	private JButton btn1 = null, btn2 = null, btn3 = null, btn4 = null, btn5 = null, btn6 = null;
 	private JTextField search = null;
 	
-	public ToolBar() {
+	private static ToolBar instance = null;
+	
+	public static ToolBar getInstance() {
+		if(instance == null)
+			instance = new ToolBar();
+		return instance;
+	}
+	
+	private ToolBar() {
 		super(SwingConstants.HORIZONTAL);
 		
 		this.setBackground(Color.white);
 				
 		this.setLayout(new BorderLayout());
 		
-		setContent();
-		setActions();
+		updateToolBar(false);
 		
 		setFloatable(false);
 	}
 	
-	public void setContent() {
+	public void updateToolBar(boolean tab) {
+		this.removeAll();
+		this.revalidate();
+		this.repaint();
+		setContent(tab);
+		setActions();
+		if(tab) setSubjectActions();
+	}
+	
+	public void setContent(boolean tab) {
+		
 		JPanel items = new JPanel();
 		JPanel right = new JPanel();
 		items.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 4));
@@ -55,7 +72,21 @@ public class ToolBar extends JToolBar{
 		
 		items.add(btn1);
 		
-		this.addSeparator();
+		if(tab) {
+			btn5 = new JButton(new ImageIcon("imgs/stud.png"));
+			btn5.setBackground(Color.WHITE);
+			btn5.setBorderPainted(false);
+			btn5.setToolTipText("Dodaj studenta");
+			btn5.setPreferredSize(new Dimension(35, 35));
+			items.add(btn5);
+			
+			btn6 = new JButton(new ImageIcon("imgs/professor.png"));
+			btn6.setBackground(Color.WHITE);
+			btn6.setBorderPainted(false);
+			btn6.setToolTipText("Dodaj profesora");
+			btn6.setPreferredSize(new Dimension(34, 34));
+			items.add(btn6);
+		}
 		
 		btn2 = new JButton( new ImageIcon("imgs/edit1.png"));
 		btn2.setBackground(Color.WHITE);
@@ -73,17 +104,14 @@ public class ToolBar extends JToolBar{
 		
 		search = new JTextField();
 		search.setPreferredSize(new Dimension(200, 28));
-		this.add(search);
+		right.add(search);
 		
 		btn4 = new JButton( new ImageIcon("imgs/search.png"));
 		btn4.setPreferredSize(new Dimension(35, 35));
 		btn4.setBackground(Color.WHITE);
 		btn4.setBorderPainted(false);
 		btn4.setToolTipText("Pronađi");
-		right.add(search);
 		right.add(btn4);
-		
-		
 		
 		this.add(items, BorderLayout.WEST);
 		this.add(right, BorderLayout.EAST);
@@ -159,7 +187,6 @@ public class ToolBar extends JToolBar{
 					if(code == JOptionPane.YES_OPTION) {
 						SubjectController sc = SubjectController.getSubjectController();
 						sc.removeSubject();
-						sc.saveToFile("subjectListing.txt");
 					}	
 				} 
 				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) { //row_subject=-1 ako nijedan red nije selektovan
@@ -197,6 +224,38 @@ public class ToolBar extends JToolBar{
 						sc.retriveTable();
 					}
 				}
+			}
+		});
+	}
+	
+	public void setSubjectActions() {
+		btn6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
+				if(row_subject == -1)
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre dodavanja profesora selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
+				else {
+					ProfessorToSubject ps = new ProfessorToSubject(MainFrame.getInsance(), "Dodavanje profesora na predmet " + SubjectTable.getSubjectTable().getValueAt(row_subject, 1), true);
+					ps.setVisible(true);
+				}
+			}
+		});
+		
+		btn5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
+				if(row_subject == -1)
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre dodavanja studenta selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
+				else
+					;//TODO: Dijalog za dodavanje studenta na predmet;
+				
+				
 			}
 		});
 		}

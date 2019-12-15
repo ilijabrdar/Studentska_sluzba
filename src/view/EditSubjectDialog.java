@@ -42,7 +42,6 @@ public class EditSubjectDialog extends NewSubjectDialog {
 				Predmet p = new Predmet(sifra, naziv, semestar, godina);
 				p.setStrGodina(godina);
 				sc.editSubject(p);
-				sc.saveToFile("subjectListing.txt");
 				dispose();
 			}
 		});

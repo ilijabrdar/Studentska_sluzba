@@ -88,6 +88,14 @@ public class Predmet {
 		this.studenti = studenti;
 	}
 
+	public void addProfessor(Profesor prof) {
+		for (Profesor p : profs)
+			if(p.getLicna() == prof.getLicna())
+				return;
+		
+		profs.add(prof);
+	}
+	
 	@Override
 	public String toString() {
 		return "Predmet [sifra=" + sifra + ", naziv=" + naziv + ", semestar=" + semestar + ", godina=" + godina + "]";

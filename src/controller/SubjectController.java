@@ -1,22 +1,20 @@
 package controller;
 
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import javax.security.auth.Subject;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 import view.MainFrame;
-import view.NewSubjectDialog;
 import view.SubjectTable;
 
 public class SubjectController {
@@ -117,5 +115,15 @@ public class SubjectController {
 				out.close();
 			}
 		}
+	}
+
+	public boolean addProfToSubj(String ID) {
+		Predmet subj = getSelectedSubject();
+		Profesor p = BazaProfesora.getBazaProfesora().getProfesor(ID);
+		if(p == null)
+			return false;
+		subj.addProfessor(p);
+		return true;
+			
 	}
 }

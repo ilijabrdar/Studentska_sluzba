@@ -90,4 +90,11 @@ public class BazaProfesora {
 	public void removeProfesor(Profesor p) {
 		profesori.remove(p);
 	}
+	
+	public Profesor getProfesor(String ID) {
+		for(Profesor p : profesori)
+			if(p.getLicna().equals(ID))
+				return p;
+		return null;
+	}
 }

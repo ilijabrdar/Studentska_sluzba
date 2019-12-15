@@ -12,7 +12,6 @@ public class BazaPredmeta {
 	private static BazaPredmeta instance = null;
 	private ArrayList<String> columns;
 	private ArrayList<Predmet> subjects;
-	private ArrayList<Profesor> profs;
 	private ArrayList<Predmet> backup;
 	
 	public static BazaPredmeta getBazaPredmeta() {
@@ -24,7 +23,6 @@ public class BazaPredmeta {
 	private BazaPredmeta() {
 		columns = new ArrayList<String>();
 		subjects = new ArrayList<Predmet>();
-		profs = new ArrayList<Profesor>();
 		backup = new ArrayList<Predmet>();
 		initCols();
 		initBackup();
@@ -50,7 +48,6 @@ public class BazaPredmeta {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (reader != null) {

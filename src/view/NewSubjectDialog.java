@@ -46,7 +46,7 @@ public class NewSubjectDialog extends JDialog {
 		addActionsCENCEL();
 	}
 	
-	JDialog getDialog() { return this; }
+	JDialog getDialog() { return this; } //TODO MOZDA BOLJE RESENJE???
 	
 	public void setContent() {
 		JLabel lab1 = new JLabel("Šifra*");
@@ -104,6 +104,7 @@ public class NewSubjectDialog extends JDialog {
 		JPanel closingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		closingPanel.setBackground(Color.white);
 		btnOK = new JButton("Sačuvaj");
+		btnOK.setName("NoviPredmetOK");
 		btnOK.setEnabled(false);
 		btnCENCEL = new JButton("Odustani");
 		closingPanel.add(btnOK);
@@ -136,7 +137,6 @@ public class NewSubjectDialog extends JDialog {
 				Predmet p = new Predmet(sifra, naziv, semestar, godina);
 				p.setStrGodina(godina);
 				sc.addSubject(p, getDialog());	
-				sc.saveToFile("subjectListing.txt");
 				sc.retriveTable();
 				dispose();
 			}
