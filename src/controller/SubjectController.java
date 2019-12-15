@@ -37,8 +37,8 @@ public class SubjectController {
 			JOptionPane.showMessageDialog(parent, "Predmet već postoji", "Greška", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	public void removeSubject() {
-		selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
+	public void removeSubject(int row) {
+		selectedRow = row;
 		Predmet subj = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
 		BazaPredmeta.getBazaPredmeta().removeSubject(subj);
 		if(BazaPredmeta.getBazaPredmeta().getSubjects().isEmpty())

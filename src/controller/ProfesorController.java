@@ -22,7 +22,7 @@ private static ProfesorController instance = new ProfesorController();
 	public void izbrisiProfesora(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0 )
 			return;
-		
+
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
 		BazaProfesora.getBazaProfesora().removeProfesor(p);
 		MainFrame.getInsance().updateTable();

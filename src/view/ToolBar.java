@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.ProfesorController;
 import controller.StudentController;
 import controller.SubjectController;
 
@@ -180,13 +181,14 @@ public class ToolBar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
 				int row_student = StudentsTable.getStudentsTable().getSelectedRow();
+				int row_prof = ProfesorTable.getProfesorTable().getSelectedRow();
 				
 				if(TabbedPane.getInstance().isRunning("Predmeti") && row_subject >= 0) {
 					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da želite da obrišete predmet?",
 							"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 					if(code == JOptionPane.YES_OPTION) {
 						SubjectController sc = SubjectController.getSubjectController();
-						sc.removeSubject();
+						sc.removeSubject(row_subject);
 					}	
 				} 
 				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) { //row_subject=-1 ako nijedan red nije selektovan
@@ -206,7 +208,18 @@ public class ToolBar extends JToolBar{
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
 							"Pre brisanja selektujete studenta.", "Greška", JOptionPane.ERROR_MESSAGE);
 				}
-				
+				else if (TabbedPane.getInstance().isRunning("Profesori") && row_prof >= 0) {
+					int code = JOptionPane.showConfirmDialog(MainFrame.getInsance(), "Da li ste sigurni da želite da obrišete profesora?",
+							"Brisanje profesora", JOptionPane.YES_NO_OPTION);
+					if(code == JOptionPane.YES_OPTION) {
+						ProfesorController pc = ProfesorController.getInstance();
+						pc.izbrisiProfesora(row_prof);
+					}	
+				}
+				else {
+					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
+							"Pre brisanja selektujete profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		});
