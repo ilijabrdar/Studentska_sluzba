@@ -1,11 +1,14 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -53,6 +56,8 @@ public class ProfessorToSubject extends JDialog{
 		
 		this.add(closingPanel, BorderLayout.SOUTH);
 		this.add(bigPanel, BorderLayout.CENTER);
+	
+		btnOK.setEnabled(false);
 	}
 	
 	public ProfessorToSubject getDialog() { return this; }
@@ -66,7 +71,32 @@ public class ProfessorToSubject extends JDialog{
 				SubjectController sc = SubjectController.getSubjectController();
 				if(!sc.addProfToSubj(ID))
 					JOptionPane.showMessageDialog(getDialog(), "Uneti profesor ne postoji.", "Dodavanje profesora na predet", JOptionPane.ERROR_MESSAGE);
+				else
+					dispose();
+			}
+		});
+		
+		btnCENCEL.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				dispose();
+			}
+		});
+		
+		txt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				JTextField txt = (JTextField) e.getComponent();
+				String content = txt.getText().trim();
+				if(!content.matches("[0-9]+")) {
+					txt.setBackground(Color.red);
+					btnOK.setEnabled(false);
+				}
+				else {
+					txt.setBackground(Color.white);
+					btnOK.setEnabled(true);
+				}
 			}
 		});
 	}

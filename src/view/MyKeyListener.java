@@ -35,29 +35,23 @@ public class MyKeyListener implements KeyListener {
 		String content = txt.getText().trim();
 		
 		if(txt.getName().equals("Sifra"))
-			if(content.equals("")) {
+			if(!content.matches("[A-Za-zČĆŽĐŠčćžšđ0-9]+")) {
 				txt.setBackground(Color.red);
 				flag1 = 0;
 			}
 			else {
 				txt.setBackground(Color.white);
-				if(content.matches("[A-Za-zČĆŽĐŠčćžšđ0-9]+"))
-					flag1 = 1;
-				else
-					flag1= 0;
+				flag1 = 1;
 			}
 		
 		if(txt.getName().equals("Naziv"))
-			if(content.equals("")) {
+			if(!content.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+( (- )?[a-zčćžšđ]+)*( [0-9])?")) {
 				txt.setBackground(Color.red);
 				flag2 = 0;
 			}
 			else {
 				txt.setBackground(Color.white);
-				if(content.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+( (- )?[a-zčćžšđ]+)*( [0-9])?"))
-					flag2 = 1;
-				else
-					flag2 = 0;
+				flag2 = 1;
 			}
 		
 		if(flag1 == 1 && flag2 == 1)
