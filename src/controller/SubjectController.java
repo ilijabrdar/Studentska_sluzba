@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -117,6 +120,34 @@ public class SubjectController {
 		}
 	}
 
+	
+	public void saveProfToSubj(String file) {
+		PrintWriter out = null;
+		ArrayList<Predmet> subj = BazaPredmeta.getBazaPredmeta().getBackup();
+		try {
+			out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
+			for (Predmet p : subj) { 
+				ArrayList<Profesor> prof = p.getProfs();
+				StringBuilder sb = new StringBuilder(500);
+				sb.append(p.getSifra());
+				sb.append("|");
+				for(Profesor pr : prof) {
+					String ID = pr.getLicna();
+					sb.append(ID);
+					sb.append("|");
+				}
+				out.println(sb.toString());
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				out.close();
+			}
+		}
+	}
+	
 	public boolean addProfToSubj(String ID) {
 		Predmet subj = getSelectedSubject();
 		Profesor p = BazaProfesora.getBazaProfesora().getProfesor(ID);

@@ -48,6 +48,7 @@ public class MainFrame extends JFrame{
 				JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene?", "Studentska služba", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				SubjectController sc = SubjectController.getSubjectController();
 				sc.saveToFile("subjectListing.txt");
+				sc.saveProfToSubj("ProfSubjListing.txt");
 			}
 		});
 		

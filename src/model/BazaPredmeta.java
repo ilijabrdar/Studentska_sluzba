@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import controller.SubjectController;
+
 public class BazaPredmeta {
 
 	private static BazaPredmeta instance = null;
@@ -26,6 +28,7 @@ public class BazaPredmeta {
 		backup = new ArrayList<Predmet>();
 		initCols();
 		initBackup();
+		pullProfessors();
 		for(Predmet p : backup)
 			subjects.add(p);
 	}
@@ -37,6 +40,7 @@ public class BazaPredmeta {
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream("subjectListing.txt"), "utf-8"));
 			String line = null;
 			while((line = reader.readLine()) != null) {
+				
 				data = line.split("\\|");
 				String sifra = data[0].trim();
 				String naziv = data[1].trim();
@@ -58,7 +62,43 @@ public class BazaPredmeta {
 				}
 			}
 		}
-		
+	}
+	/***
+	 * Pulls professors from the file 'ProfSubjListing'.
+	 * Rows in the file have the following form:
+	 * 	string1|string2|string3|...|stringN
+	 * 	where
+	 * 	string1 represents a subject ID
+	 * 	string2...N represent professors' IDs
+	 */
+	public void pullProfessors() {
+		BufferedReader in = null;
+		String[] data;
+		try {
+			in = new BufferedReader(new InputStreamReader(new FileInputStream("ProfSubjListing.txt")));
+			
+			String line = null;
+			while((line = in.readLine()) != null) {
+				data = line.split("\\|");
+				String subID = data[0];
+				Predmet subj = getSubject(subID);
+				for(int i = 1; i < data.length; i++) {
+					subj.addProfessor(BazaProfesora.getBazaProfesora().getProfesor(data[i]));
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	private void initCols() {
@@ -168,5 +208,14 @@ public class BazaPredmeta {
 	public void removeSubject(Predmet subj) {
 		subjects.remove(subj);
 		backup.remove(subj);
+	}
+	
+	public Predmet getSubject(String ID) {
+		for(int i = 0; i < backup.size(); i++) {
+			if(backup.get(i).getSifra().equalsIgnoreCase(ID)) {
+				return backup.get(i);
+			}
+		}
+		return null; //nemoguce da vrati null, jer to je obezbedjeno kod doavanja profe na predmet
 	}
 }
