@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.AbstractTableModel;
 
+import controller.StudentController;
 import controller.SubjectController;
+import model.BazaStudenata;
 
 public class MainFrame extends JFrame{
 
@@ -45,10 +47,17 @@ public class MainFrame extends JFrame{
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				JFrame frame = (JFrame) arg0.getComponent();
-				JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene?", "Studentska služba", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				int input = JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene?", "Studentska služba", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				
+				if (input == 0) {
 				SubjectController sc = SubjectController.getSubjectController();
 				sc.saveToFile("subjectListing.txt");
 				sc.saveProfToSubj("ProfSubjListing.txt");
+
+				StudentController student_controller = StudentController.getInstance();
+				student_controller.saveToFile("studentListing.txt");
+				}
+
 			}
 		});
 		
@@ -87,7 +96,6 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void updateTable() {
-		//AbstractTableModel model = (AbstractModelSubjects) stable.getModel(); 
 		AbstractTableModel model;
 		if (TabbedPane.getInstance().isRunning("Predmeti"))
 			model = (AbstractModelSubjects) stable.getModel();

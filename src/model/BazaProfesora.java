@@ -28,10 +28,17 @@ public class BazaProfesora {
 	private void initColumns() {
 		this.columns.add("Ime");
 		this.columns.add("Prezime");
+		this.columns.add("Broj licne karte");
 		this.columns.add("Titula");
 		this.columns.add("Zvanje");
 		this.columns.add("Kancelarija");
 		this.columns.add("Email");
+		this.columns.add("Datum rodjenja");
+		this.columns.add("Telefon");
+		this.columns.add("Adresa");
+
+		
+		
 	}
 
 	public ArrayList<String> getColumns() {
@@ -58,13 +65,21 @@ public class BazaProfesora {
 		case 1:
 			return p.getPrezime();
 		case 2:
-			return p.getTitula();
+			return p.getLicna();
 		case 3:
-			return p.getZvanje();
+			return p.getTitula();
 		case 4:
-			return p.getKanc();
+			return p.getZvanje();
 		case 5:
+			return p.getKanc();
+		case 6:
 			return p.getEmail();
+		case 7:
+			return p.getDatum();
+		case 8:
+			return p.getTelefon();
+		case 9:
+			return p.getAdresa();
 		default:
 				return null;
 		}

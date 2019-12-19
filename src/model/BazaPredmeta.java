@@ -107,7 +107,7 @@ public class BazaPredmeta {
 		this.columns.add("Semestar");
 		this.columns.add("Godina");
 		this.columns.add("Profesori");
-		this.columns.add("Studenti");
+		//this.columns.add("Studenti");
 	}
 
 	public ArrayList<String> getColumns() {
@@ -160,6 +160,10 @@ public class BazaPredmeta {
 	
 	public String getColumnName(int col) {
 		return this.columns.get(col);
+	}
+	
+	public int getColumnCount() {
+		return 5; //PAZI!
 	}
 	
 	public boolean addSubject(Predmet subj) {
