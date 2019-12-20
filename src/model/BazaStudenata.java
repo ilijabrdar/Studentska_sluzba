@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import model.Student.Status;
+import view.MainFrame;
 
 public class BazaStudenata {
 	
@@ -110,6 +111,34 @@ public class BazaStudenata {
 
 	public void setStudents(ArrayList<Student> students) {
 		this.students = students;
+	}
+
+	public void updateArrayList() {
+		ArrayList<Student> pomocna = new ArrayList<Student>();
+
+		for (int row = 0; row< MainFrame.getInsance().getStudent_table().getRowCount(); row++) {
+			String indeks = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,0);
+			String ime = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,1);
+			String prz = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,2);
+			String godina_stud = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,3);
+			String status = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,4);
+			String prosek = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,5);
+			String datum_r = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,6);
+			String adresa = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,7);
+			String tel = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,8);
+			String email = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,9);
+			String datum_up = (String) MainFrame.getInsance().getStudent_table().getValueAt(row,10);
+
+			int god = Integer.parseInt(godina_stud);
+			Status st = Status.valueOf(status);
+			double prosek_d = Double.parseDouble(prosek);
+
+			Student s = new Student(ime,prz,datum_r,adresa,tel,email,indeks,datum_up,god, st,prosek_d);
+			pomocna.add(s);
+		}
+
+		BazaStudenata.getBazaStudenata().setStudents(pomocna);
+
 	}
 	
 	public String getValueAt(int row, int column) {

@@ -8,15 +8,14 @@ public class Profesor extends Osoba {
 	private String licna;
 	private String titula;
 	private String zvanje;
-	private ArrayList<Predmet> predmeti;
+	private ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	
-	public Profesor(String i, String p, String d, String a, String t, String e, String k, String l, String tit, String z, ArrayList<Predmet> pr) {
+	public Profesor(String i, String p, String d, String a, String t, String e, String k, String l, String tit, String z) {
 		super(i, p, d, a, t, e);
 		this.kanc = k;
 		this.licna = l;
 	    this.titula = tit;
 	    this.zvanje = z;
-	    this.predmeti = pr;
 	}
 
 	public String getKanc() {

@@ -22,6 +22,11 @@ public class StudentsTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelStudents());
 	}
+
+//	@Override
+//	public int getSelectedRow() {
+//		return MainFrame.getInsance().getStudent_table().getSelectedRow();
+//	}
 	
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {

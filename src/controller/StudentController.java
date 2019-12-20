@@ -29,7 +29,8 @@ public class StudentController {
 	public void izbrisiStudenta(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0 )
 			return;
-		
+
+		BazaStudenata.getBazaStudenata().updateArrayList();
 		Student s = BazaStudenata.getBazaStudenata().getRow(rowSelectedIndex);
 		BazaStudenata.getBazaStudenata().removeStudent(s);
 		MainFrame.getInsance().updateTable();

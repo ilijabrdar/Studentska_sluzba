@@ -16,7 +16,8 @@ public class EditProfesorDialog extends NewProfesorDialog {
 
 	public EditProfesorDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
-		
+
+		BazaProfesora.getBazaProfesora().updateArrayList();
 		int index = ProfesorTable.getProfesorTable().getSelectedRow();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(index);
 		
@@ -50,7 +51,7 @@ public class EditProfesorDialog extends NewProfesorDialog {
 				String zvanje = txt_zvanje.getText();
 				String licna = txt_licna.getText();
 				
-				 Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje,null);
+				 Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
 					
 				ProfesorController profesor_controller = ProfesorController.getInstance();
 				int index = ProfesorTable.getProfesorTable().getSelectedRow();

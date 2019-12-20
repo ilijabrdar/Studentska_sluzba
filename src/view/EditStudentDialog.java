@@ -3,6 +3,7 @@ package view;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -17,10 +18,13 @@ public class EditStudentDialog extends NewStudentDialog {
 
 	public EditStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
-		
-		int row = StudentsTable.getStudentsTable().getSelectedRow(); //TODO: ne radi ovo kada se sortira
-		String indeks = BazaStudenata.getBazaStudenata().getValueAt(row,0);
-		Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(indeks);
+
+		BazaStudenata.getBazaStudenata().updateArrayList();
+
+		int row = StudentsTable.getStudentsTable().getSelectedRow();
+		Student s = BazaStudenata.getBazaStudenata().getRow(row);
+
+
 
 
 		txt_ime.setText(s.getIme());
@@ -57,7 +61,7 @@ public class EditStudentDialog extends NewStudentDialog {
 		
 
 	}
-	
+
 	public void addActionsOK() {
 		btnOK.addActionListener(new ActionListener() {
 			

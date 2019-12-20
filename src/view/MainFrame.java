@@ -7,10 +7,8 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
+import javax.swing.*;
+import javax.swing.event.RowSorterEvent;
 import javax.swing.table.AbstractTableModel;
 
 import controller.StudentController;
@@ -27,7 +25,14 @@ public class MainFrame extends JFrame{
 	private StudentsTable student_table = null;
 	private ProfesorTable profesor_table = null;
 
-	
+	public StudentsTable getStudent_table() {
+		return student_table;
+	}
+
+	public ProfesorTable getProfesor_table() {
+		return profesor_table;
+	}
+
 	public static MainFrame getInsance() {
 		return instance;
 	}
@@ -71,12 +76,18 @@ public class MainFrame extends JFrame{
 		this.setJMenuBar(menu);
 		
 		stable = SubjectTable.getSubjectTable();
-		stable.setAutoCreateRowSorter(true);
+		stable.setAutoCreateRowSorter(true); //ovo ne cini nikakvu izmenu
 		student_table = StudentsTable.getStudentsTable();
 		profesor_table = ProfesorTable.getProfesorTable();
 
+
+
 		student_table.setAutoCreateRowSorter(true);
 		profesor_table.setAutoCreateRowSorter(true);
+		student_table.setUpdateSelectionOnSort(true);
+		profesor_table.setUpdateSelectionOnSort(true);
+
+
 
 		JScrollPane spane = new JScrollPane(stable);
 		JScrollPane student_pane = new JScrollPane(student_table);
@@ -108,5 +119,7 @@ public class MainFrame extends JFrame{
 		model.fireTableDataChanged();
 		validate();
 	}
+
+
 	
 }

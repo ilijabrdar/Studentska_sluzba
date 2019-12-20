@@ -217,7 +217,7 @@ public class NewProfesorDialog extends JDialog {
 				String zvanje = txt_zvanje.getText();
 				String licna = txt_licna.getText();
 				
-				 Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje,null);
+				 Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
 					
 				ProfesorController profesor_controller = ProfesorController.getInstance();
 				profesor_controller.dodajProfesora(p);

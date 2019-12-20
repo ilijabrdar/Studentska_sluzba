@@ -1,5 +1,7 @@
 package model;
 
+import view.MainFrame;
+
 import java.util.ArrayList;
 
 public class BazaProfesora {
@@ -21,7 +23,7 @@ public class BazaProfesora {
 	
 	
 	private void initProfesori() {
-		Profesor p = new Profesor("Darko", "Darkovic","", "adresa","063","email","kancelarija", "105","Doktor","Prof.",null );
+		Profesor p = new Profesor("Darko", "Darkovic","", "adresa","063","email","kancelarija", "105","Doktor","Prof.");
 		profesori.add(p);
 	}
 	
@@ -36,9 +38,6 @@ public class BazaProfesora {
 		this.columns.add("Datum rodjenja");
 		this.columns.add("Telefon");
 		this.columns.add("Adresa");
-
-		
-		
 	}
 
 	public ArrayList<String> getColumns() {
@@ -47,6 +46,30 @@ public class BazaProfesora {
 
 	public void setColumns(ArrayList<String> columns) {
 		this.columns = columns;
+	}
+
+	public void updateArrayList() {
+		ArrayList<Profesor> pomocna = new ArrayList<Profesor>();
+
+		for (int row = 0; row< MainFrame.getInsance().getProfesor_table().getRowCount(); row++) {
+			String ime = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,0);
+			String prz = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,1);
+			String licna = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,2);
+			String titula = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,3);
+			String zvanje = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,4);
+			String kanc = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,5);
+			String email = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,6);
+			String datum_r = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,7);
+			String tel = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,8);
+			String adresa = (String) MainFrame.getInsance().getProfesor_table().getValueAt(row,9);
+
+
+			Profesor p = new Profesor(ime,prz,datum_r,adresa,tel,email,kanc,licna,titula,zvanje);
+			pomocna.add(p);
+		}
+
+		BazaProfesora.getBazaProfesora().setProfesori(pomocna);
+
 	}
 
 	public ArrayList<Profesor> getProfesori() {

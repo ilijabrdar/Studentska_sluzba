@@ -23,6 +23,7 @@ private static ProfesorController instance = new ProfesorController();
 		if (rowSelectedIndex < 0 )
 			return;
 
+		BazaProfesora.getBazaProfesora().updateArrayList();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
 		BazaProfesora.getBazaProfesora().removeProfesor(p);
 		MainFrame.getInsance().updateTable();
