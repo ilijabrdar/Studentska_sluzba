@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Student extends Osoba {
 	
 	public enum Status {B,S}
-	
 	private String index;
 	private String datum_upisa;
 	private int godina_studija;
@@ -15,16 +14,15 @@ public class Student extends Osoba {
 	private double prosek;
 	ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	
-	
+
 	public Student(String ime, String prezime, String datum, String adresa, String telefon, String email, String index,
-			String datum_upisa, int godina_studija, Status status, double prosek, ArrayList<Predmet> predmeti) {
+			String datum_upisa, int godina_studija, Status status,double prosek) {
 		super(ime, prezime, datum, adresa, telefon, email);
 		this.index = index;
 		this.datum_upisa = datum_upisa;
 		this.godina_studija = godina_studija;
 		this.status = status;
 		this.prosek = prosek;
-		this.predmeti = predmeti;
 	}
 
 	public String getIndex() {
@@ -79,6 +77,16 @@ public class Student extends Osoba {
 	public String toString() {
 		return "Student [index=" + index + ", datum_upisa=" + datum_upisa + ", godina_studija=" + godina_studija
 				+ ", status=" + status + ", prosek=" + prosek + ", predmeti=" + predmeti + "]";
+	}
+
+	public boolean dodajPredmetStudentu(Predmet p) {
+
+		if (predmeti.contains(p))
+				return false;
+
+
+		predmeti.add(p);
+		return true;
 	}
 
 	

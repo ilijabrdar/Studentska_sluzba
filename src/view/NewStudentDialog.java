@@ -62,7 +62,7 @@ public class NewStudentDialog extends JDialog {
 		setFields();
 		
 		addActionsWind();
-		//addActionsFields();
+		//addActionsFields(); //TODO: dodaj key listenere
 		addActionsOK();
 		addActionsCANCEL();
 		
@@ -267,9 +267,10 @@ public class NewStudentDialog extends JDialog {
 						status = Status.S;
 					else
 						status= Status.B;
-					
+
+
 					Student s = new Student(ime,prezime,datum_rodjenja,adresa,telefon,email,indeks,datum_upisa,trenutna_godina,
-							status,prosek,null);
+							status,prosek);
 					
 					StudentController student_controller = StudentController.getInstance();
 					student_controller.dodajStudenta(s);

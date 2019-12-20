@@ -54,7 +54,7 @@ public class BazaStudenata {
 
 
 				Student s = new Student(ime,prezime,datum_rodjenja,adresa,telefon,email,indeks,datum_upisa,trenutna_godina,
-						status,prosek,null);
+						status,prosek);
 				database.add(s);
 			}
 		} catch (FileNotFoundException e) {
@@ -140,6 +140,16 @@ public class BazaStudenata {
 		default:
 				return null;
 		}
+	}
+
+	public Student getStudentPrekoIndeksa(String index) {
+		for (Student s : students) {
+			if (s.getIndex().equalsIgnoreCase(index))
+				return s;
+		}
+
+		return null;
+
 	}
 	
 	public Student getRow(int row) {

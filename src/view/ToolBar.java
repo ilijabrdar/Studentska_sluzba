@@ -265,9 +265,11 @@ public class ToolBar extends JToolBar{
 				if(row_subject == -1)
 					JOptionPane.showMessageDialog(MainFrame.getInsance(), 
 							"Pre dodavanja studenta selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
-				else
-					;//TODO: Dijalog za dodavanje studenta na predmet;
-				
+				else {
+					StudentNaPredmet sp = new StudentNaPredmet(MainFrame.getInsance(),"Dodavanje studenta na predmet",true);
+					sp.setVisible(true);
+				}
+
 				
 			}
 		});

@@ -13,10 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import model.BazaPredmeta;
-import model.BazaProfesora;
-import model.Predmet;
-import model.Profesor;
+import model.*;
 import view.MainFrame;
 import view.SubjectTable;
 
@@ -156,5 +153,23 @@ public class SubjectController {
 		subj.addProfessor(p);
 		return true;
 			
+	}
+
+	public boolean addStudentToSubject(String indeks) {
+		Predmet p = getSelectedSubject();
+		Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(indeks);
+		if (s == null) //provera  da li student sa datim indeksom postoji
+			return false;
+
+		if (!s.dodajPredmetStudentu(p))
+			return false;
+
+		p.addStudent(s);
+		s.dodajPredmetStudentu(p);
+		return true;
+
+
+
+
 	}
 }

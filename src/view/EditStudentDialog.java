@@ -18,9 +18,11 @@ public class EditStudentDialog extends NewStudentDialog {
 	public EditStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		
-		int index = StudentsTable.getStudentsTable().getSelectedRow();
-		Student s = BazaStudenata.getBazaStudenata().getRow(index);
-		
+		int row = StudentsTable.getStudentsTable().getSelectedRow(); //TODO: ne radi ovo kada se sortira
+		String indeks = BazaStudenata.getBazaStudenata().getValueAt(row,0);
+		Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(indeks);
+
+
 		txt_ime.setText(s.getIme());
 		txt_prezime.setText(s.getPrezime());
 		txt_datum_rodjenja.setText(s.getDatum());
@@ -100,7 +102,7 @@ public class EditStudentDialog extends NewStudentDialog {
 						status= Status.B;
 					
 					Student s = new Student(ime,prezime,datum_rodjenja,adresa,telefon,email,indeks,datum_upisa,trenutna_godina,
-							status,prosek,null);
+							status,prosek);
 					
 					StudentController student_controller = StudentController.getInstance();
 					int index = StudentsTable.getStudentsTable().getSelectedRow();

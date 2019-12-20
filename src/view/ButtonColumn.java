@@ -113,6 +113,8 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 		JPanel main = new JPanel();
 		JPanel leftPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
+
+
 		
 		main.setLayout(new BorderLayout());
 		main.add(leftPanel, BorderLayout.WEST);

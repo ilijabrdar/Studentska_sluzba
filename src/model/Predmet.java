@@ -95,6 +95,10 @@ public class Predmet {
 		
 		profs.add(prof);
 	}
+
+	public void addStudent(Student s ) {
+		studenti.add(s);
+	}
 	
 	@Override
 	public String toString() {

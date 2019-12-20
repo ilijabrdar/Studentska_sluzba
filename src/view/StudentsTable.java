@@ -12,7 +12,7 @@ public class StudentsTable extends JTable {
 	private static final long serialVersionUID = 7256962006890098490L;
 	
 	private static StudentsTable instance = new StudentsTable();
-	
+
 	public static StudentsTable getStudentsTable() {
 		return instance;
 	}
