@@ -21,7 +21,7 @@ public class EditSubjectDialog extends NewSubjectDialog {
 	}
 	
 	public void initDialog() {
-		Predmet subj = SubjectController.getSubjectController().getSelectedSubject();
+		Predmet subj = SubjectController.getSubjectController().getSelectedSubjectByID();
 		txt1.setText(subj.getSifra());
 		txt2.setText(subj.getNaziv());
 		combo1.setSelectedItem(subj.getSemestar());

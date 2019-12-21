@@ -188,7 +188,7 @@ public class ToolBar extends JToolBar{
 							"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 					if(code == JOptionPane.YES_OPTION) {
 						SubjectController sc = SubjectController.getSubjectController();
-						sc.removeSubject(row_subject);
+						sc.removeSubject();
 					}	
 				} 
 				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) { //row_subject=-1 ako nijedan red nije selektovan

@@ -37,9 +37,8 @@ public class SubjectController {
 			JOptionPane.showMessageDialog(parent, "Predmet već postoji", "Greška", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	public void removeSubject(int row) {
-		selectedRow = row;
-		Predmet subj = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
+	public void removeSubject() {
+		Predmet subj = getSelectedSubjectByID();
 		BazaPredmeta.getBazaPredmeta().removeSubject(subj);
 		if(BazaPredmeta.getBazaPredmeta().getSubjects().isEmpty())
 			retriveTable();
@@ -50,6 +49,16 @@ public class SubjectController {
 	public Predmet getSelectedSubject() {
 		selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
 		return BazaPredmeta.getBazaPredmeta().getRow(selectedRow); 
+	}
+
+	public Predmet getSelectedSubjectByID() {
+		Predmet retVal = null;
+		selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
+		String id = (String) SubjectTable.getSubjectTable().getValueAt(selectedRow, 0);
+		for(Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) //svejedno da li je ovo ili backup
+			if(p.getSifra().equalsIgnoreCase(id))
+				retVal = p;
+		return retVal;
 	}
 	
 	public void editSubject(Predmet subj) {
