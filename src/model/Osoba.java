@@ -3,7 +3,7 @@ package model;
 public class Osoba {
 	protected String ime;
 	protected String prezime;
-	protected String datum;
+	protected String datum; //TODO: Tip Date?
 	protected String adresa;
 	protected String telefon;
 	protected String email;

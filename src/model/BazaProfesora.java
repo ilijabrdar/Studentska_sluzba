@@ -135,4 +135,9 @@ public class BazaProfesora {
 				return p;
 		return null;
 	}
+
+	public void findProfessor() {
+		ArrayList<Profesor> serach = new ArrayList<>();
+
+	}
 }
