@@ -33,6 +33,10 @@ public class MainFrame extends JFrame{
 		return profesor_table;
 	}
 
+	public SubjectTable getStable() {
+		return stable;
+	}
+
 	public static MainFrame getInsance() {
 		return instance;
 	}

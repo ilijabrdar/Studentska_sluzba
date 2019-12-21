@@ -1,19 +1,22 @@
 package view;
 
+import com.sun.tools.javac.Main;
+import controller.StudentController;
+import controller.SubjectController;
+import model.BazaPredmeta;
+import model.BazaStudenata;
+import model.Predmet;
+import model.Student;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
-import javax.swing.AbstractCellEditor;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
@@ -25,12 +28,34 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 	private JButton editorButton;
 	private JTable table;
 	private boolean isEditorActive = false;
-	
+	private DefaultListModel DLM = new DefaultListModel();
+	private JList list = new JList();
+	private JDialog dialog;
+
+
 	public ButtonColumn(JTable table, int column) {
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
 		this.table.addMouseListener(this);
+
+		list.setBounds(200,200,200,200);
+		dialog = new JDialog(MainFrame.getInsance(),"Studenti na predmetu " , true);//TODO: dodaj naziv predmeta
+
+		dialog.setSize(600, 600);
+		dialog.setLocationRelativeTo(MainFrame.getInsance());
+		dialog.setResizable(false);
+		dialog.setLayout(new BorderLayout());
+
+		dialog.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				DLM.removeAllElements();
+
+			}
+		});
+
+		dialog.add(list);
 		
 		this.renderButton = new JButton ("...");
 		this.editorButton = new JButton("...");
@@ -39,11 +64,34 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				JOptionPane.showMessageDialog(table, "Nesto");
+
+
+				int row = MainFrame.getInsance().getStable().getSelectedRow();
+				Predmet selected_predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
+
+				for (Student s : selected_predmet.getStudenti()) {
+					DLM.addElement(s.getIndex());
+				}
+
+				list.setModel(DLM);
+
+				dialog.setVisible(true);
+
 			}
 		});
 		
 		this.isEditorActive = false;
+
+		dodajListerLista();
+	}
+
+	private void dodajListerLista() {
+		list.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				System.out.println("Selektovan je student sa indexom " + list.getSelectedValue());
+			}
+		});
 	}
 
 	@Override
