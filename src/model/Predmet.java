@@ -99,11 +99,16 @@ public class Predmet {
 	public void addStudent(Student s ) {
 		studenti.add(s);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Predmet [sifra=" + sifra + ", naziv=" + naziv + ", semestar=" + semestar + ", godina=" + godina + "]";
+		return "Predmet{" +
+				"sifra='" + sifra + '\'' +
+				", naziv='" + naziv + '\'' +
+				", semestar='" + semestar + '\'' +
+				", godina='" + godina + '\'' +
+				", profs=" + profs +
+				", studenti=" + studenti +
+				'}';
 	}
-	
-	
 }
