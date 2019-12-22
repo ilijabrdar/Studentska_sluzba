@@ -2,6 +2,7 @@ package model;
 
 import view.MainFrame;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class BazaProfesora {
@@ -9,7 +10,8 @@ public class BazaProfesora {
 	private static BazaProfesora instance = new BazaProfesora();
 	private ArrayList<String> columns;
 	private ArrayList<Profesor> profesori;
-	
+	private ArrayList<Profesor> database;
+
 	public static BazaProfesora getBazaProfesora() {
 		return instance;
 	}
@@ -17,14 +19,51 @@ public class BazaProfesora {
 	private BazaProfesora() {
 		columns = new ArrayList<String>();
 		profesori = new ArrayList<Profesor>();
+		database = new ArrayList<Profesor>();
 		initColumns();
-		initProfesori();
+		initDatabase();
+		for (Profesor p : database)
+			profesori.add(p);
 	}
 	
 
-	private void initProfesori() {
-		Profesor p = new Profesor("Darko", "Darkovic","", "adresa","063","email","kancelarija", "105","Doktor","Prof.");
-		profesori.add(p);
+	private void initDatabase() {
+		BufferedReader reader = null;
+		String[] data;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream("profesorListing.txt"), "utf-8"));
+			String line = null;
+			while((line = reader.readLine()) != null) {
+				data = line.split("\\|");
+
+				String ime = data[0].trim();
+				String prezime = data[1].trim();
+				String broj_licne = data[2].trim();
+				String titula = data[3].trim();
+				String zvanje = data[4].trim();
+				String kancelarija = data[5].trim();
+				String email = data[6].trim();
+				String datum_rodjenja = data[7].trim();
+				String telefon = data[8].trim();
+				String adresa = data[9].trim();
+
+
+				Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,broj_licne,titula,zvanje);
+				database.add(p);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	private void initColumns() {
@@ -46,6 +85,14 @@ public class BazaProfesora {
 
 	public void setColumns(ArrayList<String> columns) {
 		this.columns = columns;
+	}
+
+	public ArrayList<Profesor> getDatabase() {
+		return database;
+	}
+
+	public void setDatabase(ArrayList<Profesor> database) {
+		this.database = database;
 	}
 
 	public void updateArrayList() {
@@ -117,6 +164,11 @@ public class BazaProfesora {
 	}
 	
 	public void addProfesor(Profesor p) {
+		for (Profesor temp : profesori) {
+			if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
+				return;
+		}
+
 		profesori.add(p);
 	}
 	
