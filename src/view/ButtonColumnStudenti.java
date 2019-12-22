@@ -1,0 +1,51 @@
+package view;
+
+import model.BazaPredmeta;
+import model.Predmet;
+import model.Student;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ButtonColumnStudenti extends ButtonColumn{
+    public ButtonColumnStudenti(JTable table, int column, String msg) {
+        super(table, column, msg);
+        addEditinAction();
+        this.isEditorActive = false;
+        dodajListerLista();
+    }
+
+    private void addEditinAction() {
+        this.editorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fireEditingStopped();
+
+
+                int row = MainFrame.getInsance().getStable().getSelectedRow();
+                Predmet selected_predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
+
+                for (Student s : selected_predmet.getStudenti()) {
+                    DLM.addElement(s.getIndex());
+                }
+
+                list.setModel(DLM);
+
+                dialog.setVisible(true);
+
+            }
+        });
+    }
+
+    public void dodajListerLista() {
+        list.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                System.out.println("Selektovan je student sa indexom " + list.getSelectedValue());
+            }
+        });
+    }
+}

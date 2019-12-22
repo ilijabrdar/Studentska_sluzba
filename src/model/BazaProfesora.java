@@ -21,12 +21,12 @@ public class BazaProfesora {
 		initProfesori();
 	}
 	
-	
+
 	private void initProfesori() {
 		Profesor p = new Profesor("Darko", "Darkovic","", "adresa","063","email","kancelarija", "105","Doktor","Prof.");
 		profesori.add(p);
 	}
-	
+
 	private void initColumns() {
 		this.columns.add("Ime");
 		this.columns.add("Prezime");
@@ -136,7 +136,7 @@ public class BazaProfesora {
 		return null;
 	}
 
-	public void findProfessor() {
+	public void findProfessor(String... args) {
 		ArrayList<Profesor> serach = new ArrayList<>();
 
 	}

@@ -1,48 +1,40 @@
 package view;
 
-import com.sun.tools.javac.Main;
-import controller.StudentController;
-import controller.SubjectController;
 import model.BazaPredmeta;
-import model.BazaStudenata;
 import model.Predmet;
 import model.Student;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import java.awt.*;
+import java.awt.event.*;
 
 public class ButtonColumn extends AbstractCellEditor implements TableCellRenderer, TableCellEditor, MouseListener {
 
 	private static final long serialVersionUID = -9129041852936254519L;
 	
-	private JButton renderButton;
-	private JButton editorButton;
-	private JTable table;
-	private boolean isEditorActive = false;
-	private DefaultListModel DLM = new DefaultListModel();
-	private JList list = new JList();
-	private JDialog dialog;
+	protected JButton renderButton;
+	protected JButton editorButton;
+	protected JTable table;
+	protected boolean isEditorActive = false;
+	protected DefaultListModel DLM = new DefaultListModel();
+	protected JList list = new JList();
+	protected JDialog dialog;
 
 
-	public ButtonColumn(JTable table, int column) {
+	public ButtonColumn(JTable table, int column, String msg) {
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
 		this.table.addMouseListener(this);
 
-		list.setBounds(200,200,200,200);
-		dialog = new JDialog(MainFrame.getInsance(),"Studenti na predmetu " , true);//TODO: dodaj naziv predmeta
-
-		dialog.setSize(600, 600);
+		list.setBounds(200, 200, 200, 200);
+		dialog = new JDialog(MainFrame.getInsance(), msg, true);//TODO: dodaj naziv predmeta
+		//TODO Upitno mesto pravljenja ovog dijaloga
+		dialog.setSize(200, 400);
 		dialog.setLocationRelativeTo(MainFrame.getInsance());
 		dialog.setResizable(false);
 		dialog.setLayout(new BorderLayout());
@@ -53,45 +45,19 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 				DLM.removeAllElements();
 
 			}
-		});
+		}); //TODO WTF JE OVO
 
-		dialog.add(list);
+		JPanel closingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JButton delete = new JButton("Obriši");
+		JButton back = new JButton("Nazad");
+		closingPanel.add(delete);
+		closingPanel.add(back);
 		
-		this.renderButton = new JButton ("...");
-		this.editorButton = new JButton("...");
-		
-		this.editorButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				fireEditingStopped();
+		dialog.add(closingPanel, BorderLayout.SOUTH);
+		dialog.add(list, BorderLayout.CENTER);
 
-
-				int row = MainFrame.getInsance().getStable().getSelectedRow();
-				Predmet selected_predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
-
-				for (Student s : selected_predmet.getStudenti()) {
-					DLM.addElement(s.getIndex());
-				}
-
-				list.setModel(DLM);
-
-				dialog.setVisible(true);
-
-			}
-		});
-		
-		this.isEditorActive = false;
-
-		dodajListerLista();
-	}
-
-	private void dodajListerLista() {
-		list.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				System.out.println("Selektovan je student sa indexom " + list.getSelectedValue());
-			}
-		});
+		this.renderButton = new JButton(msg);
+		this.editorButton = new JButton(msg);
 	}
 
 	@Override
@@ -143,8 +109,8 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 		main.add(rightPanel, BorderLayout.EAST);
 		rightPanel.setBackground(Color.LIGHT_GRAY);
 		
-		leftPanel.setPreferredSize(new Dimension(50, 50));
-		rightPanel.setPreferredSize(new Dimension(50, 50));
+		leftPanel.setPreferredSize(new Dimension(10, 10));
+		rightPanel.setPreferredSize(new Dimension(10, 10));
 
 		
 		main.add(this.editorButton, BorderLayout.CENTER);
@@ -170,8 +136,8 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 		main.add(rightPanel, BorderLayout.EAST);
 		rightPanel.setBackground(Color.WHITE);
 		
-		leftPanel.setPreferredSize(new Dimension(50, 50));
-		rightPanel.setPreferredSize(new Dimension(50, 50));
+		leftPanel.setPreferredSize(new Dimension(10, 10));
+		rightPanel.setPreferredSize(new Dimension(10, 10));
 		
 		main.setFocusable(true);
 		main.setEnabled(true);
