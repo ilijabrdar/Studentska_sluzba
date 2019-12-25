@@ -22,8 +22,8 @@ public class SubjectTable extends JTable{
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelSubjects());
-		new ButtonColumnStudenti(this,5, "Prikaz studenata");
-		new ButtonColumnProfesori(this,4, "Prikaz profesora");
+		new ButtonColumnStudenti(this,5, "Prikaži studente");
+		new ButtonColumnProfesori(this,4, "Prikaži profesore");
 	}
 	
 	public static SubjectTable getSubjectTable() {

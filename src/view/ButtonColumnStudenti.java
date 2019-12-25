@@ -15,7 +15,7 @@ public class ButtonColumnStudenti extends ButtonColumn{
         super(table, column, msg);
         addEditinAction();
         this.isEditorActive = false;
-        dodajListerLista();
+        //dodajListerLista();
     }
 
     private void addEditinAction() {
@@ -29,17 +29,17 @@ public class ButtonColumnStudenti extends ButtonColumn{
                 Predmet selected_predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
 
                 for (Student s : selected_predmet.getStudenti()) {
-                    DLM.addElement(s.getIndex());
+                    //DLM.addElement(s.getIndex()); TODO David: Popraviti
                 }
 
-                list.setModel(DLM);
+                //list.setModel(DLM); //TODO David: popraviti
 
                 dialog.setVisible(true);
 
             }
         });
     }
-
+/*
     public void dodajListerLista() {
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -48,4 +48,6 @@ public class ButtonColumnStudenti extends ButtonColumn{
             }
         });
     }
+    */ //TODO David: Popraviti
+
 }

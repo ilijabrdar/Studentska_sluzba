@@ -1,9 +1,6 @@
 package view;
 
-import model.BazaPredmeta;
-import model.Predmet;
-import model.Profesor;
-import model.Student;
+import model.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -15,32 +12,24 @@ public class ButtonColumnProfesori extends ButtonColumn {
 
     public ButtonColumnProfesori(JTable table, int column, String msg) {
         super(table, column, msg);
-        addEditinAction();
-        this.isEditorActive = false;
-        dodajListerLista();
+        //initList();
+        addEditingAction(msg);
+        this.isEditorActive = false; //??????????????????
+       // dodajListerLista(); ?????????????????????????
     }
 
-    private void addEditinAction() {
+    private void addEditingAction(String msg) {
         this.editorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fireEditingStopped();
-
-
-                int row = SubjectTable.getSubjectTable().getSelectedRow();
-                Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
-                for (Profesor p : predmet.getProfs()) {
-                    DLM.addElement(p.getLicna());
-                }
-
-                list.setModel(DLM);
-
-                dialog.setVisible(true);
-
+                dialog = new ShowProfsDialog(MainFrame.getInsance(), msg, true);
+                //dialog.setVisible(true);
             }
         });
     }
 
+    /*
     public void dodajListerLista() {
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -48,5 +37,5 @@ public class ButtonColumnProfesori extends ButtonColumn {
                 //System.out.println("Selektovan je profa sa licnom " + list.getSelectedValue());
             }
         });
-    }
+    } */
 }

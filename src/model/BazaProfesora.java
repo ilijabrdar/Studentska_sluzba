@@ -131,7 +131,7 @@ public class BazaProfesora {
 	
 	public Profesor getProfesor(String ID) {
 		for(Profesor p : profesori)
-			if(p.getLicna().equals(ID))
+			if(p.getLicna().equalsIgnoreCase(ID))
 				return p;
 		return null;
 	}

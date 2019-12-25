@@ -155,7 +155,7 @@ public class SubjectController {
 	}
 	
 	public boolean addProfToSubj(String ID) {
-		Predmet subj = getSelectedSubject();
+		Predmet subj = getSelectedSubjectByID();
 		Profesor p = BazaProfesora.getBazaProfesora().getProfesor(ID);
 		if(p == null)
 			return false;

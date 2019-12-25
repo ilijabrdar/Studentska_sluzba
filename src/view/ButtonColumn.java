@@ -20,41 +20,13 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 	protected JButton editorButton;
 	protected JTable table;
 	protected boolean isEditorActive = false;
-	protected DefaultListModel DLM = new DefaultListModel();
-	protected JList list = new JList();
 	protected JDialog dialog;
-
 
 	public ButtonColumn(JTable table, int column, String msg) {
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
 		this.table.addMouseListener(this);
-
-		list.setBounds(200, 200, 200, 200);
-		dialog = new JDialog(MainFrame.getInsance(), msg, true);//TODO: dodaj naziv predmeta
-		//TODO Upitno mesto pravljenja ovog dijaloga
-		dialog.setSize(200, 400);
-		dialog.setLocationRelativeTo(MainFrame.getInsance());
-		dialog.setResizable(false);
-		dialog.setLayout(new BorderLayout());
-
-		dialog.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				DLM.removeAllElements();
-
-			}
-		}); //TODO WTF JE OVO
-
-		JPanel closingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton delete = new JButton("Obriši");
-		JButton back = new JButton("Nazad");
-		closingPanel.add(delete);
-		closingPanel.add(back);
-		
-		dialog.add(closingPanel, BorderLayout.SOUTH);
-		dialog.add(list, BorderLayout.CENTER);
 
 		this.renderButton = new JButton(msg);
 		this.editorButton = new JButton(msg);
