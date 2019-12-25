@@ -71,52 +71,13 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		JPanel main = new JPanel();
-		JPanel leftPanel = new JPanel();
-		JPanel rightPanel = new JPanel();
-		
-		main.setLayout(new BorderLayout());
-		main.add(leftPanel, BorderLayout.WEST);
-		leftPanel.setBackground(Color.LIGHT_GRAY);
-		main.add(rightPanel, BorderLayout.EAST);
-		rightPanel.setBackground(Color.LIGHT_GRAY);
-		
-		leftPanel.setPreferredSize(new Dimension(10, 10));
-		rightPanel.setPreferredSize(new Dimension(10, 10));
-
-		
-		main.add(this.editorButton, BorderLayout.CENTER);
-		
-		main.setFocusable(true);
-		main.setEnabled(true);
-		
-		return main;
+		return new SubjectTablePanel(this.editorButton, 10, 10);
 	}
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
-		JPanel main = new JPanel();
-		JPanel leftPanel = new JPanel();
-		JPanel rightPanel = new JPanel();
-
-
-		
-		main.setLayout(new BorderLayout());
-		main.add(leftPanel, BorderLayout.WEST);
-		leftPanel.setBackground(Color.WHITE);
-		main.add(rightPanel, BorderLayout.EAST);
-		rightPanel.setBackground(Color.WHITE);
-		
-		leftPanel.setPreferredSize(new Dimension(10, 10));
-		rightPanel.setPreferredSize(new Dimension(10, 10));
-		
-		main.setFocusable(true);
-		main.setEnabled(true);
-
-		main.add(this.renderButton, BorderLayout.CENTER);
-		
-		return main;
+		return new SubjectTablePanel(this.renderButton, 10, 10);
 	}
 
 }

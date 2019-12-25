@@ -12,9 +12,8 @@ public class ButtonColumnProfesori extends ButtonColumn {
 
     public ButtonColumnProfesori(JTable table, int column, String msg) {
         super(table, column, msg);
-        //initList();
         addEditingAction(msg);
-        this.isEditorActive = false; //??????????????????
+        this.isEditorActive = false;
        // dodajListerLista(); ?????????????????????????
     }
 
@@ -24,7 +23,6 @@ public class ButtonColumnProfesori extends ButtonColumn {
             public void actionPerformed(ActionEvent e) {
                 fireEditingStopped();
                 dialog = new ShowProfsDialog(MainFrame.getInsance(), msg, true);
-                //dialog.setVisible(true);
             }
         });
     }
