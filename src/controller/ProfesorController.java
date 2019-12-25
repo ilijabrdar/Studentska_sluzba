@@ -1,8 +1,13 @@
 package controller;
 
 import model.BazaProfesora;
+import model.BazaStudenata;
 import model.Profesor;
+import model.Student;
 import view.MainFrame;
+
+import java.io.*;
+import java.util.ArrayList;
 
 public class ProfesorController {
 	
@@ -66,6 +71,41 @@ private static ProfesorController instance = new ProfesorController();
 			}
 
 
+		}
+	}
+
+	public void saveToFile(String file) {
+		PrintWriter out = null;
+		ArrayList<Profesor> data = BazaProfesora.getBazaProfesora().getDatabase();
+		data = BazaProfesora.getBazaProfesora().getProfesori();
+		try {
+			out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
+			for (Profesor p : data) {
+
+				String ime = p.getIme();
+				String prezime = p.getPrezime();
+				String licna = p.getLicna();
+				String titula = p.getTitula();
+				String zvanje = p.getZvanje();
+				String kanc = p.getKanc();
+				String adresa = p.getAdresa();
+				String telefon = p.getTelefon();
+				String email = p.getEmail();
+				String datum_r = p.getDatum();
+
+				String input;
+				input = ime + "|" + prezime + "|" + licna + "|" + titula + "|" + zvanje +"|" + kanc + "|"
+						+ email + "|" + datum_r + "|" + telefon + "|" + adresa;
+				out.println(input);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				out.close();
+			}
 		}
 	}
 

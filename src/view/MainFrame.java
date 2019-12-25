@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.event.RowSorterEvent;
 import javax.swing.table.AbstractTableModel;
 
+import controller.ProfesorController;
 import controller.StudentController;
 import controller.SubjectController;
 import model.BazaStudenata;
@@ -65,6 +66,9 @@ public class MainFrame extends JFrame{
 
 				StudentController student_controller = StudentController.getInstance();
 				student_controller.saveToFile("studentListing.txt");
+
+				ProfesorController  profesorController = ProfesorController.getInstance();
+				profesorController.saveToFile("profesorListing.txt");
 				}
 
 			}
