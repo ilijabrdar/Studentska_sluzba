@@ -145,10 +145,6 @@ public class BazaPredmeta {
 			return subj.getSemestar();
 		case 3:
 			return subj.getGodina();
-		case 4:
-			//return subj.getProf().toString();
-			//POPRAVITI KAD DOBIJES KLASU BAZA PROFESORA
-			return "";
 		default:
 			return null;
 		}

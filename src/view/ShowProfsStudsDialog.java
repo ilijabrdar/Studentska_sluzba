@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.control.ScrollPane;
 import model.BazaPredmeta;
 import model.Predmet;
 import model.Profesor;
@@ -21,10 +22,9 @@ public class ShowProfsStudsDialog extends JDialog {
 
         this.DLM = new DefaultListModel();
         this.list = new JList();
-
         this.list.setModel(DLM);
 
-        this.setSize(200, 400);
+        this.setSize(200, 250);
         this.setLocationRelativeTo(MainFrame.getInsance());
         this.setResizable(false);
         this.setLayout(new BorderLayout());
@@ -44,7 +44,10 @@ public class ShowProfsStudsDialog extends JDialog {
         closingPanel.add(back);
 
         this.add(closingPanel, BorderLayout.SOUTH);
-        this.add(list, BorderLayout.CENTER);
+
+        JScrollPane sp = new JScrollPane();
+        sp.setViewportView(list);
+        this.add(sp, BorderLayout.CENTER);
 
         back.addActionListener(new ActionListener() {
             @Override
