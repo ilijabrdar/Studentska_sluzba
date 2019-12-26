@@ -12,9 +12,10 @@ import javax.swing.*;
 import controller.ProfesorController;
 import controller.StudentController;
 import controller.SubjectController;
+import model.entiteti.Profesor;
 import view.dialogs.*;
-import view.others.ProfessorToSubject;
-import view.others.StudentNaPredmet;
+import view.dialogs.ProfessorToSubject;
+import view.dialogs.StudentNaPredmet;
 import view.tables.ProfesorTable;
 import view.tables.StudentsTable;
 import view.tables.SubjectTable;
@@ -214,7 +215,9 @@ public class ToolBar extends JToolBar{
 							"Brisanje profesora", JOptionPane.YES_NO_OPTION);
 					if(code == JOptionPane.YES_OPTION) {
 						ProfesorController pc = ProfesorController.getInstance();
+						Profesor p = ProfesorController.getInstance().getProfessor(row_prof);
 						pc.izbrisiProfesora(row_prof);
+						SubjectController.getSubjectController().removeProfFromSubj(p.getLicna());
 					}	
 				}
 				else {

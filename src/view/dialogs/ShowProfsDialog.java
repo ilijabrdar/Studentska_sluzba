@@ -1,5 +1,6 @@
 package view.dialogs;
 
+import controller.ProfesorController;
 import controller.SubjectController;
 import model.bazePodataka.BazaPredmeta;
 import model.bazePodataka.BazaProfesora;
@@ -35,7 +36,7 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
         int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Profesor p : predmet.getProfs()) {
-            DLM.addElement(p.getLicna());
+                DLM.addElement(p.getLicna());
         }
     }
 

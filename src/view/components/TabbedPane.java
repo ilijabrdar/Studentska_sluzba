@@ -1,6 +1,6 @@
 package view.components;
 
-import java.awt.Component;
+import java.awt.*;
 
 import javax.swing.Icon;
 import javax.swing.JTabbedPane;
@@ -21,6 +21,7 @@ public class TabbedPane extends JTabbedPane {
 	
 	private TabbedPane() {
 		super();
+
 		this.addChangeListener(new ChangeListener() {
 			
 			@Override

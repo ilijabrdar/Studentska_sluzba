@@ -163,7 +163,6 @@ public class SubjectController {
 			return false;
 		subj.addProfessor(p);
 		return true;
-			
 	}
 
 	public boolean addStudentToSubject(String indeks) {
@@ -178,9 +177,16 @@ public class SubjectController {
 		p.addStudent(s);
 		s.dodajPredmetStudentu(p);
 		return true;
+	}
 
-
-
-
+	public void removeProfFromSubj(String ID) {
+		for(Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
+			for(Profesor pr : p.getProfs()) {
+				if(pr.getLicna().equalsIgnoreCase(ID)) {
+					p.getProfs().remove(pr);
+					break;
+				}
+			}
+		}
 	}
 }

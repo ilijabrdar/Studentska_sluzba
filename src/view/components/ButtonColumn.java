@@ -1,7 +1,5 @@
 package view.components;
 
-import view.others.SubjectTablePanel;
-
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;

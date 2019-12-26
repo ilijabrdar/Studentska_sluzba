@@ -88,15 +88,15 @@ public class MainFrame extends JFrame{
 		this.setJMenuBar(menu);
 		
 		stable = SubjectTable.getSubjectTable();
-		stable.setAutoCreateRowSorter(true); //ovo ne cini nikakvu izmenu
 		student_table = StudentsTable.getStudentsTable();
 		profesor_table = ProfesorTable.getProfesorTable();
 
+		stable.getTableHeader().setReorderingAllowed(false);
 
-
+		stable.setAutoCreateRowSorter(true); //ovo ne cini nikakvu izmenu
 		student_table.setAutoCreateRowSorter(true);
 		profesor_table.setAutoCreateRowSorter(true);
-		student_table.setUpdateSelectionOnSort(true);
+		student_table.setUpdateSelectionOnSort(true); //TODO STA JE OVO???????
 		profesor_table.setUpdateSelectionOnSort(true);
 
 

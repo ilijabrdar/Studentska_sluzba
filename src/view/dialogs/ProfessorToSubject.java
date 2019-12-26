@@ -1,4 +1,4 @@
-package view.others;
+package view.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

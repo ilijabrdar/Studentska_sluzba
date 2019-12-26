@@ -53,4 +53,8 @@ public class ShowProfsStudsDialog extends JDialog {
     }
 
     public JDialog getDialog() {return this;}
+
+    public DefaultListModel getDLM() {
+        return DLM;
+    }
 }

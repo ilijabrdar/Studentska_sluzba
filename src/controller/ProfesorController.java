@@ -3,6 +3,7 @@ import model.bazePodataka.BazaProfesora;
 import model.entiteti.Profesor;
 import view.components.MainFrame;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -29,6 +30,12 @@ private static ProfesorController instance = new ProfesorController();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
 		BazaProfesora.getBazaProfesora().removeProfesor(p);
 		MainFrame.getInstance().updateTable();
+	}
+
+	public Profesor getProfessor(int rowSelectedIndex) {
+		BazaProfesora.getBazaProfesora().updateArrayList();
+		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
+		return p;
 	}
 	
 	public void izmeniProfesora (int rowSelectedIndex, Profesor novi) {

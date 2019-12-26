@@ -213,4 +213,13 @@ public class BazaProfesora {
 	}
 
 	public void swapTables() { profesori = database; }
+
+	public Profesor findProfByID(String ID) {
+		Profesor prof = null;
+		for(Profesor p : profesori) {
+			if (p.getLicna().equalsIgnoreCase(ID))
+				prof = p;
+		}
+		return prof;
+	}
 }

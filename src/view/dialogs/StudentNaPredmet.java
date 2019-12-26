@@ -1,4 +1,4 @@
-package view.others;
+package view.dialogs;
 
 import controller.SubjectController;
 import view.components.BackgroundPanel;
