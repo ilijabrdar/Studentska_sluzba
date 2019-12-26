@@ -1,6 +1,5 @@
 package view;
 
-import javafx.scene.control.ScrollPane;
 import model.BazaPredmeta;
 import model.Predmet;
 import model.Profesor;

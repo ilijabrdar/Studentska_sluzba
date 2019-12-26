@@ -1,7 +1,7 @@
 package controller;
 
 import model.*;
-import sun.applet.Main;
+
 import view.MainFrame;
 
 import java.io.*;

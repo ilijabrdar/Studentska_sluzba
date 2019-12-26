@@ -10,31 +10,32 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonColumnStudenti extends ButtonColumn{
+public class ButtonColumnStudenti extends ButtonColumn {
     public ButtonColumnStudenti(JTable table, int column, String msg) {
         super(table, column, msg);
-        addEditinAction();
+        addEditingAction(msg);
         this.isEditorActive = false;
         //dodajListerLista();
     }
 
-    private void addEditinAction() {
+    private void addEditingAction(String msg) {
         this.editorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fireEditingStopped();
 
+                dialog = new ShowStudsDialog(MainFrame.getInsance(),msg,true);
 
-                int row = MainFrame.getInsance().getStable().getSelectedRow();
-                Predmet selected_predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
-
-                for (Student s : selected_predmet.getStudenti()) {
-                    //DLM.addElement(s.getIndex()); TODO David: Popraviti
-                }
-
-                //list.setModel(DLM); //TODO David: popraviti
-
-                dialog.setVisible(true);
+//                int row = MainFrame.getInsance().getStable().getSelectedRow();
+//                Predmet selected_predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
+//
+//                for (Student s : selected_predmet.getStudenti()) {
+//                    //DLM.addElement(s.getIndex()); TODO David: Popraviti
+//                }
+//
+//                //list.setModel(DLM); //TODO David: popraviti
+//
+//                dialog.setVisible(true);
 
             }
         });
