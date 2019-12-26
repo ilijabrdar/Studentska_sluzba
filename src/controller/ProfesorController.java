@@ -1,7 +1,7 @@
 package controller;
 
-import model.*;
-import sun.applet.Main;
+import model.BazaProfesora;
+import model.Profesor;
 import view.MainFrame;
 
 import java.io.*;
@@ -108,7 +108,7 @@ private static ProfesorController instance = new ProfesorController();
 		}
 	}
 
-	public void retriveTable () {
+	public void retrieveTable () {
 		BazaProfesora.getBazaProfesora().swapTables();
 		MainFrame.getInsance().updateTable();
 	}

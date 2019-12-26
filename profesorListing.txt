@@ -8,3 +8,4 @@ Nikola|Dunavski|423|Asistent|Mr|1023|nikola@yahoo.com|31.02.1981.|063345253|Bule
 Miroslava|Princip|364|Sef katedre|Mr|JD 002|princip@yahoo.com|26.08.1983.|0213456453|Metohijska 39
 Dino|Merlin|1012|Docent|Mr|345|merlin@yahoo.com|24.11.1945.|0213346353|Danilo Kis 65
 Goran|Bregovic|3567|Profesor|Mr|JD 1242|goga@yahoo.com|22.03.1967.|03655446|Petrovska 87
+Jelena|Karleusa|3555|Profesor|Dr|458|karleusa@gmail.com|31.1.1970.|021485637|Petrovska 88

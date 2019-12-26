@@ -46,7 +46,6 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
                     String idProf = (String) DLM.remove(list.getSelectedIndex());
                     Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
                     predmet.getProfs().remove(BazaProfesora.getBazaProfesora().getProfesor(idProf));
-
                 if (DLM.size() == 0) getDialog().dispose();
             }
         });

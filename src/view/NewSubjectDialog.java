@@ -137,7 +137,7 @@ public class NewSubjectDialog extends JDialog {
 				Predmet p = new Predmet(sifra, naziv, semestar, godina);
 				p.setStrGodina(godina);
 				sc.addSubject(p, getDialog());	
-				sc.retriveTable();
+				sc.retrieveTable();
 				dispose();
 			}
 		});

@@ -238,7 +238,7 @@ public class ToolBar extends JToolBar{
 							JOptionPane.showMessageDialog(MainFrame.getInsance(), "Kriterijum pretrage je neispravno definisan.","Pretraga predmeta", JOptionPane.ERROR_MESSAGE);
 						}
 					else
-						sc.retriveTable();
+						sc.retrieveTable();
 				}
 				else if(TabbedPane.getInstance().isRunning("Profesori")) {
 					ProfesorController pc = ProfesorController.getInstance();
@@ -249,7 +249,7 @@ public class ToolBar extends JToolBar{
 							JOptionPane.showMessageDialog(MainFrame.getInsance(), "Kriterijum pretrage je neispravno definisan.","Pretraga profesora", JOptionPane.ERROR_MESSAGE);
 						}
 					else
-						pc.retriveTable();
+						pc.retrieveTable();
 				}
 			}
 		});

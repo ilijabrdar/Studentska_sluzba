@@ -41,7 +41,7 @@ public class SubjectController {
 		Predmet subj = getSelectedSubjectByID();
 		BazaPredmeta.getBazaPredmeta().removeSubject(subj);
 		if(BazaPredmeta.getBazaPredmeta().getSubjects().isEmpty())
-			retriveTable();
+			retrieveTable();
 		else
 			MainFrame.getInsance().updateTable();
 	}
@@ -90,7 +90,7 @@ public class SubjectController {
 		MainFrame.getInsance().updateTable();
 	}
 	
-	public void retriveTable() {
+	public void retrieveTable() {
 		BazaPredmeta.getBazaPredmeta().swapTables();
 		MainFrame.getInsance().updateTable();
 	}
