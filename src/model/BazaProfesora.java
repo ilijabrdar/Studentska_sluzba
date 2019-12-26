@@ -163,7 +163,7 @@ public class BazaProfesora {
 		return this.columns.get(column);
 	}
 	
-	public void addProfesor(Profesor p) {
+	public void addProfesor(Profesor p) { //TODO DAVID: Popraviti
 		for (Profesor temp : profesori) {
 			if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
 				return;
@@ -172,14 +172,14 @@ public class BazaProfesora {
 		profesori.add(p);
 	}
 	
-	public void editProfesor(int index, Profesor p) {
+	public void editProfesor(int index, Profesor p) { //TODO DAVID: Popraviti
 		profesori.remove(index);
 		profesori.add(index, p);
 	}
 	
 	public void removeProfesor(Profesor p) {
 		profesori.remove(p);
-	}
+	} //TODO DAVID: Popraviti
 	
 	public Profesor getProfesor(String ID) {
 		for(Profesor p : profesori)
@@ -188,8 +188,28 @@ public class BazaProfesora {
 		return null;
 	}
 
-	public void findProfessor(String... args) {
-		ArrayList<Profesor> serach = new ArrayList<>();
+	public void findProfessor(String imep, String przp, String licnap, String titulap, String zvanjep, String datump) {
+		ArrayList<Profesor> search = new ArrayList<>();
+		for(Profesor p : database) {
+			String ime = imep;
+			String prz = przp;
+			String licna = licnap;
+			String titula = titulap;
+			String datum = datump;
 
+			if(ime.equals("")) ime = p.getIme().toLowerCase();
+			else if(prz.equals("")) prz = p.getPrezime().toLowerCase();
+			else if(licna.equals("")) licna = p.getLicna().toLowerCase();
+			else if(titula.equals("")) titula = p.getTitula().toLowerCase();
+			else if(datum.equals("")) datum = p.getDatum().toLowerCase();
+
+			if(p.getIme().toLowerCase().contains(ime) && p.getPrezime().toLowerCase().contains(przp) &&
+				p.getLicna().toLowerCase().contains(licna) && p.getTitula().toLowerCase().contains(titula) &&
+				p.getDatum().toLowerCase().contains(datum))
+					search.add(p);
+		}
+		profesori = search;
 	}
+
+	public void swapTables() { profesori = database; }
 }

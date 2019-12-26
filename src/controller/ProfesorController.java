@@ -1,9 +1,7 @@
 package controller;
 
-import model.BazaProfesora;
-import model.BazaStudenata;
-import model.Profesor;
-import model.Student;
+import model.*;
+import sun.applet.Main;
 import view.MainFrame;
 
 import java.io.*;
@@ -69,9 +67,10 @@ private static ProfesorController instance = new ProfesorController();
 				case "datum rodjenja":
 					dat = subParams[1].trim();
 			}
-
-
 		}
+		BazaProfesora bp = BazaProfesora.getBazaProfesora();
+		bp.findProfessor(ime, prz, licna, titula, zvanje, dat);
+		MainFrame.getInsance().updateTable();
 	}
 
 	public void saveToFile(String file) {
@@ -107,6 +106,11 @@ private static ProfesorController instance = new ProfesorController();
 				out.close();
 			}
 		}
+	}
+
+	public void retriveTable () {
+		BazaProfesora.getBazaProfesora().swapTables();
+		MainFrame.getInsance().updateTable();
 	}
 
 }

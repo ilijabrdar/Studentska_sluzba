@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import controller.ProfesorController;
 import controller.StudentController;
 import controller.SubjectController;
+import sun.applet.Main;
 
 public class ToolBar extends JToolBar{
 	//TODO VEZANI AKCELERATORI???
@@ -230,12 +231,25 @@ public class ToolBar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				if(TabbedPane.getInstance().isRunning("Predmeti")) {
 					SubjectController sc = SubjectController.getSubjectController();
-					if(search.getText().trim().length() !=0) {
-						sc.findSubject(search.getText());
-					}
-					else {
+					if(search.getText().trim().length() !=0)
+						try {
+							sc.findSubject(search.getText());
+						} catch (Exception err) {
+							JOptionPane.showMessageDialog(MainFrame.getInsance(), "Kriterijum pretrage je neispravno definisan.","Pretraga predmeta", JOptionPane.ERROR_MESSAGE);
+						}
+					else
 						sc.retriveTable();
-					}
+				}
+				else if(TabbedPane.getInstance().isRunning("Profesori")) {
+					ProfesorController pc = ProfesorController.getInstance();
+					if(search.getText().trim().length() != 0)
+						try {
+							pc.findProfessor(search.getText());
+						} catch (Exception err) {
+							JOptionPane.showMessageDialog(MainFrame.getInsance(), "Kriterijum pretrage je neispravno definisan.","Pretraga profesora", JOptionPane.ERROR_MESSAGE);
+						}
+					else
+						pc.retriveTable();
 				}
 			}
 		});
