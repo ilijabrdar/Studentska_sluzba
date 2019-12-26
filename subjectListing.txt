@@ -2,7 +2,7 @@ E214|Programski jezici i strukture podataka|Zimski|1
 EJ1Z|Engleski jezik - osnovni|Zimski|1
 E212|Matematička analiza 1|Zimski|1
 E213|Algebra|Zimski|1
-E215|Fizika|Letnji|1
+E212|Fizika|Letnji|1
 E216|Osnovi elektrotehnike|Letnji|1
 EJ2L|Engleski jezik - srednji|Letnji|1
 E217|Arhitektura računara|Letnji|1

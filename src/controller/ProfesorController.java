@@ -1,8 +1,7 @@
 package controller;
-
-import model.BazaProfesora;
-import model.Profesor;
-import view.MainFrame;
+import model.bazePodataka.BazaProfesora;
+import model.entiteti.Profesor;
+import view.components.MainFrame;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,9 +16,9 @@ private static ProfesorController instance = new ProfesorController();
 	
 	private ProfesorController() {}
 	
-	public void dodajProfesora(Profesor p) { 
+	public void dodajProfesora(Profesor p) {
 		BazaProfesora.getBazaProfesora().addProfesor(p);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void izbrisiProfesora(int rowSelectedIndex) {
@@ -29,7 +28,7 @@ private static ProfesorController instance = new ProfesorController();
 		BazaProfesora.getBazaProfesora().updateArrayList();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
 		BazaProfesora.getBazaProfesora().removeProfesor(p);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void izmeniProfesora (int rowSelectedIndex, Profesor novi) {
@@ -37,7 +36,7 @@ private static ProfesorController instance = new ProfesorController();
 			return;
 		
 		BazaProfesora.getBazaProfesora().editProfesor(rowSelectedIndex, novi);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 
 	public void findProfessor(String search) {
@@ -70,7 +69,7 @@ private static ProfesorController instance = new ProfesorController();
 		}
 		BazaProfesora bp = BazaProfesora.getBazaProfesora();
 		bp.findProfessor(ime, prz, licna, titula, zvanje, dat);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 
 	public void saveToFile(String file) {
@@ -110,7 +109,7 @@ private static ProfesorController instance = new ProfesorController();
 
 	public void retrieveTable () {
 		BazaProfesora.getBazaProfesora().swapTables();
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 
 }

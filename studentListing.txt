@@ -1,5 +1,4 @@
 ra-102-2017|David|Drvar|3|B|9.88|21.07.1998.|Seljackih buna 76|060-5543246|david.drvar.bogdanovic@gmail.com|13.06.2017.
-ra-11-2012|Marko|Maric|1|S|6.88|23.1.2001..|Seljackih buna 71|060-5543246|david.drvar.bogdanovic@gmail.com|13.06.2017.
 sw-109-2011|Maja|Zekovic|2|S|7.0|21.07.1998.|Seljackih buna 71|060-5543246|david.drvar.bogdanovic@gmail.com|13.06.2017.
 ee-122-2018|Zaklina|Obenslaufen|2|S|9.88|21.07.1998.|Seljackih buna 71|060-5543246|david.drvar.bogdanovic@gmail.com|13.06.2017.
 psi-192-2019|Ofelija|Nikolajevic|2|B|9.88|21.07.1998.|Strazilovska 01|060-5543246|david.drvar.bogdanovic@gmail.com|13.06.2017.
