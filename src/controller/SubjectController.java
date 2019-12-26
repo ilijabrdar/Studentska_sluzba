@@ -1,11 +1,8 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,9 +10,14 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import model.*;
-import view.MainFrame;
-import view.SubjectTable;
+import model.bazePodataka.BazaPredmeta;
+import model.bazePodataka.BazaProfesora;
+import model.bazePodataka.BazaStudenata;
+import model.entiteti.Predmet;
+import model.entiteti.Profesor;
+import model.entiteti.Student;
+import view.components.MainFrame;
+import view.tables.SubjectTable;
 
 public class SubjectController {
 	
@@ -32,7 +34,7 @@ public class SubjectController {
 	
 	public void addSubject(Predmet p, JDialog parent) {
 		if(BazaPredmeta.getBazaPredmeta().addSubject(p))
-			MainFrame.getInsance().updateTable();
+			MainFrame.getInstance().updateTable();
 		else
 			JOptionPane.showMessageDialog(parent, "Predmet već postoji", "Greška", JOptionPane.ERROR_MESSAGE);
 	}
@@ -43,7 +45,7 @@ public class SubjectController {
 		if(BazaPredmeta.getBazaPredmeta().getSubjects().isEmpty())
 			retriveTable();
 		else
-			MainFrame.getInsance().updateTable();
+			MainFrame.getInstance().updateTable();
 	}
 	
 	public Predmet getSelectedSubject() {
@@ -63,7 +65,7 @@ public class SubjectController {
 	
 	public void editSubject(Predmet subj) {
 		BazaPredmeta.getBazaPredmeta().editSubject(selectedRow, subj);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void findSubject(String search) {
@@ -87,12 +89,12 @@ public class SubjectController {
 		}
 		BazaPredmeta bp = BazaPredmeta.getBazaPredmeta();
 		bp.findSubject(sifra, naziv, semestar, godina);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void retriveTable() {
 		BazaPredmeta.getBazaPredmeta().swapTables();
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void saveToFile(String file) {

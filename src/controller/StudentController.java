@@ -7,9 +7,9 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import model.BazaStudenata;
-import model.Student;
-import view.MainFrame;
+import model.bazePodataka.BazaStudenata;
+import model.entiteti.Student;
+import view.components.MainFrame;
 
 public class StudentController {
 	
@@ -23,7 +23,7 @@ public class StudentController {
 	
 	public void dodajStudenta(Student s) {
 		BazaStudenata.getBazaStudenata().addStudent(s);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void izbrisiStudenta(int rowSelectedIndex) {
@@ -33,7 +33,7 @@ public class StudentController {
 		BazaStudenata.getBazaStudenata().updateArrayList();
 		Student s = BazaStudenata.getBazaStudenata().getRow(rowSelectedIndex);
 		BazaStudenata.getBazaStudenata().removeStudent(s);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void izmeniStudenta(int rowSelectedIndex, Student novi) {
@@ -41,7 +41,7 @@ public class StudentController {
 			return;
 		
 		BazaStudenata.getBazaStudenata().editStudent(rowSelectedIndex, novi);
-		MainFrame.getInsance().updateTable();
+		MainFrame.getInstance().updateTable();
 	}
 	
 	public void saveToFile(String file) {
@@ -77,6 +77,22 @@ public class StudentController {
 			}
 		}
 	}
-	
-	
+
+	//ime:Marko;prezime:Marković;indeks:sw-1-2019
+	public void findStudent(String text) {
+		String []splits = text.split(";");
+		String ime = "";
+
+		for (String data : splits) {
+			String []search = data.split(":");
+			if (search[0].equalsIgnoreCase("ime")) {
+				ime = search[1];
+			}
+
+
+		}
+
+
+
+	}
 }
