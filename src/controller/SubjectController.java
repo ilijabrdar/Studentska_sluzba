@@ -71,28 +71,35 @@ public class SubjectController {
 			JOptionPane.showMessageDialog(parent, "Predmet već postoji.", "Greška", JOptionPane.ERROR_MESSAGE);
 		}
 	
-	public void findSubject(String search) {
+	public void findSubject(String search) throws Exception {
 		String[] params = search.split("\\;");
-		String sifra = "", naziv = "", semestar = "", godina = "";
-		for(String p : params) {
-			String[] subParams = p.split("\\:");
-			switch(subParams[0].trim().toLowerCase()) {
-			case "šifra":
-				sifra = subParams[1].trim().toLowerCase();
-				break;
-			case "naziv":
-				naziv = subParams[1].trim().toLowerCase();
-				break;
-			case "semestar":
-				semestar = subParams[1].trim().toLowerCase();
-				break;
-			case "godina":
-				godina = subParams[1].trim();
+		if(!search.matches("[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9]+(;[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9]+)*"))
+			throw new Exception("Neispravno definisan kriterijum pretrage.");
+		else {
+			String sifra = "", naziv = "", semestar = "", godina = "";
+			for (String p : params) {
+				String[] subParams = p.split("\\:");
+				switch (subParams[0].trim().toLowerCase()) {
+					case "šifra":
+						sifra = subParams[1].trim().toLowerCase();
+						break;
+					case "naziv":
+						naziv = subParams[1].trim().toLowerCase();
+						break;
+					case "semestar":
+						semestar = subParams[1].trim().toLowerCase();
+						break;
+					case "godina":
+						godina = subParams[1].trim();
+						break;
+					default:
+						throw new Exception("Neispravno uneto polje po kom se pretražuje.");
+				}
 			}
+			BazaPredmeta bp = BazaPredmeta.getBazaPredmeta();
+			bp.findSubject(sifra, naziv, semestar, godina);
+			MainFrame.getInstance().updateTable();
 		}
-		BazaPredmeta bp = BazaPredmeta.getBazaPredmeta();
-		bp.findSubject(sifra, naziv, semestar, godina);
-		MainFrame.getInstance().updateTable();
 	}
 	
 	public void retrieveTable() {

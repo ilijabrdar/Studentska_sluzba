@@ -46,9 +46,13 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
             public void actionPerformed(ActionEvent e) {
                     delete.setEnabled(true);
                     int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
-                    String idProf = (String) DLM.remove(list.getSelectedIndex());
-                    Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
-                    predmet.getProfs().remove(BazaProfesora.getBazaProfesora().getProfesor(idProf));
+                    try {
+                        String idProf = (String) DLM.remove(list.getSelectedIndex());
+                        Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
+                        predmet.getProfs().remove(BazaProfesora.getBazaProfesora().getProfesor(idProf));
+                    } catch (Exception err) {
+                        JOptionPane.showMessageDialog(getDialog(), "Nema selektovanih profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
+                    }
                 if (DLM.size() == 0) getDialog().dispose();
             }
         });

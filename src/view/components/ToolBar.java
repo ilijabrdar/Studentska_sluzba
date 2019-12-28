@@ -21,7 +21,7 @@ import view.tables.StudentsTable;
 import view.tables.SubjectTable;
 
 public class ToolBar extends JToolBar{
-	//TODO VEZANI AKCELERATORI???
+
 	private static final long serialVersionUID = -6297787221312734786L;
 	
 	private JButton btn_dodaj = null, btn_edit = null, btn_izbrisi = null, btn_search = null, btn_dodaj_studenta = null, btn_dodaj_profesora = null;
@@ -235,11 +235,13 @@ public class ToolBar extends JToolBar{
 				if(TabbedPane.getInstance().isRunning("Predmeti")) {
 					SubjectController sc = SubjectController.getSubjectController();
 					if(search.getText().trim().length() !=0)
+
 						try {
 							sc.findSubject(search.getText());
 						} catch (Exception err) {
-							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Kriterijum pretrage je neispravno definisan.","Pretraga predmeta", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), err.getMessage(),"Pretraga predmeta", JOptionPane.ERROR_MESSAGE);
 						}
+
 					else
 						sc.retrieveTable();
 				}
