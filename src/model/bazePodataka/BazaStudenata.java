@@ -17,7 +17,7 @@ public class BazaStudenata {
 	private ArrayList<String> columns;
 	private ArrayList<Student> students;
 	private ArrayList<Student> database;
-	
+
 	
 	public static BazaStudenata getBazaStudenata() {
 		return instance;
@@ -27,10 +27,12 @@ public class BazaStudenata {
 		columns = new ArrayList<String>();
 		students = new ArrayList<Student>();
 		database = new ArrayList<Student>();
+
 		initColumns();
 		initDatabase();
 		for (Student s : database)
 			students.add(s);
+
 	}
 	
 
@@ -173,7 +175,7 @@ public class BazaStudenata {
 	}
 
 	public Student getStudentPrekoIndeksa(String index) {
-		for (Student s : students) {
+		for (Student s : database) {
 			if (s.getIndex().equalsIgnoreCase(index))
 				return s;
 		}
@@ -191,21 +193,45 @@ public class BazaStudenata {
 	}
 	
 	public void addStudent(Student s) {
-		for (Student temp : students)  {
+		for (Student temp : database)  {
 			if (temp.getIndex().equalsIgnoreCase(s.getIndex()))
 				return;
 		}
 		
 		students.add(s);
+		database.add(s);
 	}
 	
 	public void editStudent(int index, Student s) {
 		students.remove(index);
 		students.add(index, s);
+
+		database.remove(index);
+		database.add(index,s);
 	}
 	
 	public void removeStudent(Student s) {
 		students.remove(s);
+		database.remove(s);
 	}
 
+	public void undo_search() {
+		students = database;
+	}
+
+	public void find(String ime, String prezime, String datum_rodjenja, String adresa, String telefon, String email, String index, String datum_upisa, int godina_stud, Status status, double prosek) {
+		ArrayList<Student> search_result = new ArrayList<>();
+		for (Student s : database) { //ides kroz database jer ako ides kroz students onda ne mozes da se vratis kriterijum iza
+
+			if (s.search_ime(ime) && s.search_prezime(prezime) && s.search_datum_rodjenja(datum_rodjenja)
+			&& s.search_adresa(adresa) && s.search_telefon(telefon) && s.search_email(email) &&
+			s.search_index(index) && s.search_datum_upisa(datum_upisa) && s.search_godina_stud(godina_stud) &&
+			s.search_status(status) && s.search_prosek(prosek))
+				search_result.add(s);
+
+		}
+
+		students=search_result;
+
+	}
 }

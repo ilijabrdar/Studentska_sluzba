@@ -23,7 +23,8 @@ public class StudentController {
 	
 	public void dodajStudenta(Student s) {
 		BazaStudenata.getBazaStudenata().addStudent(s);
-		MainFrame.getInstance().updateTable();
+		undo_search();
+
 	}
 	
 	public void izbrisiStudenta(int rowSelectedIndex) {
@@ -41,13 +42,13 @@ public class StudentController {
 			return;
 		
 		BazaStudenata.getBazaStudenata().editStudent(rowSelectedIndex, novi);
-		MainFrame.getInstance().updateTable();
+		undo_search();
 	}
 	
 	public void saveToFile(String file) {
 		PrintWriter out = null;
 		ArrayList<Student> data = BazaStudenata.getBazaStudenata().getDatabase();
-		data = BazaStudenata.getBazaStudenata().getStudents();
+
 		try {
 			out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
 			for (Student s : data) {
@@ -82,17 +83,66 @@ public class StudentController {
 	public void findStudent(String text) {
 		String []splits = text.split(";");
 		String ime = "";
+		String prezime = "";
+		String datum_rodjenja = "";
+		String adresa = "";
+		String telefon = "";
+		String email = "";
+
+		String index = "";
+		String datum_upisa = "";
+		int godina_stud = 0;
+		Student.Status status = null;
+		double prosek = 0;
+
+
 
 		for (String data : splits) {
 			String []search = data.split(":");
 			if (search[0].equalsIgnoreCase("ime")) {
-				ime = search[1];
+				ime = search[1].trim();
 			}
-
-
+			else if (search[0].equalsIgnoreCase("prezime")) {
+				prezime = search[1].trim();
+			}
+			else if (search[0].equalsIgnoreCase("datum rodjenja")) {//TODO: date?
+				datum_rodjenja = search[1].trim();
+			}
+			else if (search[0].equalsIgnoreCase("adresa")) {
+				adresa = search[1].trim();
+			}
+			else if (search[0].equalsIgnoreCase("telefon")) {
+				telefon = search[1].trim();
+			}
+			else if (search[0].equalsIgnoreCase("email")) {
+				email = search[1].trim();
+			}
+			else if (search[0].equalsIgnoreCase("index")) {
+				index = search[1].trim();
+			}
+			else if (search[0].equalsIgnoreCase("datum upisa")) {//TODO: date?
+				datum_upisa = search[1].trim();
+			}
+			else if (search[0].equalsIgnoreCase("godina studija")) {
+				godina_stud = Integer.parseInt(search[1].trim());
+			}
+			else if (search[0].equalsIgnoreCase("status")) {
+				status = Student.Status.valueOf(search[1].trim());
+			}
+			else if (search[0].equalsIgnoreCase("prosek")) {
+				prosek = Double.parseDouble(search[1].trim());
+			}
 		}
 
+		BazaStudenata.getBazaStudenata().find(ime,prezime,datum_rodjenja,adresa,telefon,email,index,datum_upisa,godina_stud,status,prosek);
+		MainFrame.getInstance().updateTable();
 
 
+
+	}
+
+	public void undo_search() {
+		BazaStudenata.getBazaStudenata().undo_search();
+		MainFrame.getInstance().updateTable();
 	}
 }

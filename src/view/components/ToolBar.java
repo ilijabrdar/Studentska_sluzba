@@ -258,14 +258,15 @@ public class ToolBar extends JToolBar{
 				}
 				else if (TabbedPane.getInstance().isRunning("Studenti")) {
 					StudentController sc = StudentController.getInstance();
-					//sc.findStudent(search.getText());
-					if (search.getText().trim().length()==0) {
-						MainFrame.getInstance().getStudent_table().rowSorter.setRowFilter(null);
-					}
-					else {
-						MainFrame.getInstance().getStudent_table().rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + search.getText())); //dinamicko sortiranje!
-						MainFrame.getInstance().updateTable();
-					}
+					if (search.getText().trim().length()!=0)
+						try {
+							sc.findStudent(search.getText()); //TODO: ispis greske?
+						} catch (Exception error) {
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Kriterijum pretrage je neispravno definisan.","Pretraga studenata", JOptionPane.ERROR_MESSAGE);
+						}
+					else
+						sc.undo_search();
+
 				}
 			}
 		});

@@ -14,8 +14,6 @@ public class StudentsTable extends JTable {
 	private static final long serialVersionUID = 7256962006890098490L;
 	
 	private static StudentsTable instance = new StudentsTable();
-	public TableRowSorter<DefaultTableModel> rowSorter
-			= new TableRowSorter<DefaultTableModel>();
 
 	public static StudentsTable getStudentsTable() {
 		return instance;
@@ -25,13 +23,8 @@ public class StudentsTable extends JTable {
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelStudents());
-		this.setRowSorter(rowSorter);
-	}
 
-//	@Override
-//	public int getSelectedRow() {
-//		return MainFrame.getInsance().getStudent_table().getSelectedRow();
-//	}
+	}
 	
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {

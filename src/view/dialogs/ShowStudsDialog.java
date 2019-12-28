@@ -30,7 +30,6 @@ public class ShowStudsDialog extends ShowProfsStudsDialog{
     }
 
     private void initList() {
-        int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Student s : predmet.getStudenti()) {
             DLM.addElement(s.getIndex());

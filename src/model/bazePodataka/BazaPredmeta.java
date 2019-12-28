@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import model.entiteti.Predmet;
+import model.entiteti.Student;
 
 public class BazaPredmeta {
 
@@ -29,10 +30,12 @@ public class BazaPredmeta {
 		initCols();
 		initBackup();
 		pullProfessors();
+		pullStudents();
 		for(Predmet p : backup)
 			subjects.add(p);
 	}
-	
+
+
 	private void initBackup() {
 		BufferedReader reader = null;
 		String[] data;
@@ -221,5 +224,44 @@ public class BazaPredmeta {
 			}
 		}
 		return null;
+	}
+
+	//format : E214|ra-102-2017|
+	private void pullStudents() {
+		BufferedReader reader = null;
+		String [] data;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream("StudentSubjListing.txt"), "utf-8"));
+			String line = null;
+			while((line = reader.readLine()) != null) {
+				data = line.split("\\|");
+
+				String IDSubj = data[0];
+				Predmet p = getSubject(IDSubj);
+
+				for (int i = 1; i<data.length; i++) {
+					String StudID = data[i];
+					if (StudID=="")
+						continue;
+
+					Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(StudID);
+					p.addStudent(s);
+				}
+
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }
