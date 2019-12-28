@@ -174,9 +174,6 @@ public class SubjectController {
 		if (s == null) //provera  da li student sa datim indeksom postoji
 			return false;
 
-		if (!s.dodajPredmetStudentu(p))
-			return false;
-
 		p.addStudent(s);
 		s.dodajPredmetStudentu(p);
 		return true;
@@ -189,6 +186,39 @@ public class SubjectController {
 					p.getProfs().remove(pr);
 					break;
 				}
+			}
+		}
+	}
+
+	//format : E214|ra-102-2017|
+	public void saveStudentToSubject(String file) {
+		PrintWriter out = null;
+		ArrayList<Predmet> data = BazaPredmeta.getBazaPredmeta().getBackup();
+
+		try {
+			out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
+
+			for (Predmet p : data) {
+				StringBuilder sb_output = new StringBuilder();
+				String subID = p.getSifra();
+				sb_output.append(subID + "|");
+
+				for (Student s : p.getStudenti()) {
+					sb_output.append(s.getIndex() + "|");
+				}
+
+				String output = sb_output.toString();
+				out.println(output);
+
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				out.close();
 			}
 		}
 	}

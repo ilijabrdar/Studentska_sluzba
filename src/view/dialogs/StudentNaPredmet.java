@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 public class StudentNaPredmet extends JDialog{
 
-    //TODO: serijalizacija
+    //TODO: serialUID
 
     protected JButton btnOK = null;
     protected JButton btnCANCEL = null;

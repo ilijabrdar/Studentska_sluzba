@@ -67,6 +67,7 @@ public class MainFrame extends JFrame{
 				SubjectController sc = SubjectController.getSubjectController();
 				sc.saveToFile("subjectListing.txt");
 				sc.saveProfToSubj("ProfSubjListing.txt");
+				sc.saveStudentToSubject("StudentSubjListing.txt");
 
 				StudentController student_controller = StudentController.getInstance();
 				student_controller.saveToFile("studentListing.txt");

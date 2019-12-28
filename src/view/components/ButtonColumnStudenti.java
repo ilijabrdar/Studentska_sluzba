@@ -11,7 +11,7 @@ public class ButtonColumnStudenti extends ButtonColumn {
         super(table, column, msg);
         addEditingAction(msg);
         this.isEditorActive = false;
-        //dodajListerLista();
+
     }
 
     private void addEditingAction(String msg) {
@@ -22,29 +22,10 @@ public class ButtonColumnStudenti extends ButtonColumn {
 
                 dialog = new ShowStudsDialog(MainFrame.getInstance(),msg,true);
 
-//                int row = MainFrame.getInsance().getStable().getSelectedRow();
-//                Predmet selected_predmet = BazaPredmeta.getBazaPredmeta().getRow(row);
-//
-//                for (Student s : selected_predmet.getStudenti()) {
-//                    //DLM.addElement(s.getIndex()); TODO David: Popraviti
-//                }
-//
-//                //list.setModel(DLM); //TODO David: popraviti
-//
-//                dialog.setVisible(true);
+            }
+        });
+    }
 
-            }
-        });
-    }
-/*
-    public void dodajListerLista() {
-        list.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                System.out.println("Selektovan je student sa indexom " + list.getSelectedValue());
-            }
-        });
-    }
-    */ //TODO David: Popraviti
+
 
 }
