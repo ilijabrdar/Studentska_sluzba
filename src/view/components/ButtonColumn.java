@@ -1,5 +1,7 @@
 package view.components;
 
+import view.listeners.ButtonMouseListener;
+
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -55,12 +57,14 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
+		renderButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		editorButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		
+		renderButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		editorButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 
 	@Override

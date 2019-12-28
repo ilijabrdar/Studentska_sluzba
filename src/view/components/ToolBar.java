@@ -16,6 +16,7 @@ import model.entiteti.Profesor;
 import view.dialogs.*;
 import view.dialogs.ProfessorToSubject;
 import view.dialogs.StudentNaPredmet;
+import view.listeners.ButtonMouseListener;
 import view.tables.ProfesorTable;
 import view.tables.StudentsTable;
 import view.tables.SubjectTable;
@@ -71,6 +72,7 @@ public class ToolBar extends JToolBar{
 		btn_dodaj.setBorderPainted(false);
 		btn_dodaj.setToolTipText("Dodaj");
 		btn_dodaj.setPreferredSize(new Dimension(35, 35));
+		btn_dodaj.addMouseListener(new ButtonMouseListener());
 		
 		items.add(btn_dodaj);
 		
@@ -80,6 +82,7 @@ public class ToolBar extends JToolBar{
 			btn_dodaj_studenta.setBorderPainted(false);
 			btn_dodaj_studenta.setToolTipText("Dodaj studenta");
 			btn_dodaj_studenta.setPreferredSize(new Dimension(35, 35));
+			btn_dodaj_studenta.addMouseListener(new ButtonMouseListener());
 			items.add(btn_dodaj_studenta);
 			
 			btn_dodaj_profesora = new JButton(new ImageIcon("imgs/professor.png"));
@@ -87,6 +90,7 @@ public class ToolBar extends JToolBar{
 			btn_dodaj_profesora.setBorderPainted(false);
 			btn_dodaj_profesora.setToolTipText("Dodaj profesora");
 			btn_dodaj_profesora.setPreferredSize(new Dimension(34, 34));
+			btn_dodaj_profesora.addMouseListener(new ButtonMouseListener());
 			items.add(btn_dodaj_profesora);
 		}
 		
@@ -95,6 +99,7 @@ public class ToolBar extends JToolBar{
 		btn_edit.setBorderPainted(false);
 		btn_edit.setToolTipText("Izmeni");
 		btn_edit.setPreferredSize(new Dimension(38, 38));
+		btn_edit.addMouseListener(new ButtonMouseListener());
 		items.add(btn_edit);
 				
 		btn_izbrisi = new JButton( new ImageIcon("imgs/delete.png"));
@@ -102,6 +107,7 @@ public class ToolBar extends JToolBar{
 		btn_izbrisi.setBorderPainted(false);
 		btn_izbrisi.setToolTipText("Obriši");
 		btn_izbrisi.setPreferredSize(new Dimension(35, 35));
+		btn_izbrisi.addMouseListener(new ButtonMouseListener());
 		items.add(btn_izbrisi);
 		
 		search = new JTextField();
@@ -113,6 +119,7 @@ public class ToolBar extends JToolBar{
 		btn_search.setBackground(Color.WHITE);
 		btn_search.setBorderPainted(false);
 		btn_search.setToolTipText("Pronađi");
+		btn_search.addMouseListener(new ButtonMouseListener());
 		right.add(btn_search);
 		
 		this.add(items, BorderLayout.WEST);
