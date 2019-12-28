@@ -54,7 +54,7 @@ public class MainFrame extends JFrame{
 		setSize(3 * width / 4, 3 * height / 4);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Studentska sluba");
+		setTitle("Studentska služba");
 		setIconImage(kit.getImage("imgs/ftn.png"));
 		
 		this.addWindowListener(new WindowAdapter() {
