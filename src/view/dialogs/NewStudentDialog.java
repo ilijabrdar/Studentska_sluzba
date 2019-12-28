@@ -233,7 +233,7 @@ public class NewStudentDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
+				//TODO: default vrednosti? da li sme da ne unese nesto?
 				String ime = txt_ime.getText();
 				String prezime = txt_prezime.getText();
 				String datum_rodjenja = txt_datum_rodjenja.getText();
@@ -294,10 +294,7 @@ public class NewStudentDialog extends JDialog {
 				catch(Exception ee) {
 					JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve za prosek.");
 				}
-				
-				
-				
-								
+
 			}
 		});
 		

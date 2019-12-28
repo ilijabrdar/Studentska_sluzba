@@ -8,7 +8,7 @@ public class Student extends Osoba {
 	
 	public enum Status {B,S}
 	private String index;
-	private String datum_upisa;
+	private String datum_upisa; //TODO: prebaci u Date
 	private int godina_studija;
 	private Status status;
 	private double prosek;
@@ -87,6 +87,41 @@ public class Student extends Osoba {
 
 		predmeti.add(p);
 		return true;
+	}
+
+	public boolean search_datum_upisa(String datum_upisa) {
+		if (datum_upisa.equals(""))
+			return true;
+
+		return this.datum_upisa.equalsIgnoreCase(datum_upisa);
+	}
+
+	public boolean search_godina_stud(int godina_studija) {
+		if (godina_studija==0)
+			return true;
+
+		return this.godina_studija == godina_studija;
+	}
+
+	public boolean search_status(Status status) {
+		if (status==null)
+			return true;
+
+		return this.status.equals(status);
+	}
+
+	public boolean search_prosek(double prosek) {
+		if (prosek==0)
+			return true;
+
+		return this.prosek==prosek;
+	}
+
+	public boolean search_index(String index) {
+		if (index.equals(""))
+			return true;
+
+		return this.index.equalsIgnoreCase(index);
 	}
 
 	

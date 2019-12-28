@@ -62,7 +62,7 @@ public class MainFrame extends JFrame{
 			public void windowClosing(WindowEvent arg0) {
 				JFrame frame = (JFrame) arg0.getComponent();
 				int input = JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene?", "Studentska služba", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				
+
 				if (input == 0) {
 				SubjectController sc = SubjectController.getSubjectController();
 				sc.saveToFile("subjectListing.txt");
@@ -92,6 +92,8 @@ public class MainFrame extends JFrame{
 		profesor_table = ProfesorTable.getProfesorTable();
 
 		stable.getTableHeader().setReorderingAllowed(false);
+		student_table.getTableHeader().setReorderingAllowed(false);
+		profesor_table.getTableHeader().setReorderingAllowed(false);
 
 		stable.setAutoCreateRowSorter(true); //ovo ne cini nikakvu izmenu
 		student_table.setAutoCreateRowSorter(true);

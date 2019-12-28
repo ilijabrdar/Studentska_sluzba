@@ -64,6 +64,50 @@ public class Osoba {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public boolean search_email(String email) {
+		if (email.equals(""))
+			return true;
+
+		return this.email.equalsIgnoreCase(email);
+	}
+
+	public boolean search_ime(String ime) {
+		if (ime.equals(""))
+			return true;
+
+		return this.ime.equalsIgnoreCase(ime);
+	}
+
+	public boolean search_prezime(String prezime) {
+		if (prezime.equals(""))
+			return true;
+
+		return this.prezime.equalsIgnoreCase(prezime);
+	}
+
+	public boolean search_datum_rodjenja(String datum) {
+		if (datum.equals(""))
+			return true;
+
+		return this.datum.equalsIgnoreCase(datum);
+	}
+
+	public boolean search_adresa(String adresa) {
+		if (adresa.equals(""))
+			return true;
+
+		return this.adresa.equalsIgnoreCase(adresa);
+	}
+
+	public boolean search_telefon(String telefon) {
+		if (telefon.equals(""))
+			return true;
+
+		return this.telefon.equalsIgnoreCase(telefon);
+	}
+
+
 	
 	@Override
 	public String toString() {
