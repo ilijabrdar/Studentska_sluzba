@@ -63,10 +63,13 @@ public class SubjectController {
 		return retVal;
 	}
 	
-	public void editSubject(Predmet subj) {
-		BazaPredmeta.getBazaPredmeta().editSubject(selectedRow, subj);
-		MainFrame.getInstance().updateTable();
-	}
+	public void editSubject(Predmet subj, JDialog parent) {
+		Predmet p = getSelectedSubjectByID();
+		if(BazaPredmeta.getBazaPredmeta().editSubject(p.getSifra(), subj))
+			MainFrame.getInstance().updateTable();
+		else
+			JOptionPane.showMessageDialog(parent, "Predmet već postoji.", "Greška", JOptionPane.ERROR_MESSAGE);
+		}
 	
 	public void findSubject(String search) {
 		String[] params = search.split("\\;");

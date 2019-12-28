@@ -81,7 +81,7 @@ public class BazaPredmeta {
 			while((line = in.readLine()) != null) {
 				data = line.split("\\|");
 				String subID = data[0];
-				Predmet subj = getSubject(subID);
+				Predmet subj = getSubject(subID);  //nemoguce da vrati null, jer to je obezbedjeno kod doavanja profe na predmet
 				for(int i = 1; i < data.length; i++) {
 					subj.addProfessor(BazaProfesora.getBazaProfesora().getProfesor(data[i]));
 				}
@@ -161,20 +161,24 @@ public class BazaPredmeta {
 	public int getColumnCount() {
 		return 5; //PAZI!
 	}
-	
+
 	public boolean addSubject(Predmet subj) {
-		for(int i = 0; i < backup.size(); i++)
-			if (backup.get(i).getSifra().equalsIgnoreCase(subj.getSifra()))
-				return false;
+		if (getSubject(subj.getSifra()) != null)
+			return false;
 		return backup.add(subj);
 	}
 	
-	public void editSubject(int index, Predmet subj) {
-		Predmet p = subjects.get(index);
+	public boolean editSubject(String ID, Predmet subj) {
+		Predmet s = getSubject(subj.getSifra()); //nova verzija predmeta
+		Predmet p = getSubject(ID); //stara verzija predmeta
+		if(s != null && !p.getSifra().equalsIgnoreCase(subj.getSifra()))
+			return false;
+
 		p.setSifra(subj.getSifra());
 		p.setNaziv(subj.getNaziv());
 		p.setSemestar(subj.getSemestar());
 		p.setGodina(subj.getGodina());
+		return true;
 	}
 	
 	public void findSubject(String sifra, String naziv, String semestar, String godina) {
@@ -216,6 +220,6 @@ public class BazaPredmeta {
 				return backup.get(i);
 			}
 		}
-		return null; //nemoguce da vrati null, jer to je obezbedjeno kod doavanja profe na predmet
+		return null;
 	}
 }

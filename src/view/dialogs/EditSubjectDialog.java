@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import controller.SubjectController;
 import model.entiteti.Predmet;
 
-public class EditSubjectDialog extends NewSubjectDialog {
+public class EditSubjectDialog extends SubjectDialog {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,11 +25,10 @@ public class EditSubjectDialog extends NewSubjectDialog {
 		combo1.setSelectedItem(subj.getSemestar());
 		combo2.setSelectedItem(subj.getStrGodina());
 	}
-	
-	@Override
+
 	public void addActionsOK() {
 		btnOK.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String sifra = txt1.getText();
@@ -39,7 +38,7 @@ public class EditSubjectDialog extends NewSubjectDialog {
 				SubjectController sc = SubjectController.getSubjectController();
 				Predmet p = new Predmet(sifra, naziv, semestar, godina);
 				p.setStrGodina(godina);
-				sc.editSubject(p);
+				sc.editSubject(p, getDialog());
 				dispose();
 			}
 		});

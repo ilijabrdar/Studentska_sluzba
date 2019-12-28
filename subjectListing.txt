@@ -5,7 +5,7 @@ E213|Algebra|Zimski|1
 E212|Fizika|Letnji|1
 E216|Osnovi elektrotehnike|Letnji|1
 EJ2L|Engleski jezik - srednji|Letnji|1
-E217|Arhitektura računara|Letnji|1
+E217|Arhitektura računara|Letnji|2
 E227|Logičko projektovanje računarskih sistema|Zimski|2
 E221A|Matematička analiza 2|Zimski|2
 E223A|Objektno programiranje|Zimski|2
