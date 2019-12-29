@@ -33,6 +33,7 @@ public class ShowStudsDialog extends ShowProfsStudsDialog{
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Student s : predmet.getStudenti()) {
             DLM.addElement(s.getIndex());
+            //System.out.println(s); TODO: ako dodas predmeti u ispis pri prikazu studenata se pojavi greska
         }
     }
 

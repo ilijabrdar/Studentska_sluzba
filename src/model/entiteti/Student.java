@@ -1,7 +1,7 @@
 package model.entiteti;
 
 import java.util.ArrayList;
-
+import java.util.Date;
 
 
 public class Student extends Osoba {
@@ -76,7 +76,7 @@ public class Student extends Osoba {
 	@Override
 	public String toString() {
 		return "Student [index=" + index + ", datum_upisa=" + datum_upisa + ", godina_studija=" + godina_studija
-				+ ", status=" + status + ", prosek=" + prosek + "]"; //TODO: pogledaj ovde sta se desi kada dodas predmeti u ispis, pri prikazu studenata na predmet javi se greska
+				+ ", status=" + status + ", prosek=" + prosek +  "]"; //TODO: pogledaj ovde sta se desi kada dodas 'predmeti' u ispis, pri prikazu studenata na predmet javi se greska
 	}
 
 	public boolean dodajPredmetStudentu(Predmet p) {

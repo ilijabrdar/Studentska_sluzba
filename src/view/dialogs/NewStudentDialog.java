@@ -26,6 +26,7 @@ import model.entiteti.Student;
 import model.entiteti.Student.Status;
 import view.components.BackgroundPanel;
 import view.listeners.DialogWindowListener;
+import view.listeners.MyListenerStudent;
 
 public class NewStudentDialog extends JDialog {
 
@@ -60,31 +61,52 @@ public class NewStudentDialog extends JDialog {
 		setLocationRelativeTo(parent);
 		setResizable(false);
 		this.setLayout(new BorderLayout());
+
 		
 		setFields();
 		
 		addActionsWind();
-		//addActionsFields(); //TODO: dodaj key listenere
+		addKeyListeners(); //TODO: dodaj KeyListener-e
 		addActionsOK();
 		addActionsCANCEL();
 		
 		
 	}
-	
+
+	protected void addKeyListeners() {
+		btnOK.setEnabled(false);
+
+		MyListenerStudent k = new MyListenerStudent(btnOK,rb_b,rb_s,0);
+		txt_prosek.addKeyListener(k);
+		txt_ime.addKeyListener(k);
+		txt_prezime.addKeyListener(k);
+		txt_datum_rodjenja.addKeyListener(k);
+		txt_indeks.addKeyListener(k);
+		txt_telefon.addKeyListener(k);
+		txt_email.addKeyListener(k);
+		txt_adresa.addKeyListener(k);
+		txt_datum_upisa.addKeyListener(k);
+
+		rb_b.addActionListener(k);
+		rb_s.addActionListener(k);
+
+	}
+
+
 	JDialog getDialog() { return this; }
 
 	private void setFields() {
-		JLabel ime = new JLabel("Ime:");
-		JLabel prezime = new JLabel("Prezime:");
-		JLabel adresa = new JLabel("Adresa:");
-		JLabel datum_rodjenja = new JLabel("Datum rodjenja: ");
-		JLabel telefon = new JLabel ("Telefon: ");
-		JLabel email = new JLabel("Email: ");
-		JLabel indeks = new JLabel("Indeks: ");
-		JLabel datum_upisa = new JLabel("Datum upisa: ");
-		JLabel godina_studija = new JLabel("Trenutna godina studija: ");
-		JLabel prosek = new JLabel("Prosek: ");
-		JLabel status = new JLabel("Status: ");
+		JLabel ime = new JLabel("Ime:*");
+		JLabel prezime = new JLabel("Prezime:*");
+		JLabel adresa = new JLabel("Adresa:*");
+		JLabel datum_rodjenja = new JLabel("Datum rođenja:*");
+		JLabel telefon = new JLabel ("Telefon:* ");
+		JLabel email = new JLabel("Email:* ");
+		JLabel indeks = new JLabel("Indeks:* ");
+		JLabel datum_upisa = new JLabel("Datum upisa:* ");
+		JLabel godina_studija = new JLabel("Trenutna godina studija:* ");
+		JLabel prosek = new JLabel("Prosek:* ");
+		JLabel status = new JLabel("Status:* ");
 		
 		
 		txt_ime = new JTextField();
@@ -124,14 +146,15 @@ public class NewStudentDialog extends JDialog {
 		txt_prosek.setPreferredSize(new Dimension (300,28));
 		
 		rb_s = new JRadioButton("Samofinansiranje: ");
-		rb_b = new JRadioButton("Budzet: ");
+		rb_b = new JRadioButton("Budžet: ");
 		rb_s.setOpaque(false);
 		rb_b.setOpaque(false);
 		ButtonGroup btnGroup = new ButtonGroup();
 		btnGroup.add(rb_s);
 		btnGroup.add(rb_b);
+
 		
-		String[] godine = new String[] {"Prva", "Druga", "Treca", "Cetvrta" };
+		String[] godine = new String[] {"Prva", "Druga", "Treća", "Četvrta" };
 		trenutna_godina_studija = new JComboBox<String>(godine);
 		trenutna_godina_studija.setPreferredSize(new Dimension(100, 28));
 		
@@ -275,24 +298,29 @@ public class NewStudentDialog extends JDialog {
 							status,prosek);
 					
 					StudentController student_controller = StudentController.getInstance();
-					student_controller.dodajStudenta(s);
-					
-					JOptionPane.showMessageDialog(getDialog(), "Uspesno dodat student.");
-					txt_ime.setText("");
-					txt_prezime.setText("");
-					txt_datum_rodjenja.setText("");
-					txt_telefon.setText("");
-					txt_adresa.setText("");
-					txt_email.setText("");
-					txt_indeks.setText("");
-					txt_datum_upisa.setText("");
-					txt_prosek.setText("");
-					
-					getDialog().dispose();
+					if (student_controller.dodajStudenta(s)) {
+
+						JOptionPane.showMessageDialog(getDialog(), "Uspešno dodat student.");
+						txt_ime.setText("");
+						txt_prezime.setText("");
+						txt_datum_rodjenja.setText("");
+						txt_telefon.setText("");
+						txt_adresa.setText("");
+						txt_email.setText("");
+						txt_indeks.setText("");
+						txt_datum_upisa.setText("");
+						txt_prosek.setText("");
+
+						getDialog().dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(getDialog(),"Vec postoji student sa istim indexom", "Greška", JOptionPane.ERROR_MESSAGE);
+						getDialog().dispose();
+					}
 				
 				}
 				catch(Exception ee) {
-					JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve za prosek.");
+					JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve za prosek."); //TODO: da li je ovo i dalje potrebno?
 				}
 
 			}

@@ -192,17 +192,18 @@ public class BazaStudenata {
 		return this.columns.get(column);
 	}
 	
-	public void addStudent(Student s) {
+	public boolean addStudent(Student s) {
 		for (Student temp : database)  {
 			if (temp.getIndex().equalsIgnoreCase(s.getIndex()))
-				return;
+				return false;
 		}
 		
-		students.add(s);
+		//students.add(s); TODO: ne smem da dodam u oba - zasto?
 		database.add(s);
+		return true;
 	}
 	
-	public void editStudent(int index, Student s) {
+	public void editStudent(int index, Student s) { //TODO: ne sme da se promeni na isti index
 		students.remove(index);
 		students.add(index, s);
 
@@ -225,7 +226,7 @@ public class BazaStudenata {
 
 			if (s.search_ime(ime) && s.search_prezime(prezime) && s.search_datum_rodjenja(datum_rodjenja)
 			&& s.search_adresa(adresa) && s.search_telefon(telefon) && s.search_email(email) &&
-			s.search_index(index) && s.search_datum_upisa(datum_upisa) && s.search_godina_stud(godina_stud) &&
+			s.search_index(index)  && s.search_godina_stud(godina_stud) &&
 			s.search_status(status) && s.search_prosek(prosek))
 				search_result.add(s);
 

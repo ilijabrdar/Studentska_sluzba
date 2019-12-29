@@ -164,23 +164,28 @@ public class BazaProfesora {
 		return this.columns.get(column);
 	}
 	
-	public void addProfesor(Profesor p) { //TODO DAVID: Popraviti
+	public void addProfesor(Profesor p) {
 		for (Profesor temp : profesori) {
 			if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
 				return;
 		}
 
 		profesori.add(p);
+		database.add(p);
 	}
 	
-	public void editProfesor(int index, Profesor p) { //TODO DAVID: Popraviti
+	public void editProfesor(int index, Profesor p) {
 		profesori.remove(index);
 		profesori.add(index, p);
+
+		database.remove(index);
+		database.add(index,p);
 	}
 	
 	public void removeProfesor(Profesor p) {
 		profesori.remove(p);
-	} //TODO DAVID: Popraviti
+		database.remove(p);
+	}
 	
 	public Profesor getProfesor(String ID) {
 		for(Profesor p : profesori)
