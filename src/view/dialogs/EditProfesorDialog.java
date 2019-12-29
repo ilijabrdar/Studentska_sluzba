@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import controller.ProfesorController;
 import model.bazePodataka.BazaProfesora;
 import model.entiteti.Profesor;
+import view.listeners.MyListenerProfesor;
 import view.tables.ProfesorTable;
 
 public class EditProfesorDialog extends NewProfesorDialog {
@@ -33,7 +34,26 @@ public class EditProfesorDialog extends NewProfesorDialog {
 		txt_zvanje.setText(p.getZvanje());
 		txt_licna.setText(p.getLicna());
 	}
-	
+
+	@Override
+	protected void addKeyListeners() {
+		btnOK.setEnabled(true);
+
+		MyListenerProfesor listenerProfesor = new MyListenerProfesor(btnOK,1);
+
+		txt_adresa.addKeyListener(listenerProfesor);
+		txt_datum_rodjenja.addKeyListener(listenerProfesor);
+		txt_email.addKeyListener(listenerProfesor);
+		txt_ime.addKeyListener(listenerProfesor);
+		txt_prezime.addKeyListener(listenerProfesor);
+		txt_telefon.addKeyListener(listenerProfesor);
+		txt_kancelarija.addKeyListener(listenerProfesor);
+		txt_licna.addKeyListener(listenerProfesor);
+		txt_titula.addKeyListener(listenerProfesor);
+		txt_zvanje.addKeyListener(listenerProfesor);
+
+	}
+
 	public void addActionsOK() {
 		btnOK.addActionListener(new ActionListener() {
 			
