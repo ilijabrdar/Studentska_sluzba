@@ -50,12 +50,12 @@ public class Menu extends JMenuBar {
 			}
 		});
 
-		ImageIcon imageIcon_new = new ImageIcon(new ImageIcon("imgs/069-plus.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_new = new ImageIcon(new ImageIcon("resources/imgs/069-plus.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		file_new.setIcon(imageIcon_new);
 		file_new.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK)); //CTRL
 
 		JMenuItem file_close = new JMenuItem("Close");
-		ImageIcon imageIcon_close = new ImageIcon(new ImageIcon("imgs/020-close.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)); //skaliranje ikonice
+		ImageIcon imageIcon_close = new ImageIcon(new ImageIcon("resources/imgs/020-close.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)); //skaliranje ikonice
 		file_close.setIcon(imageIcon_close);
 		file_close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));//CTRL+C
 
@@ -75,7 +75,7 @@ public class Menu extends JMenuBar {
 		edit.setMnemonic(KeyEvent.VK_E);
 
 		JMenuItem edit_edit = new JMenuItem("Edit");
-		ImageIcon imageIcon_edit = new ImageIcon(new ImageIcon("imgs/062-pencil.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_edit = new ImageIcon(new ImageIcon("resources/imgs/062-pencil.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		edit_edit.setIcon(imageIcon_edit);
 		edit_edit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 
@@ -117,7 +117,7 @@ public class Menu extends JMenuBar {
 
 
 		JMenuItem edit_delete = new JMenuItem("Delete");
-		ImageIcon imageIcon_delete = new ImageIcon(new ImageIcon("imgs/076-remove.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_delete = new ImageIcon(new ImageIcon("resources/imgs/076-remove.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		edit_delete.setIcon(imageIcon_delete);
 		edit_delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 
@@ -179,7 +179,7 @@ public class Menu extends JMenuBar {
 		help.setMnemonic(KeyEvent.VK_H);
 
 		JMenuItem help_help = new JMenuItem("Help");
-		ImageIcon imageIcon_help = new ImageIcon(new ImageIcon("imgs/050-info.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_help = new ImageIcon(new ImageIcon("resources/imgs/050-info.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		help_help.setIcon(imageIcon_help);
 		help_help.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 
@@ -192,7 +192,7 @@ public class Menu extends JMenuBar {
 		});
 
 		JMenuItem help_about = new JMenuItem("About");
-		ImageIcon imageIcon_about = new ImageIcon(new ImageIcon("imgs/045-heart.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_about = new ImageIcon(new ImageIcon("resources/imgs/045-heart.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		help_about.setIcon(imageIcon_about);
 		help_about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 

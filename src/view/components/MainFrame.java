@@ -55,26 +55,28 @@ public class MainFrame extends JFrame{
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Studentska služba");
-		setIconImage(kit.getImage("imgs/ftn.png"));
+		setIconImage(kit.getImage("resources/imgs/ftn.png"));
 		
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				JFrame frame = (JFrame) arg0.getComponent();
-				int input = JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene?", "Studentska služba", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				int input = JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene?", "Studentska služba", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-				if (input == 0) {
-				SubjectController sc = SubjectController.getSubjectController();
-				sc.saveToFile("subjectListing.txt");
-				sc.saveProfToSubj("ProfSubjListing.txt");
-				sc.saveStudentToSubject("StudentSubjListing.txt");
+				if (input == JOptionPane.YES_OPTION) {
+					SubjectController sc = SubjectController.getSubjectController();
+					sc.saveToFile("resources/listings/subjectListing.txt");
+					sc.saveProfToSubj("resources/listings/ProfSubjListing.txt");
+					sc.saveStudentToSubject("resources/listings/StudentSubjListing.txt");
 
-				StudentController student_controller = StudentController.getInstance();
-				student_controller.saveToFile("studentListing.txt");
+					StudentController student_controller = StudentController.getInstance();
+					student_controller.saveToFile("resources/listings/studentListing.txt");
 
-				ProfesorController  profesorController = ProfesorController.getInstance();
-				profesorController.saveToFile("profesorListing.txt");
+					ProfesorController  profesorController = ProfesorController.getInstance();
+					profesorController.saveToFile("resources/listings/profesorListing.txt");
 				}
+				else if(input == JOptionPane.CANCEL_OPTION) setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				else if(input == JOptionPane.NO_OPTION) setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 			}
 		});
@@ -108,9 +110,9 @@ public class MainFrame extends JFrame{
 		JScrollPane student_pane = new JScrollPane(student_table);
 		JScrollPane profesor_pane = new JScrollPane(profesor_table);
 		
-		ImageIcon imageIcon_student = new ImageIcon(new ImageIcon("imgs/student+icon-1320184412790928936.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
-		ImageIcon imageIcon_subject = new ImageIcon(new ImageIcon("imgs/211-2112519_subject-icon-png-learn-english-icon-png.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
-		ImageIcon imageIcon_profesor = new ImageIcon(new ImageIcon("imgs/sociat_avatar_2.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_student = new ImageIcon(new ImageIcon("resources/imgs/student+icon-1320184412790928936.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_subject = new ImageIcon(new ImageIcon("resources/imgs/211-2112519_subject-icon-png-learn-english-icon-png.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon_profesor = new ImageIcon(new ImageIcon("resources/imgs/sociat_avatar_2.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 
 		
 		TabbedPane tabs = TabbedPane.getInstance();

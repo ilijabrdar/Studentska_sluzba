@@ -32,7 +32,7 @@ public class BazaProfesora {
 		BufferedReader reader = null;
 		String[] data;
 		try {
-			reader = new BufferedReader(new InputStreamReader(new FileInputStream("profesorListing.txt"), "utf-8"));
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream("resources/listings/profesorListing.txt"), "utf-8"));
 			String line = null;
 			while((line = reader.readLine()) != null) {
 				data = line.split("\\|");

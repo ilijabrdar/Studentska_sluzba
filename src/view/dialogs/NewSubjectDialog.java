@@ -30,6 +30,7 @@ public class NewSubjectDialog extends SubjectDialog {
 
 	public NewSubjectDialog(Frame owner, String title, boolean modal, int f1, int f2) {
 		super(owner, title, modal, f1, f2);
+		addActionsOK();
 	}
 
 	public void addActionsOK() {

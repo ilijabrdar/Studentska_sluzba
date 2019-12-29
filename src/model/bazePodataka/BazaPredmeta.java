@@ -40,7 +40,7 @@ public class BazaPredmeta {
 		BufferedReader reader = null;
 		String[] data;
 		try {
-			reader = new BufferedReader(new InputStreamReader(new FileInputStream("subjectListing.txt"), "utf-8"));
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream("resources/listings/subjectListing.txt"), "utf-8"));
 			String line = null;
 			while((line = reader.readLine()) != null) {
 				
@@ -78,7 +78,7 @@ public class BazaPredmeta {
 		BufferedReader in = null;
 		String[] data;
 		try {
-			in = new BufferedReader(new InputStreamReader(new FileInputStream("ProfSubjListing.txt")));
+			in = new BufferedReader(new InputStreamReader(new FileInputStream("resources/listings/ProfSubjListing.txt")));
 			
 			String line = null;
 			while((line = in.readLine()) != null) {
@@ -231,7 +231,7 @@ public class BazaPredmeta {
 		BufferedReader reader = null;
 		String [] data;
 		try {
-			reader = new BufferedReader(new InputStreamReader(new FileInputStream("StudentSubjListing.txt"), "utf-8"));
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream("resources/listings/StudentSubjListing.txt"), "utf-8"));
 			String line = null;
 			while((line = reader.readLine()) != null) {
 				data = line.split("\\|");

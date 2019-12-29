@@ -16,7 +16,7 @@ import model.entiteti.Profesor;
 import view.dialogs.*;
 import view.dialogs.ProfessorToSubject;
 import view.dialogs.StudentNaPredmet;
-import view.listeners.ButtonMouseListener;
+import view.listeners.*;
 import view.tables.ProfesorTable;
 import view.tables.StudentsTable;
 import view.tables.SubjectTable;
@@ -67,7 +67,7 @@ public class ToolBar extends JToolBar{
 		items.setBackground(Color.white);
 		right.setBackground(Color.white);
 		
-		btn_dodaj = new JButton(new ImageIcon("imgs/plus.png"));
+		btn_dodaj = new JButton(new ImageIcon("resources/imgs/plus.png"));
 		btn_dodaj.setBackground(Color.WHITE);
 		btn_dodaj.setBorderPainted(false);
 		btn_dodaj.setToolTipText("Dodaj");
@@ -77,7 +77,7 @@ public class ToolBar extends JToolBar{
 		items.add(btn_dodaj);
 		
 		if(tab) {
-			btn_dodaj_studenta = new JButton(new ImageIcon("imgs/stud.png"));
+			btn_dodaj_studenta = new JButton(new ImageIcon("resources/imgs/stud.png"));
 			btn_dodaj_studenta.setBackground(Color.WHITE);
 			btn_dodaj_studenta.setBorderPainted(false);
 			btn_dodaj_studenta.setToolTipText("Dodaj studenta");
@@ -85,7 +85,7 @@ public class ToolBar extends JToolBar{
 			btn_dodaj_studenta.addMouseListener(new ButtonMouseListener());
 			items.add(btn_dodaj_studenta);
 			
-			btn_dodaj_profesora = new JButton(new ImageIcon("imgs/professor.png"));
+			btn_dodaj_profesora = new JButton(new ImageIcon("resources/imgs/professor.png"));
 			btn_dodaj_profesora.setBackground(Color.WHITE);
 			btn_dodaj_profesora.setBorderPainted(false);
 			btn_dodaj_profesora.setToolTipText("Dodaj profesora");
@@ -94,7 +94,7 @@ public class ToolBar extends JToolBar{
 			items.add(btn_dodaj_profesora);
 		}
 		
-		btn_edit = new JButton( new ImageIcon("imgs/edit1.png"));
+		btn_edit = new JButton( new ImageIcon("resources/imgs/edit1.png"));
 		btn_edit.setBackground(Color.WHITE);
 		btn_edit.setBorderPainted(false);
 		btn_edit.setToolTipText("Izmeni");
@@ -102,7 +102,7 @@ public class ToolBar extends JToolBar{
 		btn_edit.addMouseListener(new ButtonMouseListener());
 		items.add(btn_edit);
 				
-		btn_izbrisi = new JButton( new ImageIcon("imgs/delete.png"));
+		btn_izbrisi = new JButton( new ImageIcon("resources/imgs/delete.png"));
 		btn_izbrisi.setBackground(Color.WHITE);
 		btn_izbrisi.setBorderPainted(false);
 		btn_izbrisi.setToolTipText("Obriši");
@@ -114,7 +114,7 @@ public class ToolBar extends JToolBar{
 		search.setPreferredSize(new Dimension(200, 28));
 		right.add(search);
 		
-		btn_search = new JButton( new ImageIcon("imgs/search.png"));
+		btn_search = new JButton( new ImageIcon("resources/imgs/search.png"));
 		btn_search.setPreferredSize(new Dimension(35, 35));
 		btn_search.setBackground(Color.WHITE);
 		btn_search.setBorderPainted(false);
@@ -127,156 +127,13 @@ public class ToolBar extends JToolBar{
 	}
 	
 	public void setActions() { //OVDE SE DEFINISE KOJA AKCIJA CE SE POKRENUTI U ZAVISNOSTI KOJI TAB JE OTVOREN
-		btn_dodaj.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			    //(Component) e.getSource()
-				//ZAVISI KOJI JE TAB SELEKTOVAN
-				if(TabbedPane.getInstance().isRunning("Predmeti")) {
-					NewSubjectDialog sd = new  NewSubjectDialog(MainFrame.getInstance(), "Novi predmet", true, 0, 0);
-					sd.setVisible(true);
-				}
-				else if (TabbedPane.getInstance().isRunning("Studenti")) {
-					NewStudentDialog student_dialog = new NewStudentDialog(MainFrame.getInstance(), "Novi predmet", true);
-					student_dialog.setVisible(true);
-				}
-				
-				else if (TabbedPane.getInstance().isRunning("Profesori")) {
-					NewProfesorDialog profesor_dialog = new NewProfesorDialog(MainFrame.getInstance(), "Novi profesor", true);
-					profesor_dialog.setVisible(true);
-				}
-			}
-		});
+		btn_dodaj.addActionListener(new AddBtnActionListener());
 		
-		btn_edit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
-				int row_student = StudentsTable.getStudentsTable().getSelectedRow();
-				int row_profesor = ProfesorTable.getProfesorTable().getSelectedRow();
-				
-				if(TabbedPane.getInstance().isRunning("Predmeti") &&  row_subject >= 0) {
-					EditSubjectDialog ed = new EditSubjectDialog(MainFrame.getInstance(), "Izmena predmeta", true);
-					ed.setVisible(true);
-				}
-				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-							"Pre izmene selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				else if (TabbedPane.getInstance().isRunning("Studenti") &&  row_student >= 0) {
-					EditStudentDialog edit_student = new EditStudentDialog(MainFrame.getInstance(), "Izmena studenta", true);
-					edit_student.setVisible(true);
-				}
-				else if (TabbedPane.getInstance().isRunning("Studenti") && row_student == -1) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-							"Pre izmene selektujete studenta.", "Greška", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				else if (TabbedPane.getInstance().isRunning("Profesori") &&  row_profesor >= 0) {
-					EditProfesorDialog edit_profesor = new EditProfesorDialog(MainFrame.getInstance(), "Izmena profesora", true);
-					edit_profesor.setVisible(true);
-				}
-				else if (TabbedPane.getInstance().isRunning("Profesori") && row_profesor == -1) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-							"Pre izmene selektujete profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		btn_edit.addActionListener(new EditBtnActionListener());
 		
-		btn_izbrisi.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
-				int row_student = StudentsTable.getStudentsTable().getSelectedRow();
-				int row_prof = ProfesorTable.getProfesorTable().getSelectedRow();
-				
-				if(TabbedPane.getInstance().isRunning("Predmeti") && row_subject >= 0) {
-					int code = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete predmet?",
-							"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
-					if(code == JOptionPane.YES_OPTION) {
-						SubjectController sc = SubjectController.getSubjectController();
-						sc.removeSubject();
-					}	
-				} 
-				else if (TabbedPane.getInstance().isRunning("Predmeti") && row_subject == -1) { //row_subject=-1 ako nijedan red nije selektovan
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-							"Pre brisanja selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				else if (TabbedPane.getInstance().isRunning("Studenti") && row_student >= 0) {
-					int code = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete studenta?",
-							"Brisanje studenta", JOptionPane.YES_NO_OPTION);
-					if(code == JOptionPane.YES_OPTION) {
-						StudentController sc = StudentController.getInstance();
-						sc.izbrisiStudenta(row_student);
-					}	
-				}
-				else if (TabbedPane.getInstance().isRunning("Studenti") && row_student == -1) { 
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-							"Pre brisanja selektujete studenta.", "Greška", JOptionPane.ERROR_MESSAGE);
-				}
-				else if (TabbedPane.getInstance().isRunning("Profesori") && row_prof >= 0) {
-					int code = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete profesora?",
-							"Brisanje profesora", JOptionPane.YES_NO_OPTION);
-					if(code == JOptionPane.YES_OPTION) {
-						ProfesorController pc = ProfesorController.getInstance();
-						Profesor p = ProfesorController.getInstance().getProfessor(row_prof);
-						pc.izbrisiProfesora(row_prof);
-						SubjectController.getSubjectController().removeProfFromSubj(p.getLicna());
-					}	
-				}
-				else {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-							"Pre brisanja selektujete profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
-				}
-				
-			}
-		});
+		btn_izbrisi.addActionListener(new DeleteBtnActionListener());
 		
-		btn_search.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(TabbedPane.getInstance().isRunning("Predmeti")) {
-					SubjectController sc = SubjectController.getSubjectController();
-					if(search.getText().trim().length() !=0)
-
-						try {
-							sc.findSubject(search.getText());
-						} catch (Exception err) {
-							JOptionPane.showMessageDialog(MainFrame.getInstance(), err.getMessage(),"Pretraga predmeta", JOptionPane.ERROR_MESSAGE);
-						}
-
-					else
-						sc.retrieveTable();
-				}
-				else if(TabbedPane.getInstance().isRunning("Profesori")) {
-					ProfesorController pc = ProfesorController.getInstance();
-					if(search.getText().trim().length() != 0)
-						try {
-							pc.findProfessor(search.getText());
-						} catch (Exception err) {
-							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Kriterijum pretrage je neispravno definisan.","Pretraga profesora", JOptionPane.ERROR_MESSAGE);
-						}
-					else
-						pc.retrieveTable();
-				}
-				else if (TabbedPane.getInstance().isRunning("Studenti")) {
-					StudentController sc = StudentController.getInstance();
-					if (search.getText().trim().length()!=0)
-						try {
-							sc.findStudent(search.getText()); //TODO: ispis greske?
-						} catch (Exception error) {
-							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Kriterijum pretrage je neispravno definisan.","Pretraga studenata", JOptionPane.ERROR_MESSAGE);
-						}
-					else
-						sc.undo_search();
-
-				}
-			}
-		});
+		btn_search.addActionListener(new SearchBtnActionListener());
 	}
 	
 	public void setSubjectActions() {

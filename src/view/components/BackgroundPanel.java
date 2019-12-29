@@ -12,7 +12,7 @@ public class BackgroundPanel extends JPanel {
 	
 	Image img;
 	public BackgroundPanel() {
-		img = new ImageIcon("imgs/p2.jpg").getImage();
+		img = new ImageIcon("resources/imgs/p2.jpg").getImage();
 	}
 	
 	public void paintComponent(Graphics g) {
