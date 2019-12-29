@@ -22,6 +22,7 @@ import controller.ProfesorController;
 import model.entiteti.Profesor;
 import view.components.BackgroundPanel;
 import view.listeners.DialogWindowListener;
+import view.listeners.MyListenerProfesor;
 
 public class NewProfesorDialog extends JDialog {
 
@@ -53,13 +54,31 @@ public class NewProfesorDialog extends JDialog {
 		setFields();
 		
 		addActionsWind();
-		//addActionsFields();
+		addKeyListeners();
 		addActionsOK();
 		addActionsCANCEL();
 		
 		
 	}
-	
+
+	protected void addKeyListeners() {
+		btnOK.setEnabled(false);
+
+		MyListenerProfesor listenerProfesor = new MyListenerProfesor(btnOK,0);
+
+		txt_adresa.addKeyListener(listenerProfesor);
+		txt_datum_rodjenja.addKeyListener(listenerProfesor);
+		txt_email.addKeyListener(listenerProfesor);
+		txt_ime.addKeyListener(listenerProfesor);
+		txt_prezime.addKeyListener(listenerProfesor);
+		txt_telefon.addKeyListener(listenerProfesor);
+		txt_kancelarija.addKeyListener(listenerProfesor);
+		txt_licna.addKeyListener(listenerProfesor);
+		txt_titula.addKeyListener(listenerProfesor);
+		txt_zvanje.addKeyListener(listenerProfesor);
+
+	}
+
 	public void addActionsWind() {
 		this.addWindowListener(new DialogWindowListener());
 	}
@@ -67,16 +86,16 @@ public class NewProfesorDialog extends JDialog {
 	JDialog getDialog() { return this; }
 	
 	void setFields() {
-		JLabel ime = new JLabel("Ime:");
-		JLabel prezime = new JLabel("Prezime:");
-		JLabel adresa = new JLabel("Adresa:");
-		JLabel datum_rodjenja = new JLabel("Datum rodjenja: ");
-		JLabel telefon = new JLabel ("Telefon: ");
-		JLabel email = new JLabel("Email: ");
-		JLabel kancelarija = new JLabel("Kancelarija: ");
-		JLabel licna = new JLabel("Broj licne karte: ");
-		JLabel titula = new JLabel("Titula: ");
-		JLabel zvanje = new JLabel("Zvanje: ");
+		JLabel ime = new JLabel("Ime:*");
+		JLabel prezime = new JLabel("Prezime:*");
+		JLabel adresa = new JLabel("Adresa:*");
+		JLabel datum_rodjenja = new JLabel("Datum rođenja:* ");
+		JLabel telefon = new JLabel ("Telefon:* ");
+		JLabel email = new JLabel("Email:* ");
+		JLabel kancelarija = new JLabel("Kancelarija:* ");
+		JLabel licna = new JLabel("Broj lične karte:* ");
+		JLabel titula = new JLabel("Titula:* ");
+		JLabel zvanje = new JLabel("Zvanje:* ");
 
 		
 		
@@ -224,7 +243,7 @@ public class NewProfesorDialog extends JDialog {
 				ProfesorController profesor_controller = ProfesorController.getInstance();
 				profesor_controller.dodajProfesora(p);
 					
-				JOptionPane.showMessageDialog(getDialog(), "Uspesno dodat profesor.");
+				JOptionPane.showMessageDialog(getDialog(), "Uspešno dodat profesor.");
 				txt_ime.setText("");
 				txt_prezime.setText("");
 				txt_datum_rodjenja.setText("");
