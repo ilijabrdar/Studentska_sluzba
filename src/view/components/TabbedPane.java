@@ -1,5 +1,8 @@
 package view.components;
 
+import controller.StudentController;
+import controller.SubjectController;
+
 import java.awt.*;
 
 import javax.swing.Icon;
@@ -21,7 +24,7 @@ public class TabbedPane extends JTabbedPane {
 	
 	private TabbedPane() {
 		super();
-
+		this.setFont(new Font(null, Font.PLAIN, 16));
 		this.addChangeListener(new ChangeListener() {
 			
 			@Override

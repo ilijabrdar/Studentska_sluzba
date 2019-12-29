@@ -7,9 +7,10 @@ import view.abstractModel.AbstractModelSubjects;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class SubjectTable extends JTable{
 

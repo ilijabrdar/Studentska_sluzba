@@ -12,7 +12,6 @@ public class ButtonColumnProfesori extends ButtonColumn {
         super(table, column, msg);
         addEditingAction(msg);
         this.isEditorActive = false;
-       // dodajListerLista(); ?????????????????????????
     }
 
     private void addEditingAction(String msg) {
@@ -24,14 +23,4 @@ public class ButtonColumnProfesori extends ButtonColumn {
             }
         });
     }
-
-    /*
-    public void dodajListerLista() {
-        list.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                //System.out.println("Selektovan je profa sa licnom " + list.getSelectedValue());
-            }
-        });
-    } */
 }

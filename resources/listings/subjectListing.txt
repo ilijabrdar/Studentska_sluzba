@@ -16,3 +16,10 @@ E224A|Verovatnoća i slučajni procesi|Letnji|2
 E251A|Sociološki aspekti tehničkog razvoja|Letnji|2
 E226|Sistemi automatskog upravljenja|Letnji|2
 E235|Osnovi informacionih sistema i softverskog inženjerstva|Zimski|3
+E231|Numerički algoritmi i numerički softver|Zimski|3
+E234|Programski prevodioci|Zimski|3
+RI43A|Baze podataka 1|Zimski|3
+E237|Metode optimizacije|Zimski|3
+E236A|Osnovi računarske inteligencije|Letnji|3
+E239A|Veb programiranje|Letnji|3
+E243|Interakcija čovek računar|Letnji|3

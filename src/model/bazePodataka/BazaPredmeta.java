@@ -105,12 +105,12 @@ public class BazaPredmeta {
 	}
 	
 	private void initCols() {
-		this.columns.add("Šifra");
+		this.columns.add("\u25B3\u25BD Šifra");
 		this.columns.add("Naziv");
 		this.columns.add("Semestar");
 		this.columns.add("Godina");
 		this.columns.add("Profesori");
-		//this.columns.add("Studenti");
+		this.columns.add("Studenti");
 	}
 
 	public ArrayList<String> getColumns() {
