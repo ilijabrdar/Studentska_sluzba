@@ -101,7 +101,7 @@ public class MainFrame extends JFrame{
 		stable.setAutoCreateRowSorter(true); //ovo ne cini nikakvu izmenu
 		student_table.setAutoCreateRowSorter(true);
 		profesor_table.setAutoCreateRowSorter(true);
-		student_table.setUpdateSelectionOnSort(true); //TODO STA JE OVO???????
+		student_table.setUpdateSelectionOnSort(true);
 		profesor_table.setUpdateSelectionOnSort(true);
 
 

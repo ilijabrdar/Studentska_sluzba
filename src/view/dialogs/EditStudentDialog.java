@@ -10,6 +10,7 @@ import controller.StudentController;
 import model.bazePodataka.BazaStudenata;
 import model.entiteti.Student;
 import model.entiteti.Student.Status;
+import view.listeners.MyListenerStudent;
 import view.tables.StudentsTable;
 
 public class EditStudentDialog extends NewStudentDialog {
@@ -23,9 +24,6 @@ public class EditStudentDialog extends NewStudentDialog {
 
 		int row = StudentsTable.getStudentsTable().getSelectedRow();
 		Student s = BazaStudenata.getBazaStudenata().getRow(row);
-
-
-
 
 		txt_ime.setText(s.getIme());
 		txt_prezime.setText(s.getPrezime());
@@ -60,6 +58,25 @@ public class EditStudentDialog extends NewStudentDialog {
 		
 		
 
+	}
+
+	@Override
+	protected void addKeyListeners() {
+		btnOK.setEnabled(true);
+
+		MyListenerStudent k = new MyListenerStudent(btnOK,rb_b,rb_s,1);
+		txt_prosek.addKeyListener(k);
+		txt_ime.addKeyListener(k);
+		txt_prezime.addKeyListener(k);
+		txt_datum_rodjenja.addKeyListener(k);
+		txt_indeks.addKeyListener(k);
+		txt_telefon.addKeyListener(k);
+		txt_email.addKeyListener(k);
+		txt_adresa.addKeyListener(k);
+		txt_datum_upisa.addKeyListener(k);
+
+		rb_b.addActionListener(k);
+		rb_s.addActionListener(k);
 	}
 
 	public void addActionsOK() {

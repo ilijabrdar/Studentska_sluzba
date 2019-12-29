@@ -21,10 +21,11 @@ public class StudentController {
 	
 	private StudentController() {}
 	
-	public void dodajStudenta(Student s) {
-		BazaStudenata.getBazaStudenata().addStudent(s);
+	public boolean dodajStudenta(Student s) {//TODO: nekada doda dva ista
+		boolean ret = BazaStudenata.getBazaStudenata().addStudent(s);
 		undo_search();
 
+		return ret;
 	}
 	
 	public void izbrisiStudenta(int rowSelectedIndex) {
