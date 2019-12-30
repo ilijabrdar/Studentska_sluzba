@@ -3,14 +3,14 @@ package model.entiteti;
 import java.util.ArrayList;
 
 public class Profesor extends Osoba {
-	
+	public enum Zvanje {Dipl,Mast,Spec,Dr,Struk,SpecStruk};
 	private String kanc;
 	private String licna;
 	private String titula;
-	private String zvanje;
+	private Zvanje zvanje;
 	private ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	
-	public Profesor(String i, String p, String d, String a, String t, String e, String k, String l, String tit, String z) {
+	public Profesor(String i, String p, String d, String a, String t, String e, String k, String l, String tit, Zvanje z) {
 		super(i, p, d, a, t, e);
 		this.kanc = k;
 		this.licna = l;
@@ -43,11 +43,11 @@ public class Profesor extends Osoba {
 	}
 
 	public String getZvanje() {
-		return zvanje;
+		return zvanje.toString();
 	}
 
 	public void setZvanje(String zvanje) {
-		this.zvanje = zvanje;
+		this.zvanje = Zvanje.valueOf(zvanje);
 	}
 
 	public ArrayList<Predmet> getPredmeti() {

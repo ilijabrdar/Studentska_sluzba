@@ -47,7 +47,7 @@ public class NewStudentDialog extends JDialog {
 	protected JTextField txt_datum_upisa = null;
 	protected JTextField txt_prosek = null;
 	
-	protected JComboBox<String> trenutna_godina_studija = null;	
+	protected JComboBox<String> trenutna_godina_studija = null;
 	
 	protected JRadioButton rb_s = null;
 	protected JRadioButton rb_b = null;

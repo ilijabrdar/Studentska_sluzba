@@ -41,7 +41,7 @@ public class BazaProfesora {
 				String prezime = data[1].trim();
 				String broj_licne = data[2].trim();
 				String titula = data[3].trim();
-				String zvanje = data[4].trim();
+				Profesor.Zvanje zvanje = Profesor.Zvanje.valueOf(data[4].trim());
 				String kancelarija = data[5].trim();
 				String email = data[6].trim();
 				String datum_rodjenja = data[7].trim();
@@ -104,13 +104,14 @@ public class BazaProfesora {
 			String prz = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,1);
 			String licna = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,2);
 			String titula = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,3);
-			String zvanje = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,4);
+			String zvanje_str = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,4);
 			String kanc = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,5);
 			String email = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,6);
 			String datum_r = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,7);
 			String tel = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,8);
 			String adresa = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,9);
 
+			Profesor.Zvanje zvanje = Profesor.Zvanje.valueOf(zvanje_str);
 
 			Profesor p = new Profesor(ime,prz,datum_r,adresa,tel,email,kanc,licna,titula,zvanje);
 			pomocna.add(p);
@@ -140,7 +141,7 @@ public class BazaProfesora {
 		case 3:
 			return p.getTitula();
 		case 4:
-			return p.getZvanje();
+			return p.getZvanje().toString();
 		case 5:
 			return p.getKanc();
 		case 6:

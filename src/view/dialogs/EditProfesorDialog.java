@@ -31,8 +31,21 @@ public class EditProfesorDialog extends NewProfesorDialog {
 		txt_email.setText(p.getEmail());
 		txt_kancelarija.setText(p.getKanc());
 		txt_titula.setText(p.getTitula());
-		txt_zvanje.setText(p.getZvanje());
 		txt_licna.setText(p.getLicna());
+
+		//{Dipl,Mast,Spec,Dr,Struk,SpecStruk};
+		if (p.getZvanje().equalsIgnoreCase("Dipl"))
+			combo_zvanje.setSelectedIndex(0);
+		else if (p.getZvanje().equalsIgnoreCase("Mast"))
+			combo_zvanje.setSelectedIndex(1);
+		else if (p.getZvanje().equalsIgnoreCase("Spec"))
+			combo_zvanje.setSelectedIndex(2);
+		else if (p.getZvanje().equalsIgnoreCase("Dr"))
+			combo_zvanje.setSelectedIndex(3);
+		else if (p.getZvanje().equalsIgnoreCase("Struk"))
+			combo_zvanje.setSelectedIndex(4);
+		else
+			combo_zvanje.setSelectedIndex(5);
 	}
 
 	@Override
@@ -50,7 +63,7 @@ public class EditProfesorDialog extends NewProfesorDialog {
 		txt_kancelarija.addKeyListener(listenerProfesor);
 		txt_licna.addKeyListener(listenerProfesor);
 		txt_titula.addKeyListener(listenerProfesor);
-		txt_zvanje.addKeyListener(listenerProfesor);
+
 
 	}
 
@@ -69,8 +82,23 @@ public class EditProfesorDialog extends NewProfesorDialog {
 				String email = txt_email.getText();
 				String kancelarija = txt_kancelarija.getText();
 				String titula = txt_titula.getText();
-				String zvanje = txt_zvanje.getText();
+				//String zvanje = txt_zvanje.getText();
 				String licna = txt_licna.getText();
+
+				//{Dipl,Mast,Spec,Dr,Struk,SpecStruk};
+				Profesor.Zvanje zvanje;
+				if (combo_zvanje.getSelectedIndex()==0)
+					zvanje = Profesor.Zvanje.Dipl;
+				else if (combo_zvanje.getSelectedIndex()==1)
+					zvanje = Profesor.Zvanje.Mast;
+				else if (combo_zvanje.getSelectedIndex()==2)
+					zvanje = Profesor.Zvanje.Spec;
+				else if (combo_zvanje.getSelectedIndex()==3)
+					zvanje = Profesor.Zvanje.Dr;
+				else if (combo_zvanje.getSelectedIndex()==4)
+					zvanje = Profesor.Zvanje.Struk;
+				else
+					zvanje = Profesor.Zvanje.SpecStruk;
 				
 				Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
 					
