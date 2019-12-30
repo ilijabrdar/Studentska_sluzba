@@ -181,9 +181,12 @@ public class SubjectController {
 		if (s == null) //provera  da li student sa datim indeksom postoji
 			return false;
 
-		p.addStudent(s);
-		s.dodajPredmetStudentu(p);
-		return true;
+		boolean ret1 = p.addStudent(s);
+		boolean ret2 = s.dodajPredmetStudentu(p);
+		if (ret1==true && ret2==true)
+			return true;
+		else
+			return false;
 	}
 
 	public void removeProfFromSubj(String ID) {

@@ -1,6 +1,10 @@
 package view.dialogs;
 
 import controller.SubjectController;
+import model.bazePodataka.BazaPredmeta;
+import model.bazePodataka.BazaStudenata;
+import model.entiteti.Predmet;
+import model.entiteti.Student;
 import view.components.BackgroundPanel;
 import view.components.MainFrame;
 
@@ -8,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class StudentNaPredmet extends JDialog{
 
@@ -53,10 +59,52 @@ public class StudentNaPredmet extends JDialog{
 
         this.add(panel_button,BorderLayout.SOUTH);
 
+        btnOK.setEnabled(false);
         addActionsOK();
         addActionCancel();
+        addKeyListeners();
 
     }
+
+    private void addKeyListeners() {
+        txt_indeks.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String indeks = txt_indeks.getText();
+                Predmet p = BazaPredmeta.getBazaPredmeta().getRow(MainFrame.getInstance().getStable().getSelectedRow());
+                int p_godina = Integer.parseInt(p.getGodina());
+                Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(indeks);
+
+                if (s!=null) {
+                    if (s.getGodina_studija()!=p_godina) {
+                        btnOK.setEnabled(false);
+                        txt_indeks.setBackground(Color.pink);
+                    }
+                    else {
+                        btnOK.setEnabled(true);
+                        txt_indeks.setBackground(Color.white);
+                    }
+                }
+                else {
+                    btnOK.setEnabled(false);
+                    txt_indeks.setBackground(Color.pink);
+                }
+
+
+            }
+        });
+    }
+
 
     public void addActionsOK() {
         btnOK.addActionListener(new ActionListener() {
@@ -65,7 +113,7 @@ public class StudentNaPredmet extends JDialog{
                 String indeks = txt_indeks.getText();
                 SubjectController sc = SubjectController.getSubjectController();
                 if (!sc.addStudentToSubject(indeks))
-                    JOptionPane.showMessageDialog(MainFrame.getInstance(), "Uneti student ne postoji ili je predmet vec dodeljen studentu.",
+                    JOptionPane.showMessageDialog(MainFrame.getInstance(), "Unetom studentu je već dodeljen predmet.",
                             "Dodavanje studenta na predmet", JOptionPane.ERROR_MESSAGE);
                 else
                     dispose();

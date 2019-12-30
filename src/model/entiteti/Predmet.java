@@ -96,8 +96,13 @@ public class Predmet {
 		profs.add(prof);
 	}
 
-	public void addStudent(Student s ) {
+	public boolean addStudent(Student s ) {
+		for (Student temp : studenti) {
+			if (temp.getIndex().equalsIgnoreCase(s.getIndex()))
+				return false;
+		}
 		studenti.add(s);
+		return true;
 	}
 
 	@Override

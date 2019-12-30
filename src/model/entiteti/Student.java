@@ -81,9 +81,10 @@ public class Student extends Osoba {
 
 	public boolean dodajPredmetStudentu(Predmet p) {
 
-		if (predmeti.contains(p))
+		for (Predmet temp : predmeti) {
+			if (temp.getSifra().equalsIgnoreCase(p.getSifra()))
 				return false;
-
+		}
 
 		predmeti.add(p);
 		return true;
