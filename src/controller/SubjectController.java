@@ -232,4 +232,17 @@ public class SubjectController {
 			}
 		}
 	}
+
+    public void removeStudFromSubj(String indeks) {
+		for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
+			for (Student temp : p.getStudenti()) {
+				if (temp.getIndex().equalsIgnoreCase(indeks)) {
+					p.getStudenti().remove(temp);
+					break; //resava problem ConcurrentModificationException
+				}
+			}
+		}
+
+
+    }
 }
