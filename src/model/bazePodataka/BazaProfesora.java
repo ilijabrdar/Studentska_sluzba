@@ -40,8 +40,16 @@ public class BazaProfesora {
 				String ime = data[0].trim();
 				String prezime = data[1].trim();
 				String broj_licne = data[2].trim();
-				String titula = data[3].trim();
-				Profesor.Zvanje zvanje = Profesor.Zvanje.valueOf(data[4].trim());
+
+				String titula_str = data[3].trim();
+				titula_str = titula_str.replaceAll("\\s+","");
+				Profesor.Titula titula = Profesor.Titula.valueOf(titula_str);
+
+				String zvanje_str = data[4].trim();
+				zvanje_str = zvanje_str.replaceAll("\\s+","");
+				zvanje_str = zvanje_str.replace(".","");
+				Profesor.Zvanje zvanje = Profesor.Zvanje.valueOf(zvanje_str);
+
 				String kancelarija = data[5].trim();
 				String email = data[6].trim();
 				String datum_rodjenja = data[7].trim();
@@ -103,7 +111,7 @@ public class BazaProfesora {
 			String ime = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,0);
 			String prz = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,1);
 			String licna = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,2);
-			String titula = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,3);
+			String titula_str = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,3);
 			String zvanje_str = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,4);
 			String kanc = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,5);
 			String email = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,6);
@@ -111,7 +119,12 @@ public class BazaProfesora {
 			String tel = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,8);
 			String adresa = (String) MainFrame.getInstance().getProfesor_table().getValueAt(row,9);
 
+			zvanje_str = zvanje_str.replaceAll("\\s+","");
+			zvanje_str = zvanje_str.replace(".","");
 			Profesor.Zvanje zvanje = Profesor.Zvanje.valueOf(zvanje_str);
+
+			titula_str = titula_str.replaceAll("\\s+","");
+			Profesor.Titula titula = Profesor.Titula.valueOf(titula_str);
 
 			Profesor p = new Profesor(ime,prz,datum_r,adresa,tel,email,kanc,licna,titula,zvanje);
 			pomocna.add(p);

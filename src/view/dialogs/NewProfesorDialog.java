@@ -34,9 +34,9 @@ public class NewProfesorDialog extends JDialog {
 	
 	protected JTextField txt_kancelarija = null;
 	protected JTextField txt_licna = null;
-	protected JTextField txt_titula = null;
 
 	protected JComboBox<String> combo_zvanje = null;
+	protected JComboBox<String> combo_titula = null;
 
 
 	public NewProfesorDialog(Frame parent, String title, boolean modal) {
@@ -70,7 +70,6 @@ public class NewProfesorDialog extends JDialog {
 		txt_telefon.addKeyListener(listenerProfesor);
 		txt_kancelarija.addKeyListener(listenerProfesor);
 		txt_licna.addKeyListener(listenerProfesor);
-		txt_titula.addKeyListener(listenerProfesor);
 
 	}
 
@@ -125,10 +124,10 @@ public class NewProfesorDialog extends JDialog {
 		txt_licna = new JTextField();
 		txt_licna.setName("Licna"); 
 		txt_licna.setPreferredSize(new Dimension (300,28));
-		
-		txt_titula = new JTextField();
-		txt_titula.setName("Titula");
-		txt_titula.setPreferredSize(new Dimension (300,28));
+
+		String []titule = new String[] {"Asistent","Saradnik","Docent","Redovni profesor","Vanredni profesor", "Dekan"};
+		combo_titula = new JComboBox<>(titule);
+		combo_titula.setPreferredSize(new Dimension(300,28));
 
 		String []zvanja = new String[] {"Dipl.","Mast.","Spec.","Dr","Struk.","Spec. Struk."};
 		combo_zvanje = new JComboBox<>(zvanja);
@@ -181,7 +180,7 @@ public class NewProfesorDialog extends JDialog {
 		JPanel panel9 = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel9.setOpaque(false);
 		panel9.add(titula);
-		panel9.add(txt_titula);
+		panel9.add(combo_titula);
 		
 		JPanel panel10 = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel10.setOpaque(false);
@@ -229,7 +228,6 @@ public class NewProfesorDialog extends JDialog {
 				String adresa = txt_adresa.getText();
 				String email = txt_email.getText();
 				String kancelarija = txt_kancelarija.getText();
-				String titula = txt_titula.getText();
 				String licna = txt_licna.getText();
 
 				//{Dipl,Mast,Spec,Dr,Struk,SpecStruk};
@@ -246,7 +244,21 @@ public class NewProfesorDialog extends JDialog {
 					zvanje = Profesor.Zvanje.Struk;
 				else
 					zvanje = Profesor.Zvanje.SpecStruk;
-				
+
+				Profesor.Titula titula;
+				if (combo_titula.getSelectedIndex()==0)
+					titula = Profesor.Titula.Asistent;
+				else if (combo_titula.getSelectedIndex()==1)
+					titula = Profesor.Titula.Saradnik;
+				else if (combo_titula.getSelectedIndex()==2)
+					titula = Profesor.Titula.Docent;
+				else if (combo_titula.getSelectedIndex()==3)
+					titula = Profesor.Titula.Redovniprofesor;
+				else if (combo_titula.getSelectedIndex()==4)
+					titula = Profesor.Titula.Vanredniprofesor;
+				else
+					titula = Profesor.Titula.Dekan;
+
 				 Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
 					
 				ProfesorController profesor_controller = ProfesorController.getInstance();

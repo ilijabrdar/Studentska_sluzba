@@ -16,7 +16,6 @@ public class MyListenerProfesor implements KeyListener {
     private int flag_email;
     private int flag_datum_r;
     private int flag_kanc;
-    private int flag_titula;
     private int flag_licna;
 
     public MyListenerProfesor(JButton btnOK, int flag) {
@@ -29,7 +28,6 @@ public class MyListenerProfesor implements KeyListener {
         flag_email = flag;
         flag_datum_r = flag;
         flag_kanc = flag;
-        flag_titula = flag;
         flag_licna = flag;
     }
 
@@ -120,16 +118,7 @@ public class MyListenerProfesor implements KeyListener {
                 j_txt.setBackground(Color.white);
             }
         }
-        else if (j_txt.getName().equalsIgnoreCase("titula")) {
-            if (!text.trim().matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+")) {
-                btnOK.setEnabled(false);
-                j_txt.setBackground(Color.pink);
-                flag_titula=0;
-            } else {
-                flag_titula=1;
-                j_txt.setBackground(Color.white);
-            }
-        }
+
         else if (j_txt.getName().equalsIgnoreCase("licna")) {
             if (!text.trim().matches("[0-9]+")) {
                 btnOK.setEnabled(false);
@@ -140,7 +129,7 @@ public class MyListenerProfesor implements KeyListener {
                 j_txt.setBackground(Color.white);
             }
         }
-        if (flag_titula==1 && flag_adresa==1 && flag_email==1 && flag_telefon==1 && flag_kanc==1 && flag_datum_r==1 && flag_prezime==1 && flag_ime==1 && flag_licna==1) {
+        if (flag_adresa==1 && flag_email==1 && flag_telefon==1 && flag_kanc==1 && flag_datum_r==1 && flag_prezime==1 && flag_ime==1 && flag_licna==1) {
             btnOK.setEnabled(true);
         }
     }
