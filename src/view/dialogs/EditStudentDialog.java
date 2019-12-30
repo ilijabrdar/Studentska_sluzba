@@ -126,21 +126,14 @@ public class EditStudentDialog extends NewStudentDialog {
 							status,prosek);
 					
 					StudentController student_controller = StudentController.getInstance();
-					int index = StudentsTable.getStudentsTable().getSelectedRow();
-					student_controller.izmeniStudenta(index, s);
-					
-					JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen student.");
-					txt_ime.setText("");
-					txt_prezime.setText("");
-					txt_datum_rodjenja.setText("");
-					txt_telefon.setText("");
-					txt_adresa.setText("");
-					txt_email.setText("");
-					txt_indeks.setText("");
-					txt_datum_upisa.setText("");
-					txt_prosek.setText("");
-					
-					getDialog().dispose();
+					int index_tabele = StudentsTable.getStudentsTable().getSelectedRow();
+					if (student_controller.izmeniStudenta(index_tabele, s)) {
+						JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen student.");
+						getDialog().dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(getDialog(),"Vec postoji student sa istim indexom", "Greška", JOptionPane.ERROR_MESSAGE);
+					}
 				
 				}
 				catch(Exception ee) {

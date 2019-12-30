@@ -17,9 +17,11 @@ private static ProfesorController instance = new ProfesorController();
 	
 	private ProfesorController() {}
 	
-	public void dodajProfesora(Profesor p) {
-		BazaProfesora.getBazaProfesora().addProfesor(p);
-		MainFrame.getInstance().updateTable();
+	public boolean dodajProfesora(Profesor p) {
+		boolean ret = BazaProfesora.getBazaProfesora().addProfesor(p);
+		retrieveTable(); //posle search-a da se vrati, a i posle dodavanja da se zamene tabele
+
+		return ret;
 	}
 	
 	public void izbrisiProfesora(int rowSelectedIndex) {
@@ -30,6 +32,7 @@ private static ProfesorController instance = new ProfesorController();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
 		BazaProfesora.getBazaProfesora().removeProfesor(p);
 		MainFrame.getInstance().updateTable();
+
 	}
 
 	public Profesor getProfessor(int rowSelectedIndex) {
@@ -38,12 +41,14 @@ private static ProfesorController instance = new ProfesorController();
 		return p;
 	}
 	
-	public void izmeniProfesora (int rowSelectedIndex, Profesor novi) {
+	public boolean izmeniProfesora (int rowSelectedIndex, Profesor novi) {
 		if (rowSelectedIndex < 0)
-			return;
+			return false;
 		
-		BazaProfesora.getBazaProfesora().editProfesor(rowSelectedIndex, novi);
-		MainFrame.getInstance().updateTable();
+		boolean ret = BazaProfesora.getBazaProfesora().editProfesor(rowSelectedIndex, novi);
+		if (ret)
+			MainFrame.getInstance().updateTable();
+		return ret;
 	}
 
 	public void findProfessor(String search) {

@@ -299,23 +299,12 @@ public class NewStudentDialog extends JDialog {
 					
 					StudentController student_controller = StudentController.getInstance();
 					if (student_controller.dodajStudenta(s)) {
-
 						JOptionPane.showMessageDialog(getDialog(), "Uspešno dodat student.");
-						txt_ime.setText("");
-						txt_prezime.setText("");
-						txt_datum_rodjenja.setText("");
-						txt_telefon.setText("");
-						txt_adresa.setText("");
-						txt_email.setText("");
-						txt_indeks.setText("");
-						txt_datum_upisa.setText("");
-						txt_prosek.setText("");
-
 						getDialog().dispose();
 					}
 					else {
 						JOptionPane.showMessageDialog(getDialog(),"Vec postoji student sa istim indexom", "Greška", JOptionPane.ERROR_MESSAGE);
-						getDialog().dispose();
+						//getDialog().dispose(); TODO: da li da se radi dispose() ?
 					}
 				
 				}

@@ -203,12 +203,44 @@ public class BazaStudenata {
 		return true;
 	}
 	
-	public void editStudent(int index, Student s) { //TODO: ne sme da se promeni na isti index
-		students.remove(index);
-		students.add(index, s);
+	public boolean editStudent(int index_tabele, Student s) { //TODO: ne sme da se promeni na isti index
+		String indeks_starog = getValueAt(index_tabele,0);
+		Student stari = getStudentPrekoIndeksa(indeks_starog);
 
-		database.remove(index);
-		database.add(index,s);
+		if (indeks_starog.equalsIgnoreCase(s.getIndex())) {//ostao im je nepromenjen index
+			stari.setIme(s.getIme());
+			stari.setPrezime(s.getPrezime());
+			stari.setDatum(s.getDatum());
+			stari.setDatum_upisa(s.getDatum_upisa());
+			stari.setGodina_studija(s.getGodina_studija());
+			stari.setProsek(s.getProsek());
+			stari.setStatus(s.getStatus());
+			stari.setAdresa(s.getAdresa());
+			stari.setTelefon(s.getTelefon());
+			stari.setEmail(s.getEmail());
+
+			return true;
+		}
+		else { //promenjen index pa moras proveriti da li taj index vec postoji
+			for (Student temp : students) {
+				if (temp.getIndex().equalsIgnoreCase(s.getIndex()))
+					return false;
+			}
+			stari.setIme(s.getIme());
+			stari.setPrezime(s.getPrezime());
+			stari.setDatum(s.getDatum());
+			stari.setDatum_upisa(s.getDatum_upisa());
+			stari.setGodina_studija(s.getGodina_studija());
+			stari.setProsek(s.getProsek());
+			stari.setStatus(s.getStatus());
+			stari.setAdresa(s.getAdresa());
+			stari.setTelefon(s.getTelefon());
+			stari.setEmail(s.getEmail());
+			stari.setIndex(s.getIndex());
+
+			return true;
+		}
+
 	}
 	
 	public void removeStudent(Student s) {

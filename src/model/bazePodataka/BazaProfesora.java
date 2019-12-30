@@ -164,22 +164,55 @@ public class BazaProfesora {
 		return this.columns.get(column);
 	}
 	
-	public void addProfesor(Profesor p) {
-		for (Profesor temp : profesori) {
+	public boolean addProfesor(Profesor p) {
+		for (Profesor temp : database) {
 			if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
-				return;
+				return false;
 		}
 
-		profesori.add(p);
+		//TODO: ne smem dodati u oba, zasto?
+		//profesori.add(p);
 		database.add(p);
+		return true;
 	}
 	
-	public void editProfesor(int index, Profesor p) {
-		profesori.remove(index);
-		profesori.add(index, p);
+	public boolean editProfesor(int index_tabele, Profesor p) {
+		String licna_starog = getValueAt(index_tabele,2);
+		Profesor stari = getProfesor(licna_starog);
 
-		database.remove(index);
-		database.add(index,p);
+		if (licna_starog.equalsIgnoreCase(p.getLicna())) {
+			stari.setIme(p.getIme());
+			stari.setPrezime(p.getPrezime());
+			stari.setTitula(p.getTitula());
+			stari.setTelefon(p.getTelefon());
+			stari.setAdresa(p.getAdresa());
+			stari.setKanc(p.getKanc());
+			stari.setDatum(p.getDatum());
+			stari.setZvanje(p.getZvanje());
+			stari.setEmail(p.getEmail());
+
+			return true;
+		}
+		else {
+			for (Profesor temp : profesori) {
+				if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
+					return false;
+			}
+
+			stari.setIme(p.getIme());
+			stari.setPrezime(p.getPrezime());
+			stari.setTitula(p.getTitula());
+			stari.setTelefon(p.getTelefon());
+			stari.setAdresa(p.getAdresa());
+			stari.setKanc(p.getKanc());
+			stari.setDatum(p.getDatum());
+			stari.setZvanje(p.getZvanje());
+			stari.setEmail(p.getEmail());
+			stari.setLicna(p.getLicna());
+
+			return true;
+		}
+
 	}
 	
 	public void removeProfesor(Profesor p) {
@@ -227,4 +260,5 @@ public class BazaProfesora {
 		}
 		return prof;
 	}
+
 }

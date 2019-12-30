@@ -38,12 +38,14 @@ public class StudentController {
 		MainFrame.getInstance().updateTable();
 	}
 	
-	public void izmeniStudenta(int rowSelectedIndex, Student novi) {
+	public boolean izmeniStudenta(int rowSelectedIndex, Student novi) {
 		if (rowSelectedIndex < 0)
-			return;
+			return false;
 		
-		BazaStudenata.getBazaStudenata().editStudent(rowSelectedIndex, novi);
-		undo_search();
+		boolean ret = BazaStudenata.getBazaStudenata().editStudent(rowSelectedIndex, novi);
+		if (ret) //ovaj if resava problem izmene ako prvobitno pogresno izmenis
+			undo_search();
+		return ret;
 	}
 	
 	public void saveToFile(String file) {

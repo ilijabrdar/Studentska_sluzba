@@ -241,18 +241,14 @@ public class NewProfesorDialog extends JDialog {
 				 Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
 					
 				ProfesorController profesor_controller = ProfesorController.getInstance();
-				profesor_controller.dodajProfesora(p);
-					
-				JOptionPane.showMessageDialog(getDialog(), "Uspešno dodat profesor.");
-				txt_ime.setText("");
-				txt_prezime.setText("");
-				txt_datum_rodjenja.setText("");
-				txt_telefon.setText("");
-				txt_adresa.setText("");
-				txt_email.setText("");
-				
-				getDialog().dispose();	
-				
+				if (profesor_controller.dodajProfesora(p)) {
+					JOptionPane.showMessageDialog(getDialog(), "Uspešno dodat profesor.");
+					getDialog().dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(getDialog(),"Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
+
+				}
 			}
 		});
 		

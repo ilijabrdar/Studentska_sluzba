@@ -72,22 +72,18 @@ public class EditProfesorDialog extends NewProfesorDialog {
 				String zvanje = txt_zvanje.getText();
 				String licna = txt_licna.getText();
 				
-				 Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
+				Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
 					
 				ProfesorController profesor_controller = ProfesorController.getInstance();
 				int index = ProfesorTable.getProfesorTable().getSelectedRow();
-				profesor_controller.izmeniProfesora(index, p);
-					
-				JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen profesor.");
-				txt_ime.setText("");
-				txt_prezime.setText("");
-				txt_datum_rodjenja.setText("");
-				txt_telefon.setText("");
-				txt_adresa.setText("");
-				txt_email.setText("");
-				
-				getDialog().dispose();	
-				
+
+				if (profesor_controller.izmeniProfesora(index, p)) {
+					JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen profesor.");
+					getDialog().dispose();
+				}
+				else
+					JOptionPane.showMessageDialog(getDialog(),"Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
+
 			}
 		});
 		
