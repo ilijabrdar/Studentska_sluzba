@@ -65,8 +65,9 @@ public class SubjectController {
 	
 	public void editSubject(Predmet subj, JDialog parent) {
 		Predmet p = getSelectedSubjectByID();
-		if(BazaPredmeta.getBazaPredmeta().editSubject(p.getSifra(), subj))
+		if(BazaPredmeta.getBazaPredmeta().editSubject(p.getSifra(), subj)) {
 			MainFrame.getInstance().updateTable();
+		}
 		else
 			JOptionPane.showMessageDialog(parent, "Predmet već postoji.", "Greška", JOptionPane.ERROR_MESSAGE);
 		}

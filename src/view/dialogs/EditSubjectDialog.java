@@ -39,7 +39,6 @@ public class EditSubjectDialog extends SubjectDialog {
 				Predmet p = new Predmet(sifra, naziv, semestar, godina);
 				p.setStrGodina(godina);
 				sc.editSubject(p, getDialog());
-				dispose();
 			}
 		});
 	}

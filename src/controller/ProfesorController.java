@@ -51,37 +51,41 @@ private static ProfesorController instance = new ProfesorController();
 		return ret;
 	}
 
-	public void findProfessor(String search) {
+	public void findProfessor(String search) throws Exception {
 		String[] params = search.split("\\;");
-		String ime = "", prz = "", dat = "", adresa = "";
-		String kanc = "", licna = "", titula = "", zvanje = "";
-		//TODO Zavrsiti pretragu profesora
-		//TODO Dodati pretragu po ostalim poljima?
-		for(String p : params) {
-			String[] subParams = p.split("\\:");
-			switch(subParams[0].trim().toLowerCase()) {
-				case "ime":
-					ime = subParams[1].trim().toLowerCase();
-					break;
-				case "prezime":
-					prz = subParams[1].trim().toLowerCase();
-					break;
-				case "broj lične karte":
-					licna = subParams[1].trim().toLowerCase();
-					break;
-				case "titula":
-					titula = subParams[1].trim().toLowerCase();
-					break;
-				case "zvanje":
-					zvanje = subParams[1].trim().toLowerCase();
-					break;
-				case "datum rodjenja":
-					dat = subParams[1].trim();
+		if(!search.matches("[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9.]+(;[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9.]+)*"))
+			throw new Exception("Neispravno definisan kriterijum pretrage.");
+		else {
+			String ime = "", prz = "", adresa = "";
+			String kanc = "", licna = "", titula = "", zvanje = "";
+			//TODO Zavrsiti pretragu profesora
+			//TODO Dodati pretragu po ostalim poljima?
+			for (String p : params) {
+				String[] subParams = p.split("\\:");
+				switch (subParams[0].trim().toLowerCase()) {
+					case "ime":
+						ime = subParams[1].trim().toLowerCase();
+						break;
+					case "prezime":
+						prz = subParams[1].trim().toLowerCase();
+						break;
+					case "broj lične karte":
+						licna = subParams[1].trim().toLowerCase();
+						break;
+					case "titula":
+						titula = subParams[1].trim().toLowerCase();
+						break;
+					case "zvanje":
+						zvanje = subParams[1].trim().toLowerCase();
+						break;
+					default:
+						throw new Exception("Neispravno uneto polje po kom se pretražuje.");
+				}
 			}
+			BazaProfesora bp = BazaProfesora.getBazaProfesora();
+			bp.findProfessor(ime, prz, licna, titula, zvanje);
+			MainFrame.getInstance().updateTable();
 		}
-		BazaProfesora bp = BazaProfesora.getBazaProfesora();
-		bp.findProfessor(ime, prz, licna, titula, zvanje, dat);
-		MainFrame.getInstance().updateTable();
 	}
 
 	public void saveToFile(String file) {

@@ -36,7 +36,7 @@ public class MyKeyListener implements KeyListener {
 		
 		if(txt.getName().equals("Sifra"))
 			if(!content.matches("[A-Za-zČĆŽĐŠčćžšđ0-9]+")) {
-				txt.setBackground(Color.red);
+				txt.setBackground(Color.pink);
 				flag1 = 0;
 			}
 			else {
@@ -46,7 +46,7 @@ public class MyKeyListener implements KeyListener {
 		
 		if(txt.getName().equals("Naziv"))
 			if(!content.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+( (- )?[a-zčćžšđ]+)*( [0-9])?")) {
-				txt.setBackground(Color.red);
+				txt.setBackground(Color.pink);
 				flag2 = 0;
 			}
 			else {

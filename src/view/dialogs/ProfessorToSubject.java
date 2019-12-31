@@ -91,7 +91,7 @@ public class ProfessorToSubject extends JDialog{
 				JTextField txt = (JTextField) e.getComponent();
 				String content = txt.getText().trim();
 				if(!content.matches("[0-9]+")) {
-					txt.setBackground(Color.red);
+					txt.setBackground(Color.pink);
 					btnOK.setEnabled(false);
 				}
 				else {

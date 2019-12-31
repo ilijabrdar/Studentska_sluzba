@@ -78,7 +78,7 @@ public class BazaProfesora {
 	private void initColumns() {
 		this.columns.add("Ime");
 		this.columns.add("Prezime");
-		this.columns.add("Broj licne karte");
+		this.columns.add("Broj lične karte");
 		this.columns.add("Titula");
 		this.columns.add("Zvanje");
 		this.columns.add("Kancelarija");
@@ -241,24 +241,24 @@ public class BazaProfesora {
 		return null;
 	}
 
-	public void findProfessor(String imep, String przp, String licnap, String titulap, String zvanjep, String datump) {
+	public void findProfessor(String imep, String przp, String licnap, String titulap, String zvanjep) {
 		ArrayList<Profesor> search = new ArrayList<>();
 		for(Profesor p : database) {
 			String ime = imep;
 			String prz = przp;
 			String licna = licnap;
 			String titula = titulap;
-			String datum = datump;
+			String zvanje = zvanjep;
 
 			if(ime.equals("")) ime = p.getIme().toLowerCase();
 			else if(prz.equals("")) prz = p.getPrezime().toLowerCase();
 			else if(licna.equals("")) licna = p.getLicna().toLowerCase();
 			else if(titula.equals("")) titula = p.getTitula().toLowerCase();
-			else if(datum.equals("")) datum = p.getDatum().toLowerCase();
+			else if(zvanje.equals("")) zvanje = p.getZvanje().toLowerCase();
 
-			if(p.getIme().toLowerCase().contains(ime) && p.getPrezime().toLowerCase().contains(przp) &&
+			if(p.getIme().toLowerCase().contains(ime) && p.getPrezime().toLowerCase().contains(prz) &&
 				p.getLicna().toLowerCase().contains(licna) && p.getTitula().toLowerCase().contains(titula) &&
-				p.getDatum().toLowerCase().contains(datum))
+				p.getZvanje().toLowerCase().contains(zvanje))
 					search.add(p);
 		}
 		profesori = search;

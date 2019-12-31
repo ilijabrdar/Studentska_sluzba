@@ -36,7 +36,7 @@ public class SearchBtnActionListener implements ActionListener {
                 try {
                     pc.findProfessor(search.getText());
                 } catch (Exception err) {
-                    JOptionPane.showMessageDialog(MainFrame.getInstance(), "Kriterijum pretrage je neispravno definisan.","Pretraga profesora", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(MainFrame.getInstance(), err.getMessage(),"Pretraga profesora", JOptionPane.ERROR_MESSAGE);
                 }
             else
                 pc.retrieveTable();
