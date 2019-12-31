@@ -100,7 +100,9 @@ public class EditStudentDialog extends NewStudentDialog {
 				try{
 					
 					prosek = Double.parseDouble(prosek_str);
-					
+					if (prosek<6 || prosek>10) {
+						throw new Exception();
+					}
 					String datum_upisa = txt_datum_upisa.getText();
 					
 					int trenutna_godina;
@@ -137,7 +139,10 @@ public class EditStudentDialog extends NewStudentDialog {
 				
 				}
 				catch(Exception ee) {
-					JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve za prosek.");
+					if (prosek<6 || prosek>10)
+						JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve u rasponu 6.00 - 10.00 za prosek.");
+					else
+						JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd/mm/yyyy");
 				}
 				
 				

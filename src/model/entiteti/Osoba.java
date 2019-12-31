@@ -1,17 +1,22 @@
 package model.entiteti;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Osoba {
 	protected String ime;
 	protected String prezime;
-	protected String datum; //TODO: Tip Date?
+	protected LocalDate datum;
 	protected String adresa;
 	protected String telefon;
 	protected String email;
+
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	public Osoba(String ime, String prezime, String datum, String adresa, String telefon, String email) {
 		this.ime = ime;
 		this.prezime = prezime;
-		this.datum = datum;
+		this.datum = LocalDate.parse(datum,formatter);
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.email = email;
@@ -34,11 +39,11 @@ public class Osoba {
 	}
 
 	public String getDatum() {
-		return datum;
+		return datum.format(formatter);
 	}
 
 	public void setDatum(String datum) {
-		this.datum = datum;
+		this.datum = LocalDate.parse(datum,formatter);
 	}
 
 	public String getAdresa() {
@@ -90,7 +95,7 @@ public class Osoba {
 		if (datum.equals(""))
 			return true;
 
-		return this.datum.equalsIgnoreCase(datum);
+		return this.datum.format(formatter).equalsIgnoreCase(datum);
 	}
 
 	public boolean search_adresa(String adresa) {

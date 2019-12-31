@@ -1,5 +1,7 @@
 package model.entiteti;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,18 +10,19 @@ public class Student extends Osoba {
 	
 	public enum Status {B,S}
 	private String index;
-	private String datum_upisa; //TODO: prebaci u Date
+	private LocalDate datum_upisa;
 	private int godina_studija;
 	private Status status;
 	private double prosek;
 	ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
-	
+
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public Student(String ime, String prezime, String datum, String adresa, String telefon, String email, String index,
 			String datum_upisa, int godina_studija, Status status,double prosek) {
 		super(ime, prezime, datum, adresa, telefon, email);
 		this.index = index;
-		this.datum_upisa = datum_upisa;
+		this.datum_upisa = LocalDate.parse(datum_upisa,formatter);
 		this.godina_studija = godina_studija;
 		this.status = status;
 		this.prosek = prosek;
@@ -34,11 +37,11 @@ public class Student extends Osoba {
 	}
 
 	public String getDatum_upisa() {
-		return datum_upisa;
+		return datum_upisa.format(formatter);
 	}
 
 	public void setDatum_upisa(String datum_upisa) {
-		this.datum_upisa = datum_upisa;
+		this.datum_upisa = LocalDate.parse(datum_upisa,formatter);
 	}
 
 	public int getGodina_studija() {
@@ -94,7 +97,7 @@ public class Student extends Osoba {
 		if (datum_upisa.equals(""))
 			return true;
 
-		return this.datum_upisa.equalsIgnoreCase(datum_upisa);
+		return this.datum_upisa.format(formatter).equalsIgnoreCase(datum_upisa);
 	}
 
 	public boolean search_godina_stud(int godina_studija) {
