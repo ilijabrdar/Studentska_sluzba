@@ -259,7 +259,7 @@ public class BazaStudenata {
 			if (s.search_ime(ime) && s.search_prezime(prezime) && s.search_datum_rodjenja(datum_rodjenja)
 			&& s.search_adresa(adresa) && s.search_telefon(telefon) && s.search_email(email) &&
 			s.search_index(index)  && s.search_godina_stud(godina_stud) &&
-			s.search_status(status) && s.search_prosek(prosek))
+			s.search_status(status) && s.search_prosek(prosek) && s.search_datum_upisa(datum_upisa))
 				search_result.add(s);
 
 		}

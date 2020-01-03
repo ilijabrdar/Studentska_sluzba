@@ -84,58 +84,59 @@ public class EditProfesorDialog extends NewProfesorDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
-				String ime = txt_ime.getText();
-				String prezime = txt_prezime.getText();
-				String datum_rodjenja = txt_datum_rodjenja.getText();
-				String telefon = txt_telefon.getText();
-				String adresa = txt_adresa.getText();
-				String email = txt_email.getText();
-				String kancelarija = txt_kancelarija.getText();
-				//String zvanje = txt_zvanje.getText();
-				String licna = txt_licna.getText();
+				try {
+					String ime = txt_ime.getText();
+					String prezime = txt_prezime.getText();
+					String datum_rodjenja = txt_datum_rodjenja.getText();
+					String telefon = txt_telefon.getText();
+					String adresa = txt_adresa.getText();
+					String email = txt_email.getText();
+					String kancelarija = txt_kancelarija.getText();
+					//String zvanje = txt_zvanje.getText();
+					String licna = txt_licna.getText();
 
-				//{Dipl,Mast,Spec,Dr,Struk,SpecStruk};
-				Profesor.Zvanje zvanje;
-				if (combo_zvanje.getSelectedIndex()==0)
-					zvanje = Profesor.Zvanje.valueOf("Dipl");
-				else if (combo_zvanje.getSelectedIndex()==1)
-					zvanje = Profesor.Zvanje.valueOf("Mast");
-				else if (combo_zvanje.getSelectedIndex()==2)
-					zvanje = Profesor.Zvanje.valueOf("Spec");
-				else if (combo_zvanje.getSelectedIndex()==3)
-					zvanje = Profesor.Zvanje.valueOf("Dr");
-				else if (combo_zvanje.getSelectedIndex()==4)
-					zvanje = Profesor.Zvanje.valueOf("Struk");
-				else
-					zvanje = Profesor.Zvanje.valueOf("SpecStruk");
+					//{Dipl,Mast,Spec,Dr,Struk,SpecStruk};
+					Profesor.Zvanje zvanje;
+					if (combo_zvanje.getSelectedIndex() == 0)
+						zvanje = Profesor.Zvanje.valueOf("Dipl");
+					else if (combo_zvanje.getSelectedIndex() == 1)
+						zvanje = Profesor.Zvanje.valueOf("Mast");
+					else if (combo_zvanje.getSelectedIndex() == 2)
+						zvanje = Profesor.Zvanje.valueOf("Spec");
+					else if (combo_zvanje.getSelectedIndex() == 3)
+						zvanje = Profesor.Zvanje.valueOf("Dr");
+					else if (combo_zvanje.getSelectedIndex() == 4)
+						zvanje = Profesor.Zvanje.valueOf("Struk");
+					else
+						zvanje = Profesor.Zvanje.valueOf("SpecStruk");
 
-				Profesor.Titula titula;
-				if (combo_titula.getSelectedIndex()==0)
-					titula = Profesor.Titula.Asistent;
-				else if (combo_titula.getSelectedIndex()==1)
-					titula = Profesor.Titula.Saradnik;
-				else if (combo_titula.getSelectedIndex()==2)
-					titula = Profesor.Titula.Docent;
-				else if (combo_titula.getSelectedIndex()==3)
-					titula = Profesor.Titula.Redovniprofesor;
-				else if (combo_titula.getSelectedIndex()==4)
-					titula = Profesor.Titula.Vanredniprofesor;
-				else
-					titula = Profesor.Titula.Dekan;
-				
-				Profesor p = new Profesor(ime,prezime,datum_rodjenja,adresa,telefon,email,kancelarija,licna,titula,zvanje);
-					
-				ProfesorController profesor_controller = ProfesorController.getInstance();
-				int index = ProfesorTable.getProfesorTable().getSelectedRow();
+					Profesor.Titula titula;
+					if (combo_titula.getSelectedIndex() == 0)
+						titula = Profesor.Titula.Asistent;
+					else if (combo_titula.getSelectedIndex() == 1)
+						titula = Profesor.Titula.Saradnik;
+					else if (combo_titula.getSelectedIndex() == 2)
+						titula = Profesor.Titula.Docent;
+					else if (combo_titula.getSelectedIndex() == 3)
+						titula = Profesor.Titula.Redovniprofesor;
+					else if (combo_titula.getSelectedIndex() == 4)
+						titula = Profesor.Titula.Vanredniprofesor;
+					else
+						titula = Profesor.Titula.Dekan;
 
-				if (profesor_controller.izmeniProfesora(index, p)) {
-					JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen profesor.");
-					getDialog().dispose();
+					Profesor p = new Profesor(ime, prezime, datum_rodjenja, adresa, telefon, email, kancelarija, licna, titula, zvanje);
+
+					ProfesorController profesor_controller = ProfesorController.getInstance();
+					int index = ProfesorTable.getProfesorTable().getSelectedRow();
+
+					if (profesor_controller.izmeniProfesora(index, p)) {
+						JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen profesor.");
+						getDialog().dispose();
+					} else
+						JOptionPane.showMessageDialog(getDialog(), "Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception ee) {
+					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd/mm/yyyy");
 				}
-				else
-					JOptionPane.showMessageDialog(getDialog(),"Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
-
 			}
 		});
 		

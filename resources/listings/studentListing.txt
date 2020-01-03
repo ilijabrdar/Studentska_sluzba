@@ -1,10 +1,10 @@
-ra-102-2017|David|Drvar|3|B|9.88|21.07.1998.|Seljackih buna 76|060-5543246|david.drvar.bogdanovic@gmail.com|13.06.2017.
-ra-11-2012|Marko|Maric|1|S|6.1|23.01.2001.|Maksima Gorkog 11|062-1423411|marko.maric@uns.ac.rs|15.06.2011.
-sw-109-2011|Maja|Zekovic|2|S|7.0|20.05.1999.|Puskinova 3|060-14295634|maja.zekovic@gmail.com|10.05.2011.
-ee-122-2018|Zaklina|Obenslaufen|2|S|9.3|14.02.1999.|Brace Dronjak 2|063-143672324|zaklina@yahoo.com|13.06.2018.
-psi-192-2019|Ofelija|Nikolajevic|2|B|8.0|11.11.2000.|Strazilovska 1|069-35685673|ofelija.nikolajevic@gmail.com|25.06.2019.
-sw-201-2002|Ana|Nikolic|1|B|8.33|01.03.1993.|Danila Kisa 19|065-34654720|ana.nikolic@uns.ac.rs|03.06.2001.
-ra-22-2018|Ester|Marija|1|S|6.57|02.02.1998.|Marije Perezic 102|062-352578542|ester.pamer@gmail.com|10.07.2011.
-sw-33-2012|Miromir|Ratomiroslavljevic|1|B|10.0|01.01.1991.|Trg Mladenaca 17|062-145631212|miromir@gmail.com|13.09.2012.
-ra-129-2018|Esma|Cufakija|1|B|8.4|01.07.1998.|Bulevar Oslobodjenja 99|060-3512429|esma@uns.ac.rs|17.06.2018.
-sw-99-2001|Marija|Sarifovic|1|B|6.7|30.03.1992.|Radnicka 21|021/593-243|marija@gmail.com|04.03.2001.
+ra-102-2017|David|Drvar|3|B|9.88|21/07/1998|Seljackih buna 76|060-5543246|david.drvar.bogdanovic@gmail.com|13/06/2017
+ra-11-2012|Marko|Maric|1|S|6.1|23/01/2001|Maksima Gorkog 11|062-1423411|marko.maric@uns.ac.rs|15/06/2011
+sw-109-2011|Maja|Zekovic|2|S|7.0|20/05/1999|Puskinova 3|060-14295634|maja.zekovic@gmail.com|10/05/2011
+ee-122-2018|Zaklina|Obenslaufen|2|S|9.3|14/02/1999|Brace Dronjak 2|063-143672324|zaklina@yahoo.com|13/06/2018
+psi-192-2019|Ofelija|Nikolajevic|2|B|8.0|11/11/2000|Strazilovska 1|069-35685673|ofelija.nikolajevic@gmail.com|25/06/2019
+sw-201-2002|Ana|Nikolic|1|B|8.33|01/03/1993|Danila Kisa 19|065-34654720|ana.nikolic@uns.ac.rs|03/06/2001
+ra-22-2018|Ester|Marija|1|S|6.57|02/02/1998|Marije Perezic 102|062-352578542|ester.pamer@gmail.com|10/07/2011
+sw-33-2012|Miromir|Ratomiroslavljevic|1|B|10.0|01/01/1991|Trg Mladenaca 17|062-145631212|miromir@gmail.com|13/09/2012
+ra-129-2018|Esma|Cufakija|1|B|8.4|01/07/1998|Bulevar Oslobodjenja 99|060-3512429|esma@uns.ac.rs|17/06/2018
+sw-99-2001|Marija|Sarifovic|1|B|6.7|30/03/1992|Radnicka 21|021/593-243|marija@gmail.com|04/03/2001
