@@ -36,7 +36,7 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
         int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Profesor p : predmet.getProfs()) {
-                DLM.addElement(p.getLicna());
+            DLM.addElement(p.getLicna());
         }
     }
 
@@ -44,15 +44,15 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    delete.setEnabled(true);
-                    int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
-                    try {
-                        String idProf = (String) DLM.remove(list.getSelectedIndex());
-                        Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
-                        predmet.getProfs().remove(BazaProfesora.getBazaProfesora().getProfesor(idProf));
-                    } catch (Exception err) {
-                        JOptionPane.showMessageDialog(getDialog(), "Nema selektovanih profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
-                    }
+                delete.setEnabled(true);
+                int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
+                try {
+                    String idProf = (String) DLM.remove(list.getSelectedIndex());
+                    Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
+                    predmet.getProfs().remove(BazaProfesora.getBazaProfesora().getProfesor(idProf));
+                } catch (Exception err) {
+                    JOptionPane.showMessageDialog(getDialog(), "Nema selektovanih profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
+                }
                 if (DLM.size() == 0) getDialog().dispose();
             }
         });

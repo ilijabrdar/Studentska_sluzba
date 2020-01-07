@@ -61,13 +61,13 @@ public class AbstractModelSubjects extends AbstractTableModel {
 	
 	
 	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		switch (columnIndex) {
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 4:
+			public Class<?> getColumnClass(int columnIndex) {
+			switch (columnIndex) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
 			return String.class;
 		case 5:
 			return JButton.class;

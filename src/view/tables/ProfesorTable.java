@@ -1,6 +1,8 @@
 package view.tables;
 
 import view.abstractModel.AbstractModelProfesor;
+import view.components.ButtonColumnSubjProf;
+//import view.components.ButtonColumnSubjProf;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -18,11 +20,13 @@ public class ProfesorTable extends JTable {
 	public static ProfesorTable getProfesorTable() {
 		return instance;
 	}
+
 	private ProfesorTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelProfesor());
+		new ButtonColumnSubjProf(this, 10, "Prikaži predmete");
 	}
 	
 	@Override

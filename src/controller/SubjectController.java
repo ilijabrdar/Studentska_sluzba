@@ -173,6 +173,7 @@ public class SubjectController {
 		if(p == null)
 			return false;
 		subj.addProfessor(p);
+		p.getPredmeti().add(subj);
 		return true;
 	}
 
@@ -243,7 +244,10 @@ public class SubjectController {
 				}
 			}
 		}
-
-
     }
+
+    public ArrayList<Profesor> getProfsFromSubj() {
+		Predmet p = getSelectedSubjectByID();
+		return p.getProfs();
+	}
 }

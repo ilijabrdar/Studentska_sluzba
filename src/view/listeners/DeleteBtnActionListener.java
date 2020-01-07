@@ -15,6 +15,7 @@ import view.tables.SubjectTable;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DeleteBtnActionListener implements ActionListener {
     @Override
@@ -28,6 +29,8 @@ public class DeleteBtnActionListener implements ActionListener {
                     "Brisanje predmeta", JOptionPane.YES_NO_OPTION);
             if(code == JOptionPane.YES_OPTION) {
                 SubjectController sc = SubjectController.getSubjectController();
+                ProfesorController pc = ProfesorController.getInstance();
+                pc.removeSubjectFromProfessor(sc.getSelectedSubjectByID().getSifra());
                 sc.removeSubject();
             }
         }

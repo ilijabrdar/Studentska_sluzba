@@ -23,15 +23,7 @@ public class ShowProfsStudsDialog extends JDialog {
         this.setLocationRelativeTo(MainFrame.getInstance());
         this.setResizable(false);
         this.setLayout(new BorderLayout());
-        /*
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent arg0) {
-                DLM.removeAllElements();
 
-            }
-        }); //TODO WTF JE OVO
-        */
         JPanel closingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         delete = new JButton("Obriši");
         back = new JButton("Nazad");

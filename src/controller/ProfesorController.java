@@ -1,5 +1,6 @@
 package controller;
 import model.bazePodataka.BazaProfesora;
+import model.entiteti.Predmet;
 import model.entiteti.Profesor;
 import view.components.MainFrame;
 
@@ -126,6 +127,19 @@ private static ProfesorController instance = new ProfesorController();
 	public void retrieveTable () {
 		BazaProfesora.getBazaProfesora().swapTables();
 		MainFrame.getInstance().updateTable();
+	}
+
+	public void removeSubjectFromProfessor(String ID) {
+		BazaProfesora bp = BazaProfesora.getBazaProfesora();
+
+		for(int i = 0; i < bp.getProfesori().size(); i++) {
+			Profesor p = bp.getProfesori().get(i);
+			for(int j = 0; j < p.getPredmeti().size(); j++) {
+				Predmet pr = p.getPredmeti().get(j);
+				if(pr.getSifra().equals(ID))
+					p.getPredmeti().remove(pr);
+			}
+		}
 	}
 
 }

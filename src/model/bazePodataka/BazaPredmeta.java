@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import model.entiteti.Predmet;
+import model.entiteti.Profesor;
 import model.entiteti.Student;
 
 public class BazaPredmeta {
@@ -86,7 +87,9 @@ public class BazaPredmeta {
 				String subID = data[0];
 				Predmet subj = getSubject(subID);  //nemoguce da vrati null, jer to je obezbedjeno kod doavanja profe na predmet
 				for(int i = 1; i < data.length; i++) {
-					subj.addProfessor(BazaProfesora.getBazaProfesora().getProfesor(data[i]));
+					Profesor prof = BazaProfesora.getBazaProfesora().getProfesor(data[i]);
+					subj.addProfessor(prof);
+					prof.getPredmeti().add(subj);
 				}
 			}
 		} catch (FileNotFoundException e) {

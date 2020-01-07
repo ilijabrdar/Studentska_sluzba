@@ -86,6 +86,7 @@ public class BazaProfesora {
 		this.columns.add("Datum rodjenja");
 		this.columns.add("Telefon");
 		this.columns.add("Adresa");
+		this.columns.add("Predmeti");
 	}
 
 	public ArrayList<String> getColumns() {
@@ -127,6 +128,7 @@ public class BazaProfesora {
 			Profesor.Titula titula = Profesor.Titula.valueOf(titula_str);
 
 			Profesor p = new Profesor(ime,prz,datum_r,adresa,tel,email,kanc,licna,titula,zvanje);
+			p.setPredmeti(BazaProfesora.getBazaProfesora().getProfesor(licna).getPredmeti());
 			pomocna.add(p);
 		}
 
