@@ -76,7 +76,7 @@ public class BazaProfesora {
 	}
 
 	private void initColumns() {
-		this.columns.add("Ime");
+		this.columns.add("\u25B3\u25BD Ime");
 		this.columns.add("Prezime");
 		this.columns.add("Broj lične karte");
 		this.columns.add("Titula");

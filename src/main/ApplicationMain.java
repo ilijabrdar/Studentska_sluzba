@@ -12,10 +12,6 @@ public class ApplicationMain {
 		MainFrame frame = MainFrame.getInstance();
 		frame.setVisible(true);
 
-//		String datum = "13/56/2001";
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//		LocalDate date = LocalDate.parse(datum,formatter);
-//		System.out.println(date);
 	}
 
 }

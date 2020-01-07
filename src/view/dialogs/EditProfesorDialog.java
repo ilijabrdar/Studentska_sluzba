@@ -76,6 +76,7 @@ public class EditProfesorDialog extends NewProfesorDialog {
 		txt_licna.addKeyListener(listenerProfesor);
 
 
+
 	}
 
 	public void addActionsOK() {

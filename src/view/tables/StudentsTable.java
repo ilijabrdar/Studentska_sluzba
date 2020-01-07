@@ -1,6 +1,7 @@
 package view.tables;
 
 import view.abstractModel.AbstractModelStudents;
+import view.components.ButtonColumnPredmetiStudenta;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -23,6 +24,8 @@ public class StudentsTable extends JTable {
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelStudents());
+		new ButtonColumnPredmetiStudenta(this,11,"...");
+
 
 	}
 	

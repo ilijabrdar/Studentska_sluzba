@@ -32,4 +32,9 @@ public class AbstractModelStudents extends AbstractTableModel{
 		return BazaStudenata.getBazaStudenata().getColumnName(column);
 	}
 
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return columnIndex >= 11;
+	}
+
 }

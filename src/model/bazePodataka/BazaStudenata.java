@@ -77,7 +77,7 @@ public class BazaStudenata {
 	}
 	
 	private void initColumns() {
-		this.columns.add("Indeks");
+		this.columns.add("\u25B3\u25BD Indeks");
 		this.columns.add("Ime");
 		this.columns.add("Prezime");
 		this.columns.add("Godina studija");
@@ -88,11 +88,17 @@ public class BazaStudenata {
 		this.columns.add("Telefon");
 		this.columns.add("Email");
 		this.columns.add("Datum upisa");
+		this.columns.add("Predmeti");
 
 	}
 
 	public ArrayList<String> getColumns() {
 		return columns;
+	}
+
+	//ovo je zbog buttonColumn
+	public int getColumnCount() {
+		return 10; //PAZI!
 	}
 
 	public void setColumns(ArrayList<String> columns) {
@@ -244,8 +250,13 @@ public class BazaStudenata {
 	}
 	
 	public void removeStudent(Student s) {
+		for (Student temp : database) {
+			if (temp.getIndex().equalsIgnoreCase(s.getIndex())) {
+				database.remove(temp);
+				break;
+			}
+		}
 		students.remove(s);
-		database.remove(s);
 	}
 
 	public void undo_search() {
