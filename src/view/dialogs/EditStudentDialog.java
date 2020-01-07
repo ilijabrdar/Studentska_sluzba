@@ -17,6 +17,7 @@ public class EditStudentDialog extends NewStudentDialog {
 
 	private static final long serialVersionUID = -6423347424244063431L;
 
+	//TODO: da li treba pri promeni godine studija da se izbrisu svi predmeti studenta koji vise nisu u prethodnoj godini
 	public EditStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 

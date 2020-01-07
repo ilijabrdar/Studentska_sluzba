@@ -48,7 +48,7 @@ public class AbstractModelSubjects extends AbstractTableModel {
 		if (columnIndex != 6) {
 			return;
 		}
-		
+
 	}
 	
 	@Override

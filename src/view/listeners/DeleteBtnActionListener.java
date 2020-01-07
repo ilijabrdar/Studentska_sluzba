@@ -40,6 +40,7 @@ public class DeleteBtnActionListener implements ActionListener {
             int code = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete studenta?",
                     "Brisanje studenta", JOptionPane.YES_NO_OPTION);
             if(code == JOptionPane.YES_OPTION) {
+
                 Student s = BazaStudenata.getBazaStudenata().getRow(row_student);
                 String indeks = s.getIndex();
 

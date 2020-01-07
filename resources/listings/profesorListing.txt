@@ -6,6 +6,6 @@ Marija|Nikolic|111|Vanredni profesor|Mast.|22|nikolic@yahoo.com|21/12/1991|06548
 Silvija|Negojevic|225|Redovni profesor|Mast.|JD 134|negojevic@yahoo.com|29/06/1995|0623453253|Bulevar Oslobodjenja 21
 Dino|Merlin|1012|Vanredni profesor|Dr|345|merlin@yahoo.com|24/11/1945|0213346353|Danilo Kis 65
 Jonathan|McClean|023|Vanredni profesor|Spec. Struk.|454|mcclean@uns.ac.rs|01/08/1985|0694533253|Trg Mladenaca 134
-Nikola|Dunavski|423|Dekan|Dr|1023|nikola@yahoo.com|31/02/1981|063345253|Bulevar Evrope 543
+Nikola|Dunavski|423|Dekan|Dr|1023|nikola@yahoo.com|28/02/1981|063345253|Bulevar Evrope 543
 Goran|Bregovic|3567|Asistent|Mast.|JD 1242|goga@yahoo.com|22/03/1967|03655446|Petrovska 87
 Jelena|Karleusa|3555|Vanredni profesor|Dr|458|karleusa@gmail.com|31/01/1970|021485637|Petrovska 88
