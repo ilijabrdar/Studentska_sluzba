@@ -39,7 +39,7 @@ public class StudentNaPredmet extends JDialog{
 
         JLabel indeks = new JLabel("Broj indeksa: ");
         txt_indeks = new JTextField();
-        txt_indeks.setName("Indeks"); //TODO: key listener dodaj
+        txt_indeks.setName("Indeks");
         txt_indeks.setPreferredSize(new Dimension(100,28));
 
         panel.setOpaque(false);

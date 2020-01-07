@@ -64,7 +64,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
 
 
         if (j_txt.getName().equalsIgnoreCase("prosek")) {
-            if (text.matches("[0-9]?[0-9].[0-9][0-9]")==false) { //TODO: kako upisati prosek 10.00 i onemoguciti 10.23?
+            if (text.matches("[0-9]?[0-9].[0-9][0-9]")==false) {
                 btnOK.setEnabled(false);
                 flag_prosek=0; //ako dobro unesem pa izbrisem i dalje ce biti ukljucen btnOK sto ne treba
                 j_txt.setBackground(Color.pink);
@@ -75,7 +75,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("ime")) {
-            if (!text.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+")) {//TODO: McClean?
+            if (!text.matches("[A-ZČĆŽŠĐ].+")) {
                 btnOK.setEnabled(false);
                 flag_ime=0;
                 j_txt.setBackground(Color.pink);
@@ -86,7 +86,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
         }
 
         else if (j_txt.getName().equalsIgnoreCase("prezime")) {
-            if (!text.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+")) {//TODO: McClean?
+            if (!text.matches("[A-ZČĆŽŠĐ].+")) {
                 btnOK.setEnabled(false);
                 flag_prezime=0;
                 j_txt.setBackground(Color.pink);
@@ -96,7 +96,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("datum rodjenja")) {
-            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {//TODO: ispravan unos
+            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {
                 btnOK.setEnabled(false);
                 j_txt.setBackground(Color.pink);
                 flag_datum_r = 0;
@@ -106,7 +106,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("datum upisa")) {
-            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {//TODO: ispravan unos
+            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {
                 btnOK.setEnabled(false);
                 j_txt.setBackground(Color.pink);
                 flag_datum_u=0;

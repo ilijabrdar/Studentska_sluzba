@@ -66,7 +66,7 @@ public class NewStudentDialog extends JDialog {
 		setFields();
 		
 		addActionsWind();
-		addKeyListeners(); //TODO: dodaj KeyListener-e
+		addKeyListeners();
 		addActionsOK();
 		addActionsCANCEL();
 		
@@ -138,7 +138,7 @@ public class NewStudentDialog extends JDialog {
 		txt_indeks.setPreferredSize(new Dimension (300,28));
 		
 		txt_datum_upisa = new JTextField();
-		txt_datum_upisa.setName("Datum upisa"); // TODO: provera ispravnosti formata datuma upisa i rodjenja
+		txt_datum_upisa.setName("Datum upisa");
 		txt_datum_upisa.setPreferredSize(new Dimension (300,28));
 		
 		txt_prosek = new JTextField();
@@ -256,7 +256,7 @@ public class NewStudentDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				//TODO: default vrednosti? da li sme da ne unese nesto?
+
 				String ime = txt_ime.getText();
 				String prezime = txt_prezime.getText();
 				String datum_rodjenja = txt_datum_rodjenja.getText();
@@ -305,7 +305,6 @@ public class NewStudentDialog extends JDialog {
 					}
 					else {
 						JOptionPane.showMessageDialog(getDialog(),"Vec postoji student sa istim indexom", "Greška", JOptionPane.ERROR_MESSAGE);
-						//getDialog().dispose(); TODO: da li da se radi dispose() ?
 					}
 				
 				}

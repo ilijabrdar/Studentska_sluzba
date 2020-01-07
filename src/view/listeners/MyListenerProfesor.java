@@ -47,7 +47,7 @@ public class MyListenerProfesor implements KeyListener {
         String text = j_txt.getText();
 
         if (j_txt.getName().equalsIgnoreCase("ime")) {
-            if (!text.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+")) {//TODO: McClean?
+            if (!text.matches("[A-ZČĆŽŠĐ].+")) {
                 btnOK.setEnabled(false);
                 flag_ime=0;
                 j_txt.setBackground(Color.pink);
@@ -58,7 +58,7 @@ public class MyListenerProfesor implements KeyListener {
         }
 
         else if (j_txt.getName().equalsIgnoreCase("prezime")) {
-            if (!text.matches("[A-ZČĆŽŠĐ][a-zčćžšđ]+")) {//TODO: McClean?
+            if (!text.matches("[A-ZČĆŽŠĐ].+")) {
                 btnOK.setEnabled(false);
                 flag_prezime=0;
                 j_txt.setBackground(Color.pink);
@@ -68,7 +68,7 @@ public class MyListenerProfesor implements KeyListener {
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("datum rodjenja")) {
-            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {//TODO: ispravan unos
+            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {
                 btnOK.setEnabled(false);
                 j_txt.setBackground(Color.pink);
                 flag_datum_r = 0;

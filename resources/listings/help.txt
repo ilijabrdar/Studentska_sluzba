@@ -1,0 +1,110 @@
+
+    	FUNKCIJE STUDENTA
+    Dodavanje studenta - Akcija dodavanja studenta se pokrece pritiskom na prvo dugme plus u zelenom krugu.
+    Da bi se omogucilo unos novog studenta u bazu podataka, potrebno je da budu ispravno uneti podaci. Tekst polja
+    za ime i prezime mora da pocinje velikim slovom; adresa,telefon,email i indeks ne smeju biti ostavljeni prazni; format datuma
+    dd/mm/yyyy; prosek mora biti u opsegu 6.00 - 10.00 i jedno od opcija za Samofinansiranje ili Budzet mora biti izabrano. Indeks predstavlja
+    jedinstvenu sifru svakog studenta i moze se sastojati od brojeva, cifara i specijalnih karaktera.
+
+    Izmena studenta - Akcija izmene studenta se pokrece pritiskom na drugo dugme - simbol olovke u zutom krugu.
+    Pre izmene potrebno je selektovati studenta za izmenu. Pravila za ispravan unos navedena za dodavanje studenta se i ovde
+    podrazumevaju.
+
+    Brisanje studenta - Akcija brisanja studenta se pokrece pritiskom na trece dugme veliko X u crvenom krugu.
+    Pre brisanja studenta potrebno je selektovati studenta za brisanje.
+
+    Pretraga studenata - Akcija pretrage studenta se pokrece pritiskom na dugme u gornjem desnom uglu u obliku lupe u plavom krugu uz
+    prethodno uneti tekst u polju pored. Format ispravnog unetog teksta je u sledecem obliku - Kriterijum pretrage:Vrednost;
+    Kriterijum pretrage moze biti bilo koji od polja studenta - ime, prezime, indeks, godina studija, prosek,
+    status, datum rodjenja, datum upisa, adresa, telefon ili email. Takodje, moguce je pretrazivati studente po vise kriterijuma
+    pretrage navodeci prethodno navedeni format vise puta uz obavezni simbol ';' izmedju.
+    Kako bi se vratili na pocetno stanje tabele, potrebno je da izbrisete tekst u polju za pretragu i pritisnete na isto dugme.
+    Tokom pretrage moguce je dodavati, brisati ili izmeniti stanje studenta, cije ce akcije rezultirati ponovnim povratkom u pocetno
+    stanje tabele.
+
+    Sortiranje studenta - realizuje se kroz klik na naziv jedne od kolona tabele. Moguce je sortirati studente u opadajucem ili rastucem
+    redosledu i to po svim poljima studenta. Nije moguce sortirati tabelu po vise kriterijuma istovremeno.
+
+
+    Menjanje prikaza tabela realizuje se kroz klik na nazive tabela.
+
+
+        FUNKCIJE PROFESORA
+    Dodavanje profesora - moguce jedino uokviru tabele profesori i pritiskom na prvo dugme u obliku plusa u zelenom krugu.
+    Da bi se omogucilo unos novog profesora u bazu podataka, potrebno je da budu ispravno uneti podaci. Tekst polja
+    za ime i prezime mora da pocinje velikim slovom; adresa,telefon,email i kancelarija ne smeju biti ostavljeni prazni; format datuma
+    dd/mm/yyyy; Broj licne karte predstavlja jedinstvenu sifru svakog profesora i sastoji se iskljucivo od brojeva.
+
+    Izmena profesora - Akcija izmene profesora se pokrece pritiskom na drugo dugme - simbol olovke u zutom krugu.
+    Pre izmene potrebno je selektovati profesora za izmenu. Pravila za ispravan unos navedena za dodavanje profesora se i ovde
+    podrazumevaju.
+
+    Brisanje profesora - Akcija brisanja profesora se pokrece pritiskom na trece dugme veliko X u crvenom krugu.
+    Pre brisanja profesora potrebno je selektovati profesora za brisanje.
+
+    Pretraga profesora - Analogna pravila kao za pretragu studenta se i ovde primenjuju. Moguce je pretraziti profesore po svim
+    poljima profesora - ime, prezime, datum rodjenja, adresa stanovanja, kontakt telefon, email, adresa kancelarije, broj licne karte, titula
+    i zvanje.
+
+    Sortiranje profesora - analogna pravila kao za sortiranje studenta se i ovde primenjuju.
+
+        FUNKCIJE PREDMETA
+    Dodavanje predmeta - moguce jedino uokviru tabele predmeti i pritiskom na prvo dugme u obliku plusa u zelenom krugu.
+    Da bi se omogucilo unos novog predmeta u bazu podataka, potrebno je da budu ispravno uneti podaci. Tekst polja
+    za naziv mora da pocinje velikim slovom; Sifra predstavlja jedinstvenu sifru svakog predmeta i sastoji se od velikih i malih slova i brojeva.
+
+    Izmena predmeta - Akcija izmene predmeta se pokrece pritiskom na cetvrto dugme - simbol olovke u zutom krugu.
+    Pre izmene potrebno je selektovati predmet za izmenu. Pravila za ispravan unos navedena za dodavanje predmeta se i ovde
+    podrazumevaju.
+
+    Brisanje predmeta - Akcija brisanja predmeta se pokrece pritiskom na peto dugme veliko X u crvenom krugu.
+    Pre brisanja predmeta potrebno je selektovati predmet za brisanje.
+
+    Pretraga predmeta - Analogna pravila kao za pretragu studenta se i ovde primenjuju. Moguce je pretraziti predmete po svim
+    poljima predmeta - sifra, naziv, semestar, godina studija u kojoj se predmet izvodi.
+
+    Dodavanje studenta na predmet - Akcija dodavanje studenta na predmet se pokrece pritiskom na drugo dugme u tabeli predmeti.
+    Pre dodavanje potrebno je selektovati predmet na koji ce se student dodati. Studenta je moguce dodati na predmet jedino
+    ako indeks studenta postoji u tabeli bazi podataka i ako se u njegovoj godina studija izvodi selektovani predmet. U suprotnom,
+    dugme za potvrdu unosa ce biti onemoguceno, a polje za unos ce biti crveno. Takodje, unos ce biti uspesan ako unetom studentu
+    nije vec dodeljen predmet.
+
+    Dodavanje profesora na predmet - Akcija dodavanja profesora na predmet se pokrece pritiskom na trece dugme u tabeli predmeti.
+    Pre dodavanje potrebno je selektovati predmet na koji ce se profesor dodati. Profesora je moguce dodati na predmet jedino
+    ako sifra profesora postoji u tabeli bazi podataka, u suprotnom ce biti onemoguceno dugme za potvrdu unosa. Unos karaktera
+    koji nisu brojevi ce rezultirati crvenim poljem za unos.
+
+    Uklanjanje studenta sa predmeta - U koloni 'Studenti' tabele 'Predmeti' pritiskom na dugme otvara se prozor sa prikazom svih
+    studenata kojim je dodeljen taj predmet. Ukoliko nijedan student nije dodat tom predmetu, izaci ce obavestenje da nema studenata.
+    U prozoru za prikaz studenata na selektovanom predmetu moguce je selektovati indeks studenta koji zelimo da obrisemo i pritiskom
+    na dugme 'Obrisi', student ce biti uklonjen sa predmeta. Pri brisanju studenta u bazi podataka, automatski ce biti izbrisani i
+    prikazi na svim predmetima koji su mu bili dodeljeni.
+
+    Uklanjanje profesora sa predmeta -  Analogna pravila kao za uklanjanje studenta sa predmeta se i ovde primenjuju, osim sto se to
+    postize klikom na dugme za prikaz Profesora u koloni Profesori.
+
+
+    	Meni
+    Meni aplikacije omogucava brzi rad sa aplikacijom. Sastoji se od tri odeljka - File, Edit i Help.
+
+    Uokviru odeljka File moguce je pristupiti akcijama za dodavanje objekta u bazu podataka pritiskom na opciju New, i zatvaranje
+    aplikacije pritiskom na opciju Close. U zavisnosti od otvorene tabele, opcija New ce pokrenuti dodavanje onog objekta cija je
+    tabela trenutno otvorena.
+
+    Odeljak Edit nudi opcije za izmenu objekta i brisanje objekta. Isto kao i New uokviru File odeljka, izmena i brisanje zavisi
+    od otvorene tabele. Potrebno je prethodno selektovati objekat kako bi se akcija pokrenula.
+ 
+    Odeljak Help pruza opcije za About i Help. About sadrzi prikaz verzije aplikacije, kao i kratak opis iste. Nakon toga sledi 
+    sažeta biografija svakog autora. U Help sekciji se trenutno nalazite.
+    
+    	Precice za napredne korisnike
+    ALT + F - otvara odeljak File
+    ALT + E - otvara odeljak Edit
+    ALT + H - otvara odeljak Help
+
+    CTRL + N - dodavanje objekta u bazu podataka. Zavisi od trenutno otvorene tabele.
+    CTRL + C - izlazak iz programa.
+    CTRL + E - izmena objekta. Zavisi od trenutno otvorene tabele i potrebno je selektovati objekat.
+    CTRL + D - brisanje objekta. Potrebno je prethodno selektovati objekat.
+    CTRL + H - help odeljak u kom se trenutno nalazite.
+    CTRL + A - about odeljak.

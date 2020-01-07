@@ -21,7 +21,7 @@ public class StudentController {
 	
 	private StudentController() {}
 	
-	public boolean dodajStudenta(Student s) {//TODO: nekada doda dva ista
+	public boolean dodajStudenta(Student s) {
 		boolean ret = BazaStudenata.getBazaStudenata().addStudent(s);
 		undo_search();
 
@@ -108,7 +108,7 @@ public class StudentController {
 			else if (search[0].equalsIgnoreCase("prezime")) {
 				prezime = search[1].trim();
 			}
-			else if (search[0].equalsIgnoreCase("datum rodjenja")) {//TODO: date?
+			else if (search[0].equalsIgnoreCase("datum rodjenja")) {
 				datum_rodjenja = search[1].trim();
 			}
 			else if (search[0].equalsIgnoreCase("adresa")) {
@@ -123,7 +123,7 @@ public class StudentController {
 			else if (search[0].equalsIgnoreCase("index")) {
 				index = search[1].trim();
 			}
-			else if (search[0].equalsIgnoreCase("datum upisa")) {//TODO: date?
+			else if (search[0].equalsIgnoreCase("datum upisa")) {
 				datum_upisa = search[1].trim();
 			}
 			else if (search[0].equalsIgnoreCase("godina studija")) {

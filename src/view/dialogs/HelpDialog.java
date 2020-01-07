@@ -1,29 +1,69 @@
 package view.dialogs;
 
+import model.bazePodataka.BazaStudenata;
+import model.entiteti.Predmet;
+import model.entiteti.Student;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.text.Format;
 
 public class HelpDialog extends JDialog {
 
     public HelpDialog(Frame parent, String title, boolean modal) {
         super(parent,title,modal);
 
-        setSize(600, 600);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension scrSize = kit.getScreenSize();
+        int height = scrSize.height;
+        int width = scrSize.width;
+        setSize(3 * width / 6, 3 * height / 4);
         setLocationRelativeTo(parent);
-        setResizable(false);
+        setResizable(true);
         this.setLayout(new BorderLayout());
 
 
         JTextArea txt = new JTextArea();
-        txt.setSize(600,600);
 
-        txt.setText("Ovo je help sekcija"); //TODO: Ova sekcija treba da sadrži detaljan opis o načinu korišćenja aplikacije. Potrebno je objasniti kako se svaka od dolenavedenih funkcionalnosti može sprovesti u delo i to u vidu niza korisničkih akcija. Takođe, potrebno je navesti prečice (akceleratore) koje naprednim korisnicima mogu olakšati rad.
+        String msg = pullText();
+
+        txt.setText(msg);
         txt.setEditable(false);
         txt.setWrapStyleWord(true);
 
         JScrollPane sp = new JScrollPane(txt);
         this.add(sp,BorderLayout.CENTER);
 
+    }
+
+    private String pullText() { //TODO: specijalni karakteri
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder();
+        String [] data;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream("resources/listings/help.txt"), "utf-8"));
+            String line = null;
+            while((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return sb.toString();
     }
 
 }

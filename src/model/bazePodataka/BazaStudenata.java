@@ -209,7 +209,7 @@ public class BazaStudenata {
 		return true;
 	}
 	
-	public boolean editStudent(int index_tabele, Student s) { //TODO: ne sme da se promeni na isti index
+	public boolean editStudent(int index_tabele, Student s) {
 		String indeks_starog = getValueAt(index_tabele,0);
 		Student stari = getStudentPrekoIndeksa(indeks_starog);
 
