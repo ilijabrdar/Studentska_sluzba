@@ -8,3 +8,11 @@
     Na fakultetu postaje demonstrator iz dva predmeta - Objektno-orijentisano programiranje i 
     Programski jezici i strukture podataka.
     U slobodno vreme rado vozi bicikli i gleda filmove.
+
+    
+    Ilija Brdar je rođen 23.12.1998. u Novom Sadu. Završio je gimnaziju "Jovan Jovanović Zmaj",
+    prirodno-matemetički smer. Fakultet tehničkih nauka, smer Računarstvo i Automatika (Primenjene
+    računarske nauke i informatika) je upisao 2017. godine.
+    Na fakultetu je učestvovao u izvođenju nastave iz Programskih jezika i struktura podataka i
+    Logičkog projektovanja računarskih sistema sa pozicije demonstratora.
+    U oblast interesovanja ubraja numeriku, kao i algoritme i strukture podataka.
