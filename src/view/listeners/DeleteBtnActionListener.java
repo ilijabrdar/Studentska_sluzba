@@ -45,6 +45,7 @@ public class DeleteBtnActionListener implements ActionListener {
                     "Brisanje studenta", JOptionPane.YES_NO_OPTION);
             if(code == JOptionPane.YES_OPTION) {
 
+                BazaStudenata.getBazaStudenata().updateArrayList();
                 Student s = BazaStudenata.getBazaStudenata().getRow(row_student);
                 String indeks = s.getIndex();
 

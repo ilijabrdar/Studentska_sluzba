@@ -58,7 +58,7 @@ public class ShowSubjsOfStudDialog extends JDialog {
         for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
             for (Student s : p.getStudenti()) {
                 if (s.getIndex().equalsIgnoreCase(selected.getIndex())) {
-                    DLM.addElement(p.getNaziv());
+                    DLM.addElement(p.getSifra() + "   " + p.getNaziv());
                     nasao = true;
                 }
             }
