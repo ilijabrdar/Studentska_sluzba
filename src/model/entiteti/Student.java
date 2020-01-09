@@ -16,7 +16,7 @@ public class Student extends Osoba {
 	private double prosek;
 	ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 
-	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 
 	public Student(String ime, String prezime, String datum, String adresa, String telefon, String email, String index,
 			String datum_upisa, int godina_studija, Status status,double prosek) {

@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Profesor extends Osoba {
-	public enum Zvanje {Dipl(1),Mast(2),Spec(3),Dr(4),Struk(5),SpecStruk(6);
+	public enum Zvanje {
+		Dipl(1),Mast(2),Spec(3),Dr(4),Struk(5),SpecStruk(6),Profdr(7);
 
 		int zvanje;
 		Zvanje(int i) {
 			this.zvanje = i;
 		}
 
-		private String [] opis = {"Dipl.", "Mast.","Spec.", "Dr", "Struk.","Spec. Struk."};
+		private String [] opis = {"Dipl.", "Mast.","Spec.", "Dr", "Struk.","Spec. Struk.","Prof. dr"};
 
 		@Override
 		public String toString() {
