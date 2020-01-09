@@ -32,8 +32,7 @@ public class ShowStudsDialog extends ShowProfsStudsDialog{
     private void initList() {
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Student s : predmet.getStudenti()) {
-            DLM.addElement(s.getIndex());
-            //System.out.println(s); TODO: ako dodas predmeti u ispis pri prikazu studenata se pojavi greska
+            DLM.addElement(s.getIndex() + " " + s.getIme() + " " + s.getPrezime());
         }
     }
 
@@ -45,7 +44,9 @@ public class ShowStudsDialog extends ShowProfsStudsDialog{
                 int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
                 int index_list = list.getSelectedIndex();
                 if (index_list!= -1) {
-                    String index = (String) DLM.remove(index_list);
+                    String ret = (String) DLM.remove(index_list);
+                    String [] splits = ret.split("\\s");
+                    String index = splits[0] + " " + splits[1];
                     Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
                     predmet.getStudenti().remove(BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(index));
                 }

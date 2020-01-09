@@ -12,6 +12,8 @@ import javax.swing.*;
 import controller.ProfesorController;
 import controller.StudentController;
 import controller.SubjectController;
+import model.bazePodataka.BazaPredmeta;
+import model.entiteti.Predmet;
 import model.entiteti.Profesor;
 import view.dialogs.*;
 import view.dialogs.ProfessorToSubject;
@@ -157,11 +159,12 @@ public class ToolBar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
+				Predmet p = BazaPredmeta.getBazaPredmeta().getRow(row_subject);
 				if(row_subject == -1)
 					JOptionPane.showMessageDialog(MainFrame.getInstance(),
 							"Pre dodavanja studenta selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
 				else {
-					StudentNaPredmet sp = new StudentNaPredmet(MainFrame.getInstance(),"Dodavanje studenta na predmet",true);
+					StudentNaPredmet sp = new StudentNaPredmet(MainFrame.getInstance(),"Dodavanje studenta na predmet | " + p.getNaziv(),true);
 					sp.setVisible(true);
 				}
 

@@ -111,16 +111,16 @@ public class StudentController {
 			else if (search[0].equalsIgnoreCase("datum rodjenja")) {
 				datum_rodjenja = search[1].trim();
 			}
-			else if (search[0].equalsIgnoreCase("adresa")) {
+			else if (search[0].equalsIgnoreCase("adresa stanovanja")) {
 				adresa = search[1].trim();
 			}
-			else if (search[0].equalsIgnoreCase("telefon")) {
+			else if (search[0].equalsIgnoreCase("kontakt telefon")) {
 				telefon = search[1].trim();
 			}
-			else if (search[0].equalsIgnoreCase("email")) {
+			else if (search[0].equalsIgnoreCase("e-mail adresa")) {
 				email = search[1].trim();
 			}
-			else if (search[0].equalsIgnoreCase("index")) {
+			else if (search[0].equalsIgnoreCase("broj indeksa")) {
 				index = search[1].trim();
 			}
 			else if (search[0].equalsIgnoreCase("datum upisa")) {

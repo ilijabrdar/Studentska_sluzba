@@ -7,6 +7,7 @@ import model.entiteti.Predmet;
 import model.entiteti.Student;
 import view.components.BackgroundPanel;
 import view.components.MainFrame;
+import view.tables.SubjectTable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -112,9 +113,11 @@ public class StudentNaPredmet extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 String indeks = txt_indeks.getText();
                 SubjectController sc = SubjectController.getSubjectController();
+                int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
+                Predmet p = BazaPredmeta.getBazaPredmeta().getRow(row_subject);
                 if (!sc.addStudentToSubject(indeks))
                     JOptionPane.showMessageDialog(MainFrame.getInstance(), "Unetom studentu je već dodeljen predmet.",
-                            "Dodavanje studenta na predmet", JOptionPane.ERROR_MESSAGE);
+                            "Dodavanje studenta na predmet | " + p.getNaziv(), JOptionPane.ERROR_MESSAGE);
                 else
                     dispose();
             }

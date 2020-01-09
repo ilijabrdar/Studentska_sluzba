@@ -2,8 +2,9 @@
     	FUNKCIJE STUDENTA
     Dodavanje studenta - Akcija dodavanja studenta se pokrece pritiskom na prvo dugme plus u zelenom krugu.
     Da bi se omogucilo unos novog studenta u bazu podataka, potrebno je da budu ispravno uneti podaci. Tekst polja
-    za ime i prezime mora da pocinje velikim slovom; adresa,telefon,email i indeks ne smeju biti ostavljeni prazni; format datuma
-    dd/mm/yyyy; prosek mora biti u opsegu 6.00 - 10.00 i jedno od opcija za Samofinansiranje ili Budzet mora biti izabrano. Indeks predstavlja
+    za ime i prezime mora da pocinje velikim slovom; adresa,telefon,email ne smeju biti ostavljeni prazni; format datuma
+    dd/mm/yyyy; format broja indeksa je XX ZZZ/YYYY, gde XX predstavlja dva velika slova (engleske abecede), ZZZ i YYYY brojevi 0-9;
+    prosek mora biti u opsegu 6.00 - 10.00 i jedno od opcija za Samofinansiranje ili Budzet mora biti izabrano. Indeks predstavlja
     jedinstvenu sifru svakog studenta i moze se sastojati od brojeva, cifara i specijalnih karaktera.
 
     Izmena studenta - Akcija izmene studenta se pokrece pritiskom na drugo dugme - simbol olovke u zutom krugu.
@@ -15,9 +16,10 @@
 
     Pretraga studenata - Akcija pretrage studenta se pokrece pritiskom na dugme u gornjem desnom uglu u obliku lupe u plavom krugu uz
     prethodno uneti tekst u polju pored. Format ispravnog unetog teksta je u sledecem obliku - Kriterijum pretrage:Vrednost;
-    Kriterijum pretrage moze biti bilo koji od polja studenta - ime, prezime, indeks, godina studija, prosek,
-    status, datum rodjenja, datum upisa, adresa, telefon ili email. Takodje, moguce je pretrazivati studente po vise kriterijuma
-    pretrage navodeci prethodno navedeni format vise puta uz obavezni simbol ';' izmedju.
+    Kriterijum pretrage moze biti bilo koji od polja studenta - ime, prezime, broj indeksa, godina studija, prosek,
+    status, datum rodjenja, datum upisa, adresa stanovanja, kontakt telefon ili e-mail adresa. Potrebno je naziv kriterijuma pretrage
+    da bude isti nazivu kolone u tabeli Studenti. Takodje, moguce je pretrazivati studente po vise kriterijuma pretrage navodeci 
+    prethodno navedeni format vise puta uz obavezni simbol ';' izmedju.
     Kako bi se vratili na pocetno stanje tabele, potrebno je da izbrisete tekst u polju za pretragu i pritisnete na isto dugme.
     Tokom pretrage moguce je dodavati, brisati ili izmeniti stanje studenta, cije ce akcije rezultirati ponovnim povratkom u pocetno
     stanje tabele.

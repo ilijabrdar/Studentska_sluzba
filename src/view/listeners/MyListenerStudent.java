@@ -147,7 +147,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("indeks")) {
-            if (text.trim().matches("")) {
+            if (!text.trim().matches("[A-Z][A-Z] [0-9]?[0-9]?[0-9]/[0-9][0-9][0-9][0-9]")) {
                 btnOK.setEnabled(false);
                 j_txt.setBackground(Color.pink);
                 flag_indeks=0;
