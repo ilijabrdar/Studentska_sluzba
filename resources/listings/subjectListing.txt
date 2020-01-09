@@ -1,25 +1,5 @@
-E214|Programski jezici i strukture podataka|Zimski|1
-EJ1Z|Engleski jezik - osnovni|Zimski|1
-E219|Matematička analiza 1|Zimski|1
-E213|Algebra|Zimski|1
-E212|Fizika|Letnji|1
-E216|Osnovi elektrotehnike|Letnji|1
-EJ2L|Engleski jezik - srednji|Letnji|1
-E217|Arhitektura računara|Letnji|2
-E227|Logičko projektovanje računarskih sistema|Zimski|2
-E221A|Matematička analiza 2|Zimski|2
-E223A|Objektno programiranje|Zimski|2
-E232|Modeliranje i simulacija sistema|Zimski|2
-E225|Operativni sistemi|Letnji|2
-E23A2|Sistemska programska podrška u realnom vremenu 1|Letnji|2
-E224A|Verovatnoća i slučajni procesi|Letnji|2
-E251A|Sociološki aspekti tehničkog razvoja|Letnji|2
-E226|Sistemi automatskog upravljenja|Letnji|2
-E235|Osnovi informacionih sistema i softverskog inženjerstva|Zimski|3
-E231|Numerički algoritmi i numerički softver|Zimski|3
-E234|Programski prevodioci|Zimski|3
-RI43A|Baze podataka 1|Zimski|3
-E237|Metode optimizacije|Zimski|3
-E236A|Osnovi računarske inteligencije|Letnji|3
-E239A|Veb programiranje|Letnji|3
-E243|Interakcija čovek računar|Letnji|3
+OP301|Osnove programiranja|Zimski|1
+DM881|Diskretna matematika|Zimski|2
+PP007|Paralelno programiranje|Zimski|3
+RVP33|Računarstvo visokih performansi|Zimski|4
+JSD91|Jezici specifični za domen|Letnji|4
