@@ -11,7 +11,7 @@ public class Osoba {
 	protected String telefon;
 	protected String email;
 
-	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 	
 	public Osoba(String ime, String prezime, String datum, String adresa, String telefon, String email) {
 		this.ime = ime;

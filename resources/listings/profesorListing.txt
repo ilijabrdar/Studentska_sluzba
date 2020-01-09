@@ -1,11 +1,6 @@
-Dejan|Mirovic|105|Redovni profesor|Spec. Struk.|JD 102|dejan@yahoo.com|21/01/1991|021313253|Strazilovska 11
-Jefimija|Vukanovic|1093|Saradnik|Spec.|JD 14|vukanovic@yahoo.com|14/08/1983|06423513253|Pasiceva 11
-Miroslava|Princip|364|Docent|Dr|JD 002|princip@yahoo.com|26/08/1983|0213456453|Metohijska 39
-Dusan|Petrovski|15|Redovni profesor|Dr|JD 92|petrovski@yahoo.com|31/03/1981|0613245653|Radnicka 23
-Marija|Nikolic|111|Vanredni profesor|Mast.|22|nikolic@yahoo.com|21/12/1991|0654866553|Strazilovska 122
-Silvija|Negojevic|225|Redovni profesor|Mast.|JD 134|negojevic@yahoo.com|29/06/1995|0623453253|Bulevar Oslobodjenja 21
-Dino|Merlin|1012|Vanredni profesor|Dr|345|merlin@yahoo.com|24/11/1945|0213346353|Danilo Kis 65
-Jonathan|McClean|023|Vanredni profesor|Spec. Struk.|454|mcclean@uns.ac.rs|01/08/1985|0694533253|Trg Mladenaca 134
-Nikola|Dunavski|423|Dekan|Dr|1023|nikola@yahoo.com|28/02/1981|063345253|Bulevar Evrope 543
-Goran|Bregovic|3567|Asistent|Mast.|JD 1242|goga@yahoo.com|22/03/1967|03655446|Petrovska 87
-Jelena|Karleusa|3555|Vanredni profesor|Dr|458|karleusa@gmail.com|31/01/1970|021485637|Petrovska 88
+Aleksa|Petković|007198721|Redovni profesor|Prof. dr|Dositeja Obradovića 6, Novi Sad, MI 105|aleksa.petkovic@mailinator.com|15.01.1965.|021/334-990|Temerinska 15, Novi Sad
+Jana|Lazarević|008431903|Redovni profesor|Prof. dr|Dositeja Obradovića 6, Novi Sad, Nastavni blok 206|jana.lazarevic@mailinator.com|25.02.1963.|021/435-891|Jovana Cvijića 26, Novi Sad
+Nađa|Aleksić|005671007|Vanredni profesor|Dr|Dositeja Obradovića 6, Novi Sad, NTP 307|nadja.aleksic@mailinator.com|23.03.1973.|021/730-172|Gundulićeva 75, Novi Sad
+Đorđe|Spasojević|009999331|Vanredni profesor|Dr|Dositeja Obradovića 6, Novi Sad, MI 118|djordje.spasojevic@mailinator.com|24.08.1978.|021/514-893|Šekspirova 44, Novi Sad
+Elena|Milenković|003330976|Docent|Dr|Dositeja Obradovića 6, Novi Sad, Nastavni blok 217|elena.milenkovic@mailinator.com|08.11.1985.|021/834-901|Tolstojeva 52, Novi Sad
+Teodor|Mladenović|007441998|Docent|Dr|Dositeja Obradovića 6, Novi Sad, NTP M35|teodor.mladenovic@mailinator.com|14.12.1983.|021/441-007|Jovana Subotića 33, Novi Sad

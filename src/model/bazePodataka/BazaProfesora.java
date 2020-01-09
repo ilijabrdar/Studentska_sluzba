@@ -81,11 +81,11 @@ public class BazaProfesora {
 		this.columns.add("Broj lične karte");
 		this.columns.add("Titula");
 		this.columns.add("Zvanje");
-		this.columns.add("Kancelarija");
-		this.columns.add("Email");
-		this.columns.add("Datum rodjenja");
-		this.columns.add("Telefon");
-		this.columns.add("Adresa");
+		this.columns.add("Adresa kancelarije");
+		this.columns.add("E-mail adresa");
+		this.columns.add("Datum rođenja");
+		this.columns.add("Kontakt telefon");
+		this.columns.add("Adresa stanovanja");
 		this.columns.add("Predmeti");
 	}
 

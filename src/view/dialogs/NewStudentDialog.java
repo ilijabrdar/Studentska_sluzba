@@ -312,7 +312,7 @@ public class NewStudentDialog extends JDialog {
 					if (prosek<6 || prosek>10)
 						JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve u rasponu 6.00 - 10.00 za prosek.");
 					else
-						JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd/mm/yyyy");				}
+						JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");				}
 
 			}
 		});

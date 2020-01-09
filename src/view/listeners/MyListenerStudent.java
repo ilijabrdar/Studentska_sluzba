@@ -96,7 +96,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("datum rodjenja")) {
-            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {
+            if (!text.matches("[0-3][0-9]\\.[0-9][0-9]\\.[0-9][0-9][0-9][0-9]\\.")) {
                 btnOK.setEnabled(false);
                 j_txt.setBackground(Color.pink);
                 flag_datum_r = 0;
@@ -106,7 +106,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("datum upisa")) {
-            if (!text.matches("[0-3][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]")) {
+            if (!text.matches("[0-3][0-9]\\.[0-9][0-9]\\.[0-9][0-9][0-9][0-9]\\.")) {
                 btnOK.setEnabled(false);
                 j_txt.setBackground(Color.pink);
                 flag_datum_u=0;

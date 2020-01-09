@@ -77,16 +77,16 @@ public class BazaStudenata {
 	}
 	
 	private void initColumns() {
-		this.columns.add("\u25B3\u25BD Indeks");
+		this.columns.add("\u25B3\u25BD Broj indeksa");
 		this.columns.add("Ime");
 		this.columns.add("Prezime");
 		this.columns.add("Godina studija");
 		this.columns.add("Status");
 		this.columns.add("Prosek");
-		this.columns.add("Datum rodjenja");
-		this.columns.add("Adresa");
-		this.columns.add("Telefon");
-		this.columns.add("Email");
+		this.columns.add("Datum rođenja");
+		this.columns.add("Adresa stanovanja");
+		this.columns.add("Kontakt telefon");
+		this.columns.add("E-mail adresa");
 		this.columns.add("Datum upisa");
 		this.columns.add("Predmeti");
 

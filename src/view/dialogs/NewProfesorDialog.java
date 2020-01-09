@@ -129,7 +129,7 @@ public class NewProfesorDialog extends JDialog {
 		combo_titula = new JComboBox<>(titule);
 		combo_titula.setPreferredSize(new Dimension(300,28));
 
-		String []zvanja = new String[] {"Dipl.","Mast.","Spec.","Dr","Struk.","Spec. Struk."};
+		String []zvanja = new String[] {"Dipl.","Mast.","Spec.","Dr","Struk.","Spec. Struk.","Prof. dr"};
 		combo_zvanje = new JComboBox<>(zvanja);
 		combo_zvanje.setPreferredSize(new Dimension(300,28));
 		
@@ -242,8 +242,10 @@ public class NewProfesorDialog extends JDialog {
 						zvanje = Profesor.Zvanje.Dr;
 					else if (combo_zvanje.getSelectedIndex() == 4)
 						zvanje = Profesor.Zvanje.Struk;
-					else
+					else if (combo_zvanje.getSelectedIndex() == 5)
 						zvanje = Profesor.Zvanje.SpecStruk;
+					else
+						zvanje = Profesor.Zvanje.Profdr;
 
 					Profesor.Titula titula;
 					if (combo_titula.getSelectedIndex() == 0)
@@ -269,7 +271,7 @@ public class NewProfesorDialog extends JDialog {
 						JOptionPane.showMessageDialog(getDialog(), "Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
 					}
 				} catch (Exception ee) {
-					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd/mm/yyyy");
+					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");
 				}
 			}
 

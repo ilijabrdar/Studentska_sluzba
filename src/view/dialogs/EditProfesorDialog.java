@@ -45,6 +45,8 @@ public class EditProfesorDialog extends NewProfesorDialog {
 			combo_zvanje.setSelectedIndex(4);
 		else if (p.getZvanje().equalsIgnoreCase("Spec. Struk."))
 			combo_zvanje.setSelectedIndex(5);
+		else if (p.getZvanje().equalsIgnoreCase("Prof. dr"))
+			combo_zvanje.setSelectedIndex(6);
 
 		if (p.getTitula().equalsIgnoreCase("Asistent"))
 			combo_titula.setSelectedIndex(0);
@@ -108,8 +110,10 @@ public class EditProfesorDialog extends NewProfesorDialog {
 						zvanje = Profesor.Zvanje.valueOf("Dr");
 					else if (combo_zvanje.getSelectedIndex() == 4)
 						zvanje = Profesor.Zvanje.valueOf("Struk");
-					else
+					else if (combo_zvanje.getSelectedIndex() == 5)
 						zvanje = Profesor.Zvanje.valueOf("SpecStruk");
+					else
+						zvanje = Profesor.Zvanje.valueOf("Profdr");
 
 					Profesor.Titula titula;
 					if (combo_titula.getSelectedIndex() == 0)
@@ -136,7 +140,7 @@ public class EditProfesorDialog extends NewProfesorDialog {
 					} else
 						JOptionPane.showMessageDialog(getDialog(), "Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception ee) {
-					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd/mm/yyyy");
+					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");
 				}
 			}
 		});
