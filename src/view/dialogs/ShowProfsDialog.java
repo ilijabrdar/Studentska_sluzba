@@ -35,8 +35,8 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
         //fireEditingStopped(); ???????????????
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Profesor p : predmet.getProfs()) {
-            System.out.println(p);
-            System.out.println();
+            //System.out.println(p);
+            //System.out.println();
             DLM.addElement(p.getLicna() + " " + p.getPrezime() + " " + p.getIme());
             //DLM.addElement(p.getLicna());
         }
@@ -59,7 +59,7 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
                     Profesor profa = BazaProfesora.getBazaProfesora().getProfesor(ID);
                     profa.getPredmeti().remove(selectedSubj);
                     selectedSubj.removeByID(ID);
-                    System.out.println(selectedSubj.getProfs());
+                    //System.out.println(selectedSubj.getProfs());
                 } catch (Exception err) {
                     JOptionPane.showMessageDialog(getDialog(), "Nema selektovanih profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
                 }
