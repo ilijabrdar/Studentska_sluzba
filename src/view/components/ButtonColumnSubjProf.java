@@ -11,7 +11,7 @@ public class ButtonColumnSubjProf extends ButtonColumn {
 
     public ButtonColumnSubjProf(JTable table, int column, String msg) {
         super(table, column, msg);
-        addEditingAction(msg);
+        addEditingAction("Prikaz predmeta");
         this.isEditorActive = false;
     }
 
@@ -19,7 +19,7 @@ public class ButtonColumnSubjProf extends ButtonColumn {
         this.editorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fireEditingStopped();
+                //fireEditingStopped();
                 dialog = new ShowSubjProfDialog(MainFrame.getInstance(), msg, true);
             }
         });

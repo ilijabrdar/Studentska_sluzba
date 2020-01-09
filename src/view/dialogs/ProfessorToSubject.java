@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import controller.SubjectController;
 import view.components.BackgroundPanel;
 
@@ -68,13 +69,18 @@ public class ProfessorToSubject extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String ID = txt.getText();
+				System.out.println("USAO U LISTENER");
+				String ID = txt.getText().trim();
 				SubjectController sc = SubjectController.getSubjectController();
-				if(!sc.addProfToSubj(ID))
+				int param = sc.addProfToSubj(ID);
+				if( param == 0)
 					JOptionPane.showMessageDialog(getDialog(), "Uneti profesor ne postoji.", "Dodavanje profesora na predet", JOptionPane.ERROR_MESSAGE);
+				else if(param == 2)
+					JOptionPane.showMessageDialog(getDialog(), "Profesor je već unet na predmet.", "Dodavanje profesora na predet", JOptionPane.INFORMATION_MESSAGE);
 				else
 					dispose();
 			}
+
 		});
 		
 		btnCENCEL.addActionListener(new ActionListener() {

@@ -47,7 +47,6 @@ public class NewSubjectDialog extends SubjectDialog {
 				p.setStrGodina(godina);
 				sc.addSubject(p, getDialog());	
 				sc.retrieveTable();
-				dispose();
 			}
 		});
 		

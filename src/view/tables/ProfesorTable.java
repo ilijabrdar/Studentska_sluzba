@@ -26,7 +26,7 @@ public class ProfesorTable extends JTable {
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelProfesor());
-		new ButtonColumnSubjProf(this, 10, "Prikaži predmete");
+		new ButtonColumnSubjProf(this, 10, "...");
 	}
 	
 	@Override

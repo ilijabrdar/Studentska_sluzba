@@ -33,10 +33,12 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
 
     private void initList() {
         //fireEditingStopped(); ???????????????
-        int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Profesor p : predmet.getProfs()) {
-            DLM.addElement(p.getLicna());
+            System.out.println(p);
+            System.out.println();
+            DLM.addElement(p.getLicna() + " " + p.getPrezime() + " " + p.getIme());
+            //DLM.addElement(p.getLicna());
         }
     }
 
@@ -45,11 +47,19 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 delete.setEnabled(true);
-                int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
+
+                Predmet selectedSubj = SubjectController.getSubjectController().getSelectedSubjectByID();
                 try {
-                    String idProf = (String) DLM.remove(list.getSelectedIndex());
-                    Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
-                    predmet.getProfs().remove(BazaProfesora.getBazaProfesora().getProfesor(idProf));
+
+                    String content = (String) DLM.remove(list.getSelectedIndex());
+                    String[] splits = content.split(" ");
+                    String ID = splits[0];
+
+                    //String ID = (String) DLM.remove(list.getSelectedIndex());
+                    Profesor profa = BazaProfesora.getBazaProfesora().getProfesor(ID);
+                    profa.getPredmeti().remove(selectedSubj);
+                    selectedSubj.removeByID(ID);
+                    System.out.println(selectedSubj.getProfs());
                 } catch (Exception err) {
                     JOptionPane.showMessageDialog(getDialog(), "Nema selektovanih profesora.", "Greška", JOptionPane.ERROR_MESSAGE);
                 }

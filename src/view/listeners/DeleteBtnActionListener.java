@@ -3,6 +3,7 @@ package view.listeners;
 import controller.ProfesorController;
 import controller.StudentController;
 import controller.SubjectController;
+import model.bazePodataka.BazaProfesora;
 import model.bazePodataka.BazaStudenata;
 import model.entiteti.Profesor;
 import model.entiteti.Student;
@@ -62,11 +63,24 @@ public class DeleteBtnActionListener implements ActionListener {
             int code = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete profesora?",
                     "Brisanje profesora", JOptionPane.YES_NO_OPTION);
             if(code == JOptionPane.YES_OPTION) {
+                /*
                 ProfesorController pc = ProfesorController.getInstance();
-                Profesor p = ProfesorController.getInstance().getProfessor(row_prof);
+                Profesor p = pc.getProfessor(row_prof);
                 pc.izbrisiProfesora(row_prof);
                 SubjectController.getSubjectController().removeProfFromSubj(p.getLicna());
+
+                */
+
+                Profesor p = BazaProfesora.getBazaProfesora().getRow(row_prof);
+                String licna = p.getLicna();
+
+                SubjectController.getSubjectController().removeProfFromSubj(licna);
+
+                ProfesorController pc = ProfesorController.getInstance();
+                pc.izbrisiProfesora(row_prof);
+
             }
+
         }
         else {
             JOptionPane.showMessageDialog(MainFrame.getInstance(),

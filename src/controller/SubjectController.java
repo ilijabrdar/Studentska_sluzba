@@ -33,8 +33,10 @@ public class SubjectController {
 	private SubjectController() {}
 	
 	public void addSubject(Predmet p, JDialog parent) {
-		if(BazaPredmeta.getBazaPredmeta().addSubject(p))
+		if(BazaPredmeta.getBazaPredmeta().addSubject(p)) {
 			MainFrame.getInstance().updateTable();
+			parent.dispose();
+		}
 		else
 			JOptionPane.showMessageDialog(parent, "Predmet već postoji", "Greška", JOptionPane.ERROR_MESSAGE);
 	}
@@ -67,6 +69,7 @@ public class SubjectController {
 		Predmet p = getSelectedSubjectByID();
 		if(BazaPredmeta.getBazaPredmeta().editSubject(p.getSifra(), subj)) {
 			MainFrame.getInstance().updateTable();
+			parent.dispose();
 		}
 		else
 			JOptionPane.showMessageDialog(parent, "Predmet već postoji.", "Greška", JOptionPane.ERROR_MESSAGE);
@@ -167,14 +170,20 @@ public class SubjectController {
 		}
 	}
 	
-	public boolean addProfToSubj(String ID) {
+	public int addProfToSubj(String ID) {
+		System.out.println("USAO U FJU");
 		Predmet subj = getSelectedSubjectByID();
 		Profesor p = BazaProfesora.getBazaProfesora().getProfesor(ID);
 		if(p == null)
-			return false;
-		subj.addProfessor(p);
-		p.getPredmeti().add(subj);
-		return true;
+			return 0;
+
+		if(subj.addProfessor(p)) {
+			System.out.println("USAO U IF");
+			p.getPredmeti().add(subj);
+			return 1;
+		}
+
+		return 2;
 	}
 
 	public boolean addStudentToSubject(String indeks) {

@@ -88,12 +88,13 @@ public class Predmet {
 		this.studenti = studenti;
 	}
 
-	public void addProfessor(Profesor prof) {
+	public boolean addProfessor(Profesor prof) {
 		for (Profesor p : profs)
-			if(p.getLicna() == prof.getLicna())
-				return;
+			if(p.getLicna().equalsIgnoreCase(prof.getLicna()))
+				return false;
 		
 		profs.add(prof);
+		return true;
 	}
 
 	public boolean addStudent(Student s ) {
@@ -103,6 +104,16 @@ public class Predmet {
 		}
 		studenti.add(s);
 		return true;
+	}
+
+	public void removeByID(String ID) {
+		for(int i = 0; i < profs.size(); i++) {
+			Profesor p = profs.get(i);
+			if(p.getLicna().equalsIgnoreCase(ID)) {
+				profs.remove(p);
+				break;
+			}
+		}
 	}
 
 	@Override

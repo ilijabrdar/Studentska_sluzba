@@ -10,7 +10,7 @@ import view.tables.SubjectTable;
 
 import javax.swing.*;
 import java.awt.*;
-
+// ZA PRIKAZ PREDMETA KOJE PROFESOR PREDAJE
 public class ShowSubjProfDialog extends JDialog {
 
     private DefaultListModel DLM;
@@ -39,17 +39,17 @@ public class ShowSubjProfDialog extends JDialog {
     public JDialog getDialog() {return this;}
 
     private void initList() {
-        int index = ProfesorTable.getProfesorTable().getSelectedRow();
         BazaProfesora.getBazaProfesora().updateArrayList();
+        int index = ProfesorTable.getProfesorTable().getSelectedRow(); //TODO PROVERITI GRESKA
         Profesor profa = BazaProfesora.getBazaProfesora().getRow(index);
         for (Predmet p : profa.getPredmeti()) {
-            DLM.addElement(p.getSifra());
+            DLM.addElement(p.getSifra() + " " + p.getNaziv());
         }
     }
 
     private void validateList() {
         if(DLM.size() == 0)
-            JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ne postoje unosi na predmetu.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ne postoje unosi predmeta.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
         else getDialog().setVisible(true);
     }
 }

@@ -1,5 +1,6 @@
 package view.components;
 
+import controller.ProfesorController;
 import controller.StudentController;
 import controller.SubjectController;
 
@@ -13,9 +14,11 @@ import javax.swing.event.ChangeListener;
 public class TabbedPane extends JTabbedPane {
 	
 	private static final long serialVersionUID = -5941608496854985480L;
-	
+
+	private boolean flag;
+
 	public static TabbedPane instance = null;
-	
+
 	public static TabbedPane getInstance() {
 		if(instance == null)
 			instance = new TabbedPane();
@@ -25,12 +28,21 @@ public class TabbedPane extends JTabbedPane {
 	private TabbedPane() {
 		super();
 		this.setFont(new Font(null, Font.PLAIN, 16));
+		flag = false;
 		this.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				ToolBar tb = ToolBar.getInstance();
 				tb.updateToolBar(isRunning("Predmeti"));
+
+				if(!isRunning("Studenti")) flag = true;
+
+				if(flag) {
+					SubjectController.getSubjectController().retrieveTable();
+					ProfesorController.getInstance().retrieveTable();
+					StudentController.getInstance().undo_search();
+				}
 			}
 		});
 	}

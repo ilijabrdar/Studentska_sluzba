@@ -1,6 +1,7 @@
 package model.bazePodataka;
 
 import model.entiteti.Profesor;
+import model.entiteti.Student;
 import view.components.MainFrame;
 
 import java.io.*;
@@ -233,13 +234,19 @@ public class BazaProfesora {
 	
 	public void removeProfesor(Profesor p) {
 		profesori.remove(p);
-		database.remove(p);
+		for (Profesor temp : database) {
+			if (temp.getLicna().equalsIgnoreCase(p.getLicna())) {
+				database.remove(temp);
+				break;
+			}
+		}
 	}
 	
 	public Profesor getProfesor(String ID) {
 		for(Profesor p : profesori)
-			if(p.getLicna().equalsIgnoreCase(ID))
+			if(p.getLicna().equalsIgnoreCase(ID)) {
 				return p;
+			}
 		return null;
 	}
 
