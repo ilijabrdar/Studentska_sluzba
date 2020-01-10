@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import controller.SubjectController;
 import view.components.BackgroundPanel;
 

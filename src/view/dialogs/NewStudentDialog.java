@@ -38,22 +38,28 @@ public class NewStudentDialog extends JDialog {
 	
 	protected JTextField txt_ime = null;
 	protected JTextField txt_prezime = null;
-	protected JTextField txt_datum_rodjenja = null;
+	protected static JTextField txt_datum_rodjenja = null;
 	protected JTextField txt_telefon = null;
 	protected JTextField txt_adresa = null;
 	protected JTextField txt_email = null;
 	
 	protected JTextField txt_indeks = null;
-	protected JTextField txt_datum_upisa = null;
+	protected static JTextField txt_datum_upisa = null;
 	protected JTextField txt_prosek = null;
 	
 	protected JComboBox<String> trenutna_godina_studija = null;
 	
 	protected JRadioButton rb_s = null;
 	protected JRadioButton rb_b = null;
-	
-	
-	
+
+	public static JTextField getTxt_datum_rodjenja() {
+		return txt_datum_rodjenja;
+	}
+
+	public static JTextField getTxt_datum_upisa() {
+		return txt_datum_upisa;
+	}
+
 	public NewStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 

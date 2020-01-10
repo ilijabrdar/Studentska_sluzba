@@ -1,11 +1,15 @@
 package view.listeners;
 
+import view.dialogs.NewStudentDialog;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MyListenerStudent implements KeyListener, ActionListener {
 
@@ -63,6 +67,8 @@ public class MyListenerStudent implements KeyListener, ActionListener {
         String text = j_txt.getText();
 
 
+
+
         if (j_txt.getName().equalsIgnoreCase("prosek")) {
             if (text.matches("[0-9]?[0-9].[0-9][0-9]")==false) {
                 btnOK.setEnabled(false);
@@ -101,8 +107,29 @@ public class MyListenerStudent implements KeyListener, ActionListener {
                 j_txt.setBackground(Color.pink);
                 flag_datum_r = 0;
             } else {
-                j_txt.setBackground(Color.white);
-                flag_datum_r=1;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+                LocalDate datum_upisa = LocalDate.parse(NewStudentDialog.getTxt_datum_upisa().getText(),formatter);
+                LocalDate datum_rodjenja = LocalDate.parse(text,formatter);
+                if (!datum_rodjenja.isBefore(datum_upisa)) {
+                    btnOK.setEnabled(false);
+                    j_txt.setBackground(Color.pink);
+                    flag_datum_r = 0;
+                }
+                else {
+                    j_txt.setBackground(Color.white);
+                    flag_datum_r = 1;
+                }
+
+                LocalDate trenutni = LocalDate.now();
+                if (!datum_rodjenja.isBefore(trenutni)) {
+                    btnOK.setEnabled(false);
+                    j_txt.setBackground(Color.pink);
+                    flag_datum_r = 0;
+                }
+                else {
+                    j_txt.setBackground(Color.white);
+                    flag_datum_r = 1;
+                }
             }
         }
         else if (j_txt.getName().equalsIgnoreCase("datum upisa")) {
@@ -111,8 +138,31 @@ public class MyListenerStudent implements KeyListener, ActionListener {
                 j_txt.setBackground(Color.pink);
                 flag_datum_u=0;
             } else {
-                j_txt.setBackground(Color.white);
-                flag_datum_u = 1;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+                LocalDate datum_upisa = LocalDate.parse(text,formatter);
+                LocalDate datum_rodjenja = LocalDate.parse(NewStudentDialog.getTxt_datum_rodjenja().getText(),formatter);
+                if (!datum_rodjenja.isBefore(datum_upisa)) {
+                    btnOK.setEnabled(false);
+                    j_txt.setBackground(Color.pink);
+                    flag_datum_u=0;
+                }
+                else {
+                    j_txt.setBackground(Color.white);
+                    flag_datum_u = 1;
+                }
+
+                LocalDate trenutni = LocalDate.now();
+                if (!datum_upisa.isBefore(trenutni)) {
+                    btnOK.setEnabled(false);
+                    j_txt.setBackground(Color.pink);
+                    flag_datum_u=0;
+                }
+                else {
+                    j_txt.setBackground(Color.white);
+                    flag_datum_u = 1;
+                }
+
+
 
             }
         }

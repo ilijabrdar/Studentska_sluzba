@@ -43,7 +43,7 @@ public class StudentController {
 			return false;
 		
 		boolean ret = BazaStudenata.getBazaStudenata().editStudent(rowSelectedIndex, novi);
-		if (ret) //ovaj if resava problem izmene ako prvobitno pogresno izmenis
+		if (ret) //ovaj if resava problem izmene ako prvobitno pogresno izmenis TODO: sta je ovo
 			undo_search();
 		return ret;
 	}
@@ -108,7 +108,7 @@ public class StudentController {
 			else if (search[0].equalsIgnoreCase("prezime")) {
 				prezime = search[1].trim();
 			}
-			else if (search[0].equalsIgnoreCase("datum rodjenja")) {
+			else if (search[0].equalsIgnoreCase("datum rođenja")) {
 				datum_rodjenja = search[1].trim();
 			}
 			else if (search[0].equalsIgnoreCase("adresa stanovanja")) {

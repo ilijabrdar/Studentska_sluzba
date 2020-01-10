@@ -211,7 +211,7 @@ public class BazaProfesora {
 			return true;
 		}
 		else {
-			for (Profesor temp : profesori) {
+			for (Profesor temp : profesori) { //TODO: popravi da se prepravljanje profesora vidi u prikazi profesore za predmet
 				if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
 					return false;
 			}
