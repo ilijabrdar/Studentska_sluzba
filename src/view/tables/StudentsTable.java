@@ -26,6 +26,11 @@ public class StudentsTable extends JTable {
 		this.setModel(new AbstractModelStudents());
 		new ButtonColumnPredmetiStudenta(this,11,"...");
 
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(this.getModel());
+		sorter.setSortable(11,false);
+		this.setRowSorter(sorter);
+		this.setUpdateSelectionOnSort(true);
+
 
 	}
 	

@@ -36,6 +36,11 @@ public class StudentController {
 		Student s = BazaStudenata.getBazaStudenata().getRow(rowSelectedIndex);
 		BazaStudenata.getBazaStudenata().removeStudent(s);
 		MainFrame.getInstance().updateTable();
+
+		if (BazaStudenata.getBazaStudenata().getStudents().isEmpty())
+			BazaStudenata.getBazaStudenata().undo_search();
+		else
+			MainFrame.getInstance().updateTable();
 	}
 	
 	public boolean izmeniStudenta(int rowSelectedIndex, Student novi) {

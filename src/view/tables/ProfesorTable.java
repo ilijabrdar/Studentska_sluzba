@@ -10,6 +10,8 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class ProfesorTable extends JTable {
 
@@ -27,6 +29,11 @@ public class ProfesorTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractModelProfesor());
 		new ButtonColumnSubjProf(this, 10, "...");
+
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(this.getModel());
+		sorter.setSortable(10,false);
+		this.setRowSorter(sorter);
+		this.setUpdateSelectionOnSort(true);
 	}
 	
 	@Override

@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.ProfesorController;
 import controller.StudentController;
@@ -96,10 +98,6 @@ public class MainFrame extends JFrame{
 		profesor_table.getTableHeader().setReorderingAllowed(false);
 
 		stable.setAutoCreateRowSorter(true); //ovo ne cini nikakvu izmenu
-		student_table.setAutoCreateRowSorter(true);
-		profesor_table.setAutoCreateRowSorter(true);
-		student_table.setUpdateSelectionOnSort(true);
-		profesor_table.setUpdateSelectionOnSort(true);
 
 
 
