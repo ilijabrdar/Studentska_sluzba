@@ -180,6 +180,10 @@ public class BazaPredmeta {
 		if(s != null && !p.getSifra().equalsIgnoreCase(subj.getSifra()))
 			return false;
 
+		//Ako se promeni godina predmeta treba izbrisati sve studente
+		if(!p.getGodina().equalsIgnoreCase(subj.getGodina()))
+			p.getStudenti().clear();
+
 		p.setSifra(subj.getSifra());
 		p.setNaziv(subj.getNaziv());
 		p.setSemestar(subj.getSemestar());
