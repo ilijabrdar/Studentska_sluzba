@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+//TODO: srediti klasu malo
 public class MyListenerStudent implements KeyListener, ActionListener {
 
 
@@ -24,7 +25,6 @@ public class MyListenerStudent implements KeyListener, ActionListener {
     private int flag_datum_r = 0;
     private int flag_datum_u = 0;
     private int flag_indeks = 0;
-   // private int flag_godina = 0;
 
     private  int flag_btnOK = 0;
 
@@ -42,7 +42,6 @@ public class MyListenerStudent implements KeyListener, ActionListener {
         flag_datum_u=flag;
         flag_datum_r=flag;
         flag_indeks=flag;
-        //flag_godina = flag;
 
     }
 
@@ -69,24 +68,24 @@ public class MyListenerStudent implements KeyListener, ActionListener {
 
 
         if (j_txt.getName().equalsIgnoreCase("prosek")) {
-            if (!text.matches("/|([0-9]?[0-9].[0-9][0-9])")) {
+            if (!text.matches("/|([0-9]?[0-9]\\.[0-9][0-9])")) {
                 btnOK.setEnabled(false);
                 flag_prosek=0; //ako dobro unesem pa izbrisem i dalje ce biti ukljucen btnOK sto ne treba
                 j_txt.setBackground(Color.pink);
             } else {
-                int index = NewStudentDialog.getTrenutna_godina_studija().getSelectedIndex();
-
-                if (!text.equalsIgnoreCase("/") && index==0) { //ako je selektovana prva godina, a polje za prosek != "/"
-                    btnOK.setEnabled(false);
-                    flag_prosek=0; //ako dobro unesem pa izbrisem i dalje ce biti ukljucen btnOK sto ne treba
-                    j_txt.setBackground(Color.pink);
+                if (text.matches("[0-9]?[0-9]\\.[0-9][0-9]")) {
+                    double br = Double.parseDouble(text);
+                    if (br<6 || br>10) {
+                        btnOK.setEnabled(false);
+                        flag_prosek=0; //ako dobro unesem pa izbrisem i dalje ce biti ukljucen btnOK sto ne treba
+                        j_txt.setBackground(Color.pink);
+                    }
+                    else {
+                        j_txt.setBackground(Color.white);
+                        flag_prosek = 1;
+                    }
                 }
-                else if (index!=0 && text.equalsIgnoreCase("/")) { //ako je selektovana bilo koja druga godina, a prosek == "/"
-                    btnOK.setEnabled(false);
-                    flag_prosek=0; //ako dobro unesem pa izbrisem i dalje ce biti ukljucen btnOK sto ne treba
-                    j_txt.setBackground(Color.pink);
-                }
-                else {
+                else if (text.matches("/")) {
                     j_txt.setBackground(Color.white);
                     flag_prosek = 1;
                 }
@@ -127,12 +126,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
                         btnOK.setEnabled(false);
                         j_txt.setBackground(Color.pink);
                         flag_datum_r = 0;
-                    } else {
-                        j_txt.setBackground(Color.white);
-                        flag_datum_r = 1;
-                    }
-
-                    if (!NewStudentDialog.getTxt_datum_upisa().getText().equalsIgnoreCase("")) {
+                    } else if (!NewStudentDialog.getTxt_datum_upisa().getText().equalsIgnoreCase("")) {
                         LocalDate datum_upisa = LocalDate.parse(NewStudentDialog.getTxt_datum_upisa().getText(), formatter);
 
                         if (!datum_rodjenja.isBefore(datum_upisa)) {
@@ -142,7 +136,14 @@ public class MyListenerStudent implements KeyListener, ActionListener {
                         } else {
                             j_txt.setBackground(Color.white);
                             flag_datum_r = 1;
+                            
+                            flag_datum_u = 1; //TODO: da li ovo stvarno popravlja stvari?
+                            NewStudentDialog.getTxt_datum_upisa().setBackground(Color.white);
                         }
+                    }
+                    else {
+                        j_txt.setBackground(Color.white);
+                        flag_datum_r = 1;
                     }
                 } catch (Exception ee) {
 
@@ -150,7 +151,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             }
 
         }
-        else if (j_txt.getName().equalsIgnoreCase("datum upisa")) {
+        else if (j_txt.getName().equalsIgnoreCase("datum upisa")) {//TODO: proveri datume
             if (!text.matches("[0-3][0-9]\\.[0-9][0-9]\\.[0-9][0-9][0-9][0-9]\\.")) {
                 btnOK.setEnabled(false);
                 j_txt.setBackground(Color.pink);
@@ -161,16 +162,11 @@ public class MyListenerStudent implements KeyListener, ActionListener {
                     LocalDate datum_upisa = LocalDate.parse(text, formatter);
 
                     LocalDate trenutni = LocalDate.now();
-                    if (!datum_upisa.isBefore(trenutni)) {
+                    if (!datum_upisa.isBefore(trenutni)) { //ako je datum_upisa veci od trenutnog datuma onda false i izlazak iz petlje
                         btnOK.setEnabled(false);
                         j_txt.setBackground(Color.pink);
                         flag_datum_u = 0;
-                    } else {
-                        j_txt.setBackground(Color.white);
-                        flag_datum_u = 1;
-                    }
-
-                    if (!NewStudentDialog.getTxt_datum_rodjenja().getText().equalsIgnoreCase("")) {
+                    } else if (!NewStudentDialog.getTxt_datum_rodjenja().getText().equalsIgnoreCase("")) { //ako je datum_upisa manji od trenutnog i txt_datum_rodjenja nije "" onda dalje provere
                         LocalDate datum_rodjenja = LocalDate.parse(NewStudentDialog.getTxt_datum_rodjenja().getText(), formatter);
 
                         if (!datum_rodjenja.isBefore(datum_upisa)) {
@@ -180,7 +176,14 @@ public class MyListenerStudent implements KeyListener, ActionListener {
                         } else {
                             j_txt.setBackground(Color.white);
                             flag_datum_u = 1;
+
+                            NewStudentDialog.getTxt_datum_rodjenja().setBackground(Color.white);
+                            flag_datum_r = 1;
                         }
+                    }
+                    else {
+                        j_txt.setBackground(Color.white);
+                        flag_datum_u = 1;
                     }
 
                 } catch (Exception ee) {
@@ -189,6 +192,27 @@ public class MyListenerStudent implements KeyListener, ActionListener {
 
             }
         }
+//        else if (j_txt.getName().equalsIgnoreCase("datum upisa")) {
+//            if (!text.matches("[0-3][0-9]\\.[0-9][0-9]\\.[0-9][0-9][0-9][0-9]\\.")) {
+//                btnOK.setEnabled(false);
+//                j_txt.setBackground(Color.pink);
+//                flag_datum_u=0;
+//            } else {
+//                boolean r1 = pre_trenutne(text);
+//                boolean r2 = posle_rodjenja(text);
+//                boolean r3 = pre_godine_indexa(text);
+//
+//                if (r1 && r2 && r3) {
+//                    j_txt.setBackground(Color.white);
+//                        flag_datum_u = 1;
+//                }
+//                else {
+//                    btnOK.setEnabled(false);
+//                    j_txt.setBackground(Color.pink);
+//                    flag_datum_u = 0;
+//                }
+//            }
+//        }
         else if (j_txt.getName().equalsIgnoreCase("telefon")) {
             if (text.trim().matches("")) {
                 btnOK.setEnabled(false);
@@ -225,16 +249,33 @@ public class MyListenerStudent implements KeyListener, ActionListener {
                 j_txt.setBackground(Color.pink);
                 flag_indeks=0;
             } else {
-                String [] splits = text.trim().split("/");
-                LocalDate trenutno = LocalDate.now();
-                if (Integer.parseInt(splits[1])>trenutno.getYear()) { //ne moze godina indexa biti veca od trenutne
-                    btnOK.setEnabled(false);
-                    j_txt.setBackground(Color.pink);
-                    flag_indeks=0;
-                }
-                else {
-                    flag_indeks = 1;
-                    j_txt.setBackground(Color.white);
+                try {
+                    String[] splits = text.trim().split("/");
+                    String[] splits_datum_upisa = NewStudentDialog.getTxt_datum_upisa().getText().split("\\.");
+                    LocalDate trenutno = LocalDate.now();
+                    if (Integer.parseInt(splits[1]) > trenutno.getYear()) { //ne moze godina indexa biti veca od trenutne ili manja od godine upisa
+                        btnOK.setEnabled(false);
+                        j_txt.setBackground(Color.pink);
+                        flag_indeks = 0;
+                    } else {
+                        if (NewStudentDialog.getTxt_datum_upisa().getText().equalsIgnoreCase("")) {
+                            flag_indeks = 1;
+                            j_txt.setBackground(Color.white);
+                        }
+                        else {
+                            if (Integer.parseInt(splits[1]) < Integer.parseInt(splits_datum_upisa[2])) {
+                                btnOK.setEnabled(false);
+                                j_txt.setBackground(Color.pink);
+                                flag_indeks = 0;
+                            }
+                            else {
+                                flag_indeks = 1;
+                                j_txt.setBackground(Color.white);
+                            }
+                        }
+                    }
+                } catch (Exception ee) {
+
                 }
             }
         }
@@ -253,32 +294,4 @@ public class MyListenerStudent implements KeyListener, ActionListener {
             btnOK.setEnabled(true);
     }
 
-//    @Override
-//    public void itemStateChanged(ItemEvent e) {
-//        JComboBox comboBox = (JComboBox) e.getSource();
-//
-//        if (comboBox.getSelectedIndex()==0 && !NewStudentDialog.getTxt_prosek().getText().matches("/")) { //ako je prva godina i na proseku nije /
-//            flag_godina = 0;
-//            //btnOK.setEnabled(false);
-//        }
-//        else if (comboBox.getSelectedIndex()!=0 && NewStudentDialog.getTxt_prosek().getText().matches("/")) { //ako nije prva godina i na proseku jeste /
-//            flag_godina = 0;
-//            //btnOK.setEnabled(false);
-//        }
-//        else {
-//            NewStudentDialog.getTxt_prosek().setBackground(Color.white);
-//            //btnOK.setEnabled(true);
-//            flag_godina = 1;
-//        }
-//
-//        if (flag_indeks==1 && flag_adresa==1 && flag_email==1 && flag_telefon==1 && flag_datum_u==1 && flag_datum_r==1 && flag_prezime==1 && flag_ime==1 && flag_prosek==1 && flag_godina==1) {
-//            if (r_btn_s.isSelected() || r_btn_b.isSelected())
-//                btnOK.setEnabled(true);
-//            else
-//                flag_btnOK = 1;
-//        }
-//        else {
-//            btnOK.setEnabled(false);
-//        }
-//    }
 }

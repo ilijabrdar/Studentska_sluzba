@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -21,6 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import view.exceptions.ExceptionProsek;
+import view.exceptions.ExceptionYearDifferenceIndeksUpis;
+import view.exceptions.ExceptionYearDifferenceUpisRodjenje;
 import controller.StudentController;
 import model.entiteti.Student;
 import model.entiteti.Student.Status;
@@ -43,7 +48,7 @@ public class NewStudentDialog extends JDialog {
 	protected JTextField txt_adresa = null;
 	protected JTextField txt_email = null;
 	
-	protected JTextField txt_indeks = null;
+	protected static JTextField txt_indeks = null;
 	protected static JTextField txt_datum_upisa = null;
 	protected static JTextField txt_prosek = null;
 	
@@ -66,6 +71,10 @@ public class NewStudentDialog extends JDialog {
 
 	public static JTextField getTxt_prosek() {
 		return txt_prosek;
+	}
+
+	public static JTextField getTxt_indeks() {
+		return txt_indeks;
 	}
 
 	public NewStudentDialog(Frame parent, String title, boolean modal) {
@@ -109,7 +118,7 @@ public class NewStudentDialog extends JDialog {
 	}
 
 
-	JDialog getDialog() { return this; }
+	public JDialog getDialog() { return this; }
 
 	private void setFields() {
 		JLabel ime = new JLabel("Ime:*");
@@ -287,13 +296,6 @@ public class NewStudentDialog extends JDialog {
 				
 				try{
 
-					if (prosek_str.equalsIgnoreCase("/"))
-						prosek = 0.0;
-					else {
-						prosek = Double.parseDouble(prosek_str);
-						if (prosek < 6 || prosek > 10)
-							throw new Exception();
-					}
 
 					String datum_upisa = txt_datum_upisa.getText();
 					
@@ -307,7 +309,31 @@ public class NewStudentDialog extends JDialog {
 						trenutna_godina = 3;
 					else
 						trenutna_godina=4;
-					
+
+
+					if (prosek_str.equalsIgnoreCase("/"))
+						prosek = 0.0;
+					else
+						prosek = Double.parseDouble(prosek_str);
+
+
+
+					if (prosek!=0.0 && trenutna_godina==1)
+						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+					else if (prosek==0.0 && trenutna_godina!=1)
+						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+					LocalDate datum_rodj = LocalDate.parse(datum_rodjenja, formatter);
+					LocalDate datum_up = LocalDate.parse(datum_upisa,formatter);
+
+					if (datum_up.getYear() - datum_rodj.getYear() < 10)
+						throw new ExceptionYearDifferenceUpisRodjenje(getDialog());
+
+					String [] index_splits = indeks.split("/");
+
+					if (Integer.parseInt(index_splits[1]) < datum_up.getYear())
+						throw new ExceptionYearDifferenceIndeksUpis(getDialog());
 					
 					Status status;
 					
@@ -331,10 +357,8 @@ public class NewStudentDialog extends JDialog {
 				
 				}
 				catch(Exception ee) {
-					if (prosek<6 || prosek>10)
-						JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve u rasponu 6.00 - 10.00 za prosek.");
-					else
-						JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");				}
+
+				}
 
 			}
 		});
