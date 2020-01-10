@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import model.entiteti.Predmet;
 import model.entiteti.Student;
 import model.entiteti.Student.Status;
 import view.components.MainFrame;
@@ -226,6 +227,18 @@ public class BazaStudenata {
 			stari.setPrezime(s.getPrezime());
 			stari.setDatum(s.getDatum());
 			stari.setDatum_upisa(s.getDatum_upisa());
+
+			if (stari.getGodina_studija()!=s.getGodina_studija()) {
+				for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
+					for (Student temp : p.getStudenti()) {
+						if (temp.getIndex().equalsIgnoreCase(s.getIndex())) {
+							p.getStudenti().remove(temp);
+							break;
+						}
+					}
+				}
+			}
+
 			stari.setGodina_studija(s.getGodina_studija());
 			stari.setProsek(s.getProsek());
 			stari.setStatus(s.getStatus());
@@ -244,6 +257,18 @@ public class BazaStudenata {
 			stari.setPrezime(s.getPrezime());
 			stari.setDatum(s.getDatum());
 			stari.setDatum_upisa(s.getDatum_upisa());
+
+			if (stari.getGodina_studija() != s.getGodina_studija()) {
+				for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
+					for (Student temp : p.getStudenti()) {
+						if (temp.getIndex().equalsIgnoreCase(stari.getIndex())) {
+							p.getStudenti().remove(temp);
+							break;
+						}
+					}
+				}
+			}
+
 			stari.setGodina_studija(s.getGodina_studija());
 			stari.setProsek(s.getProsek());
 			stari.setStatus(s.getStatus());

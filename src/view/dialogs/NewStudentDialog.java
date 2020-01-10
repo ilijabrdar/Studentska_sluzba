@@ -101,7 +101,7 @@ public class NewStudentDialog extends JDialog {
 		txt_adresa.addKeyListener(k);
 		txt_datum_upisa.addKeyListener(k);
 
-		//trenutna_godina_studija.addItemListener(k);
+		//trenutna_godina_studija.addItemListener(k); TODO: pokusati srediti povezanost godine i proseka
 
 		rb_b.addActionListener(k);
 		rb_s.addActionListener(k);
