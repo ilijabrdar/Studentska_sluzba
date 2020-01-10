@@ -51,8 +51,10 @@ private static ProfesorController instance = new ProfesorController();
 			return false;
 		
 		boolean ret = BazaProfesora.getBazaProfesora().editProfesor(rowSelectedIndex, novi);
-		if (ret) //TODO: zasto ne radi retrieveTable() resenje za profesora?
+		if (ret) {//TODO: zasto ne radi retrieveTable() resenje za profesora?
 			retrieveTable();
+			//MainFrame.getInstance().updateTable();
+		}
 		return ret;
 	}
 

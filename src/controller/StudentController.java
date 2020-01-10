@@ -101,7 +101,7 @@ public class StudentController {
 		String datum_upisa = "";
 		int godina_stud = 0;
 		Student.Status status = null;
-		double prosek = 0;
+		double prosek = 1; //mora da se promeni u 1 jer prosek moze biti 0 ako je student prva godina
 
 
 
@@ -138,7 +138,10 @@ public class StudentController {
 				status = Student.Status.valueOf(search[1].trim());
 			}
 			else if (search[0].equalsIgnoreCase("prosek")) {
-				prosek = Double.parseDouble(search[1].trim());
+				if (search[1].trim().equalsIgnoreCase("/"))
+					prosek = 0;
+				else
+					prosek = Double.parseDouble(search[1].trim());
 			}
 		}
 

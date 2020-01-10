@@ -18,7 +18,7 @@ public class AddBtnActionListener implements ActionListener {
             sd.setVisible(true);
         }
         else if (TabbedPane.getInstance().isRunning("Studenti")) {
-            NewStudentDialog student_dialog = new NewStudentDialog(MainFrame.getInstance(), "Novi predmet", true);
+            NewStudentDialog student_dialog = new NewStudentDialog(MainFrame.getInstance(), "Novi student", true);
             student_dialog.setVisible(true);
         }
 

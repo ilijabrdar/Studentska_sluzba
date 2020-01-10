@@ -243,7 +243,7 @@ public class BazaProfesora {
 	}
 	
 	public Profesor getProfesor(String ID) {
-		for(Profesor p : profesori)
+		for(Profesor p : database) //prepravio profesore u database
 			if(p.getLicna().equalsIgnoreCase(ID)) {
 				return p;
 			}

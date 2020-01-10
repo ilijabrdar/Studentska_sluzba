@@ -115,7 +115,7 @@ public class Student extends Osoba {
 	}
 
 	public boolean search_prosek(double prosek) {
-		if (prosek==0)
+		if (prosek==1)
 			return true;
 
 		return this.prosek==prosek;

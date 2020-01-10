@@ -45,9 +45,9 @@ public class NewStudentDialog extends JDialog {
 	
 	protected JTextField txt_indeks = null;
 	protected static JTextField txt_datum_upisa = null;
-	protected JTextField txt_prosek = null;
+	protected static JTextField txt_prosek = null;
 	
-	protected JComboBox<String> trenutna_godina_studija = null;
+	protected static JComboBox<String> trenutna_godina_studija = null;
 	
 	protected JRadioButton rb_s = null;
 	protected JRadioButton rb_b = null;
@@ -58,6 +58,14 @@ public class NewStudentDialog extends JDialog {
 
 	public static JTextField getTxt_datum_upisa() {
 		return txt_datum_upisa;
+	}
+
+	public static JComboBox<String> getTrenutna_godina_studija() {
+		return trenutna_godina_studija;
+	}
+
+	public static JTextField getTxt_prosek() {
+		return txt_prosek;
 	}
 
 	public NewStudentDialog(Frame parent, String title, boolean modal) {
@@ -92,6 +100,8 @@ public class NewStudentDialog extends JDialog {
 		txt_email.addKeyListener(k);
 		txt_adresa.addKeyListener(k);
 		txt_datum_upisa.addKeyListener(k);
+
+		//trenutna_godina_studija.addItemListener(k);
 
 		rb_b.addActionListener(k);
 		rb_s.addActionListener(k);
@@ -162,6 +172,7 @@ public class NewStudentDialog extends JDialog {
 		
 		String[] godine = new String[] {"Prva", "Druga", "Treća", "Četvrta" };
 		trenutna_godina_studija = new JComboBox<String>(godine);
+		trenutna_godina_studija.setName("trenutna godina studija");
 		trenutna_godina_studija.setPreferredSize(new Dimension(100, 28));
 		
 		
@@ -275,10 +286,15 @@ public class NewStudentDialog extends JDialog {
 				Double prosek=0.0;
 				
 				try{
-					
-					prosek = Double.parseDouble(prosek_str);
-					if (prosek<6 || prosek>10)
-						throw new Exception();
+
+					if (prosek_str.equalsIgnoreCase("/"))
+						prosek = 0.0;
+					else {
+						prosek = Double.parseDouble(prosek_str);
+						if (prosek < 6 || prosek > 10)
+							throw new Exception();
+					}
+
 					String datum_upisa = txt_datum_upisa.getText();
 					
 					int trenutna_godina;

@@ -34,7 +34,12 @@ public class EditStudentDialog extends NewStudentDialog {
 		txt_email.setText(s.getEmail());
 		txt_indeks.setText(s.getIndex());
 		txt_datum_upisa.setText(s.getDatum_upisa());
-		txt_prosek.setText(Double.toString(s.getProsek()));
+
+		double prosek = s.getProsek(); //MORAS DOUBLE KORISTITI
+		if (prosek==0)
+			txt_prosek.setText("/");
+		else
+			txt_prosek.setText(Double.toString(s.getProsek()));
 		
 		int godina_studija = s.getGodina_studija();
 		if (godina_studija==1)
@@ -99,11 +104,15 @@ public class EditStudentDialog extends NewStudentDialog {
 				Double prosek=0.0;
 				
 				try{
-					
-					prosek = Double.parseDouble(prosek_str);
-					if (prosek<6 || prosek>10) {
-						throw new Exception();
+
+					if (prosek_str.equalsIgnoreCase("/"))
+						prosek = 0.0;
+					else {
+						prosek = Double.parseDouble(prosek_str);
+						if (prosek < 6 || prosek > 10)
+							throw new Exception();
 					}
+
 					String datum_upisa = txt_datum_upisa.getText();
 					
 					int trenutna_godina;

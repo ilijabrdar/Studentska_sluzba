@@ -140,7 +140,12 @@ public class BazaStudenata {
 
 			int god = Integer.parseInt(godina_stud);
 			Status st = Status.valueOf(status);
-			double prosek_d = Double.parseDouble(prosek);
+
+			double prosek_d;
+			if (prosek.equalsIgnoreCase("/"))
+				prosek_d = 0;
+			else
+				prosek_d = Double.parseDouble(prosek);
 
 			Student s = new Student(ime,prz,datum_r,adresa,tel,email,indeks,datum_up,god, st,prosek_d);
 			pomocna.add(s);
@@ -164,6 +169,9 @@ public class BazaStudenata {
 		case 4:
 			return student.getStatus().toString();
 		case 5:
+			if (student.getProsek()==0)
+				return "/";
+
 			return Double.toString(student.getProsek());
 		case 6:
 			return student.getDatum().toString();
