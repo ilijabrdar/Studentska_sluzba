@@ -52,8 +52,9 @@
 
         FUNKCIJE PREDMETA
     Dodavanje predmeta - moguce jedino uokviru tabele predmeti i pritiskom na prvo dugme u obliku plusa u zelenom krugu.
-    Da bi se omogucilo unos novog predmeta u bazu podataka, potrebno je da budu ispravno uneti podaci. Tekst polja
-    za naziv mora da pocinje velikim slovom; Sifra predstavlja jedinstvenu sifru svakog predmeta i sastoji se od velikih i malih slova i brojeva.
+    Da bi se omogucilo unos novog predmeta u bazu podataka, potrebno je da budu ispravno uneti podaci. Sifra predmeta može biti 
+    jedna reč sastavljena od slova i brojeva. Naziv predmeta može se sastojati iz više reči, gde prva reč počinje velikim slovom,
+    a ostale reči malim. Dodatno, iza reči može stajati broj od 1 do 9. 
 
     Izmena predmeta - Akcija izmene predmeta se pokrece pritiskom na cetvrto dugme - simbol olovke u zutom krugu.
     Pre izmene potrebno je selektovati predmet za izmenu. Pravila za ispravan unos navedena za dodavanje predmeta se i ovde

@@ -97,10 +97,6 @@ public class MainFrame extends JFrame{
 		student_table.getTableHeader().setReorderingAllowed(false);
 		profesor_table.getTableHeader().setReorderingAllowed(false);
 
-		stable.setAutoCreateRowSorter(true); //ovo ne cini nikakvu izmenu
-
-
-
 		JScrollPane spane = new JScrollPane(stable);
 		JScrollPane student_pane = new JScrollPane(student_table);
 		JScrollPane profesor_pane = new JScrollPane(profesor_table);

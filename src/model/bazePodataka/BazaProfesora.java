@@ -5,6 +5,7 @@ import model.entiteti.Student;
 import view.components.MainFrame;
 
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class BazaProfesora {
@@ -250,24 +251,37 @@ public class BazaProfesora {
 		return null;
 	}
 
-	public void findProfessor(String imep, String przp, String licnap, String titulap, String zvanjep) {
+	public void findProfessor(String imep, String przp, String licnap, String titulap, String zvanjep, String kancp, String emailp, String datump, String telp, String adrp) {
 		ArrayList<Profesor> search = new ArrayList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 		for(Profesor p : database) {
 			String ime = imep;
 			String prz = przp;
 			String licna = licnap;
 			String titula = titulap;
 			String zvanje = zvanjep;
+			String kanc = kancp;
+			String email = emailp;
+			String datum = datump;
+			String tel = telp;
+			String adresa = adrp;
 
 			if(ime.equals("")) ime = p.getIme().toLowerCase();
 			else if(prz.equals("")) prz = p.getPrezime().toLowerCase();
 			else if(licna.equals("")) licna = p.getLicna().toLowerCase();
 			else if(titula.equals("")) titula = p.getTitula().toLowerCase();
 			else if(zvanje.equals("")) zvanje = p.getZvanje().toLowerCase();
+			else if(kanc.equals("")) kanc = p.getKanc().toLowerCase();
+			else if(email.equals("")) email = p.getEmail().toLowerCase();
+			else if(datum.equals("")) datum = p.getDatum();
+			else if(tel.equals("")) tel = p.getTelefon();
+			else if(tel.equals("")) adresa = p.getAdresa();
 
 			if(p.getIme().toLowerCase().contains(ime) && p.getPrezime().toLowerCase().contains(prz) &&
 				p.getLicna().toLowerCase().contains(licna) && p.getTitula().toLowerCase().contains(titula) &&
-				p.getZvanje().toLowerCase().contains(zvanje))
+				p.getZvanje().toLowerCase().contains(zvanje) && p.getKanc().toLowerCase().contains(kanc) &&
+				p.getEmail().toLowerCase().contains(email) && p.getDatum().toLowerCase().contains(datum) &&
+				p.getTelefon().toLowerCase().contains(tel) && p.getAdresa().toLowerCase().contains(adresa))
 					search.add(p);
 		}
 		profesori = search;

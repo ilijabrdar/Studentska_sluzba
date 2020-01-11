@@ -8,9 +8,7 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+import javax.swing.table.*;
 
 public class SubjectTable extends JTable{
 
@@ -25,6 +23,10 @@ public class SubjectTable extends JTable{
 		this.setModel(new AbstractModelSubjects());
 		new ButtonColumnStudenti(this,5, "Prikaži studente");
 		new ButtonColumnProfesori(this,4, "Prikaži profesore");
+		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
+		sorter.setSortable(4, false);
+		sorter.setSortable(5, false);
+		this.setRowSorter(sorter);
 	}
 	
 	public static SubjectTable getSubjectTable() {

@@ -65,8 +65,7 @@ private static ProfesorController instance = new ProfesorController();
 		else {
 			String ime = "", prz = "", adresa = "";
 			String kanc = "", licna = "", titula = "", zvanje = "";
-			//TODO Zavrsiti pretragu profesora
-			//TODO Dodati pretragu po ostalim poljima?
+			String email = "", datum = "", tel = "";
 			for (String p : params) {
 				String[] subParams = p.split("\\:");
 				switch (subParams[0].trim().toLowerCase()) {
@@ -85,12 +84,27 @@ private static ProfesorController instance = new ProfesorController();
 					case "zvanje":
 						zvanje = subParams[1].trim().toLowerCase();
 						break;
+					case "adresa kancelarije":
+						kanc = subParams[1].trim().toLowerCase();
+						break;
+					case "e-mail adresa":
+						email = subParams[1].trim().toLowerCase();
+						break;
+					case "datum rođenja":
+						datum = subParams[1].trim().toLowerCase();
+						break;
+					case "kontakt telefon":
+						tel = subParams[1].trim().toLowerCase();
+						break;
+					case "adresa stanovanja":
+						adresa = subParams[1].trim().toLowerCase();
+						break;
 					default:
 						throw new Exception("Neispravno uneto polje po kom se pretražuje.");
 				}
 			}
 			BazaProfesora bp = BazaProfesora.getBazaProfesora();
-			bp.findProfessor(ime, prz, licna, titula, zvanje);
+			bp.findProfessor(ime, prz, licna, titula, zvanje, kanc, email, datum, tel, adresa);
 			MainFrame.getInstance().updateTable();
 		}
 	}
