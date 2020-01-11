@@ -21,7 +21,7 @@ public class ApplicationMain {
 
 		MainFrame frame = MainFrame.getInstance();
 		frame.setVisible(true);
-
+		
 	}
 
 	private static void runIntroPanel() {

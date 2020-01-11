@@ -75,17 +75,20 @@ public class MyListenerProfesor implements KeyListener {
                 j_txt.setBackground(Color.pink);
                 flag_datum_r = 0;
             } else {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
-                LocalDate datum_rodjenja = LocalDate.parse(text,formatter);
-                LocalDate trenutni = LocalDate.now();
-                if (!datum_rodjenja.isBefore(trenutni)) {
-                    btnOK.setEnabled(false);
-                    j_txt.setBackground(Color.pink);
-                    flag_datum_r = 0;
-                }
-                else {
-                    j_txt.setBackground(Color.white);
-                    flag_datum_r=1;
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+                    LocalDate datum_rodjenja = LocalDate.parse(text, formatter);
+                    LocalDate trenutni = LocalDate.now();
+                    if (!datum_rodjenja.isBefore(trenutni)) {
+                        btnOK.setEnabled(false);
+                        j_txt.setBackground(Color.pink);
+                        flag_datum_r = 0;
+                    } else {
+                        j_txt.setBackground(Color.white);
+                        flag_datum_r = 1;
+                    }
+                } catch (Exception ee) {
+
                 }
 
             }

@@ -3,6 +3,8 @@ package view.dialogs;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JOptionPane;
 
@@ -10,6 +12,9 @@ import controller.StudentController;
 import model.bazePodataka.BazaStudenata;
 import model.entiteti.Student;
 import model.entiteti.Student.Status;
+import view.exceptions.ExceptionProsek;
+import view.exceptions.ExceptionYearDifferenceIndeksUpis;
+import view.exceptions.ExceptionYearDifferenceUpisRodjenje;
 import view.listeners.MyListenerStudent;
 import view.tables.StudentsTable;
 
@@ -17,7 +22,7 @@ public class EditStudentDialog extends NewStudentDialog {
 
 	private static final long serialVersionUID = -6423347424244063431L;
 
-	//TODO: da li treba pri promeni godine studija da se izbrisu svi predmeti studenta koji vise nisu u prethodnoj godini
+
 	public EditStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
@@ -104,35 +109,48 @@ public class EditStudentDialog extends NewStudentDialog {
 				Double prosek=0.0;
 				
 				try{
-
-					if (prosek_str.equalsIgnoreCase("/"))
-						prosek = 0.0;
-					else {
-						prosek = Double.parseDouble(prosek_str);
-						if (prosek < 6 || prosek > 10)
-							throw new Exception();
-					}
-
-					String datum_upisa = txt_datum_upisa.getText();
-					
 					int trenutna_godina;
 					if ( trenutna_godina_studija.getSelectedIndex()==0)
 						trenutna_godina = 1;
 					else if (trenutna_godina_studija.getSelectedIndex()==1)
 						trenutna_godina = 2;
-					
+
 					else if (trenutna_godina_studija.getSelectedIndex()==2)
 						trenutna_godina = 3;
 					else
 						trenutna_godina=4;
-					
-					
+
+
+					if (prosek_str.equalsIgnoreCase("/"))
+						prosek = 0.0;
+					else
+						prosek = Double.parseDouble(prosek_str);
+
+					if (prosek!=0.0 && trenutna_godina==1)
+						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+					else if (prosek==0.0 && trenutna_godina!=1)
+						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+
+					String datum_upisa = txt_datum_upisa.getText();
+
 					Status status;
 					
 					if (rb_s.isSelected()) 
 						status = Status.S;
 					else
 						status= Status.B;
+
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+					LocalDate datum_rodj = LocalDate.parse(datum_rodjenja, formatter);
+					LocalDate datum_up = LocalDate.parse(datum_upisa,formatter);
+
+					if (datum_up.getYear() - datum_rodj.getYear() < 10)
+						throw new ExceptionYearDifferenceUpisRodjenje(getDialog());
+
+					String [] index_splits = indeks.split("/");
+
+					if (Integer.parseInt(index_splits[1]) < datum_up.getYear())
+						throw new ExceptionYearDifferenceIndeksUpis(getDialog());
 					
 					Student s = new Student(ime,prezime,datum_rodjenja,adresa,telefon,email,indeks,datum_upisa,trenutna_godina,
 							status,prosek);
@@ -149,15 +167,9 @@ public class EditStudentDialog extends NewStudentDialog {
 				
 				}
 				catch(Exception ee) {
-					if (prosek<6 || prosek>10)
-						JOptionPane.showMessageDialog(getDialog(), "Unesite samo brojeve u rasponu 6.00 - 10.00 za prosek.");
-					else
-						JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");
+
 				}
-				
-				
-				
-								
+
 			}
 		});
 		
