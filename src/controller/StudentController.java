@@ -86,8 +86,6 @@ public class StudentController {
 
 	//ime:Marko;prezime:Marković;indeks:sw-1-2019
 	public void findStudent(String text) throws Exception { //mora biti ispostovan format unosa
-		if (!text.matches("[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9/.]+(;[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9/.]+)*"))
-			throw new Exception("Neispravno definisan kriterijum pretrage.");
 
 		//ideja pretrage: postavim sve kriterijume pretrage na neke default vrednosti i onda proveravam koji kriterijum pretrage mi je poslat
 		//ako je poslato npr. ime, onda polje kriterijuma ime postavim na prosledjeno ime. Ostala polja ostanu defaultna.
@@ -110,8 +108,7 @@ public class StudentController {
 		Student.Status status = null;
 		double prosek = 1; //mora da se promeni u 1 jer prosek moze biti 0 ako je student prva godina
 
-
-
+		
 		for (String data : splits) {
 			String []search = data.split(":");
 			if (search[0].equalsIgnoreCase("ime"))
