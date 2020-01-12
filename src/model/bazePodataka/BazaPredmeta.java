@@ -36,7 +36,7 @@ public class BazaPredmeta {
 			subjects.add(p);
 	}
 
-
+	//vuce predmete iz fajla da inicijalnizuje backup listu
 	private void initBackup() {
 		BufferedReader reader = null;
 		String[] data;
@@ -139,7 +139,7 @@ public class BazaPredmeta {
 	public void setSubjects(ArrayList<Predmet> subjects) {
 		this.subjects = subjects;
 	}
-	
+	//vraca vrednost iz promenljive liste, nikad se skoro ne koristi
 	public String getValueAt(int row, int col) {
 		Predmet subj = subjects.get(row);
 		switch(col) {
@@ -173,7 +173,7 @@ public class BazaPredmeta {
 			return false;
 		return backup.add(subj);
 	}
-	
+	//vrati false ako postoji neki predmet koji ima istu sifru, a nije predmet koji se trenutno menja
 	public boolean editSubject(String ID, Predmet subj) {
 		Predmet s = getSubject(subj.getSifra()); //nova verzija predmeta
 		Predmet p = getSubject(ID); //stara verzija predmeta
@@ -190,7 +190,7 @@ public class BazaPredmeta {
 		p.setGodina(subj.getGodina());
 		return true;
 	}
-	
+	//ako nije naveden neki podatak popuni ta polja sa tekucim podacima, da bi kritetijum bio zadovoljen
 	public void findSubject(String sifra, String naziv, String semestar, String godina) {
 		ArrayList<Predmet> search = new ArrayList<Predmet>();
 		for (int i = 0; i < backup.size(); i++) {

@@ -32,7 +32,7 @@ public class ShowProfsDialog extends ShowProfsStudsDialog {
     }
 
     private void initList() {
-        //fireEditingStopped(); ???????????????
+        //fireEditingStopped();
         Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
         for (Profesor p : predmet.getProfs()) {
             //System.out.println(p);

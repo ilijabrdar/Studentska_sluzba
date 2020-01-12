@@ -23,7 +23,12 @@ public class SubjectDialog extends JDialog {
     public SubjectDialog(Frame owner, String title, boolean modal, int f1, int f2) {
         super(owner, title, modal);
         flag1 = f1; flag2 = f2;
-        setSize(400, 400);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension scrSize = kit.getScreenSize();
+        int height = scrSize.height;
+        int width = scrSize.width;
+        setSize(width / 3, height / 2);
+        //setSize(400, 400);
         setLocationRelativeTo(owner);
         setResizable(false);
         this.setLayout(new BorderLayout());

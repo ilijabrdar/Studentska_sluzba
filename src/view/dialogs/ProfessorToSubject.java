@@ -1,10 +1,6 @@
 package view.dialogs;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -30,7 +26,12 @@ public class ProfessorToSubject extends JDialog{
 	
 	public ProfessorToSubject(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
-		setSize(new Dimension(550, 150));
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension scrSize = kit.getScreenSize();
+		int height = scrSize.height;
+		int width = scrSize.width;
+		setSize(width / 2, height / 5);
+		//setSize(new Dimension(550, 150));
 		setLocationRelativeTo(owner);
 		setResizable(false);
 		setLayout(new BorderLayout());
@@ -68,7 +69,7 @@ public class ProfessorToSubject extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("USAO U LISTENER");
+
 				String ID = txt.getText().trim();
 				SubjectController sc = SubjectController.getSubjectController();
 				int param = sc.addProfToSubj(ID);
