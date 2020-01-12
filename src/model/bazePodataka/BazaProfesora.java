@@ -234,7 +234,15 @@ public class BazaProfesora {
 	}
 	
 	public void removeProfesor(Profesor p) {
-		profesori.remove(p);
+
+		for (Profesor temp : profesori) {
+			if (temp.getLicna().equalsIgnoreCase(p.getLicna())) {
+				profesori.remove(temp);
+				break;
+			}
+		}
+
+
 		for (Profesor temp : database) {
 			if (temp.getLicna().equalsIgnoreCase(p.getLicna())) {
 				database.remove(temp);
@@ -245,6 +253,14 @@ public class BazaProfesora {
 	
 	public Profesor getProfesor(String ID) {
 		for(Profesor p : database) //prepravio profesore u database
+			if(p.getLicna().equalsIgnoreCase(ID)) {
+				return p;
+			}
+		return null;
+	}
+
+	public Profesor getProfesorFromProf(String ID) {
+		for(Profesor p : profesori) //prepravio profesore u database
 			if(p.getLicna().equalsIgnoreCase(ID)) {
 				return p;
 			}

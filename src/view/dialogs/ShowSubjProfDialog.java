@@ -1,5 +1,6 @@
 package view.dialogs;
 
+import controller.ProfesorController;
 import controller.SubjectController;
 import model.bazePodataka.BazaProfesora;
 import model.entiteti.Predmet;
@@ -39,9 +40,8 @@ public class ShowSubjProfDialog extends JDialog {
     public JDialog getDialog() {return this;}
 
     private void initList() {
-        BazaProfesora.getBazaProfesora().updateArrayList();
-        int index = ProfesorTable.getProfesorTable().getSelectedRow(); //TODO PROVERITI GRESKA
-        Profesor profa = BazaProfesora.getBazaProfesora().getRow(index);
+        Profesor profa = ProfesorController.getInstance().getSelectedProfessorByID();
+        System.out.println(profa);
         for (Predmet p : profa.getPredmeti()) {
             DLM.addElement(p.getSifra() + " " + p.getNaziv());
         }

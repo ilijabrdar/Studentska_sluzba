@@ -1,5 +1,6 @@
 package view.components;
 
+import model.bazePodataka.BazaProfesora;
 import view.dialogs.ShowProfsDialog;
 import view.dialogs.ShowSubjProfDialog;
 

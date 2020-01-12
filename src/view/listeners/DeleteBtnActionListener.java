@@ -72,13 +72,14 @@ public class DeleteBtnActionListener implements ActionListener {
 
                 */
 
+                BazaProfesora.getBazaProfesora().updateArrayList();
                 Profesor p = BazaProfesora.getBazaProfesora().getRow(row_prof);
                 String licna = p.getLicna();
 
                 SubjectController.getSubjectController().removeProfFromSubj(licna);
 
                 ProfesorController pc = ProfesorController.getInstance();
-                pc.izbrisiProfesora(row_prof);
+                pc.izbrisiProfesoraByID(licna);
 
             }
 

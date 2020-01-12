@@ -1,8 +1,11 @@
 package controller;
+import model.bazePodataka.BazaPredmeta;
 import model.bazePodataka.BazaProfesora;
 import model.entiteti.Predmet;
 import model.entiteti.Profesor;
 import view.components.MainFrame;
+import view.tables.ProfesorTable;
+import view.tables.SubjectTable;
 
 import javax.swing.*;
 import java.io.*;
@@ -31,6 +34,20 @@ private static ProfesorController instance = new ProfesorController();
 
 		BazaProfesora.getBazaProfesora().updateArrayList();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
+		System.out.println(p);
+		BazaProfesora.getBazaProfesora().removeProfesor(p);
+
+		if(BazaProfesora.getBazaProfesora().getProfesori().isEmpty())
+			retrieveTable();
+		else
+			MainFrame.getInstance().updateTable();
+
+	}
+
+	public void izbrisiProfesoraByID(String licna) {
+		BazaProfesora.getBazaProfesora().updateArrayList();
+		Profesor p = BazaProfesora.getBazaProfesora().getProfesor(licna);
+
 		BazaProfesora.getBazaProfesora().removeProfesor(p);
 
 		if(BazaProfesora.getBazaProfesora().getProfesori().isEmpty())
@@ -45,7 +62,17 @@ private static ProfesorController instance = new ProfesorController();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(rowSelectedIndex);
 		return p;
 	}
-	
+
+	public Profesor getSelectedProfessorByID() {
+		Profesor retVal = null;
+		int selectedRow = ProfesorTable.getProfesorTable().getSelectedRow();
+		String id = (String) ProfesorTable.getProfesorTable().getValueAt(selectedRow, 2);
+		for(Profesor p : BazaProfesora.getBazaProfesora().getDatabase()) //svejedno da li je ovo ili backup
+			if(p.getLicna().equalsIgnoreCase(id))
+				retVal = p;
+		return retVal;
+	}
+
 	public boolean izmeniProfesora (int rowSelectedIndex, Profesor novi) {
 		if (rowSelectedIndex < 0)
 			return false;
