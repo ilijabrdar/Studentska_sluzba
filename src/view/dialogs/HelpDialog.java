@@ -10,7 +10,7 @@ import java.io.*;
 import java.text.Format;
 
 public class HelpDialog extends JDialog {
-    //TODO: dopuni help.txt da menjanje tabova vraca tabelu
+
     public HelpDialog(Frame parent, String title, boolean modal) {
         super(parent,title,modal);
 
@@ -37,7 +37,7 @@ public class HelpDialog extends JDialog {
 
     }
 
-    private String pullText() { //TODO: specijalni karakteri
+    private String pullText() {
         BufferedReader reader = null;
         StringBuilder sb = new StringBuilder();
         String [] data;

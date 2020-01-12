@@ -12,9 +12,7 @@ import controller.StudentController;
 import model.bazePodataka.BazaStudenata;
 import model.entiteti.Student;
 import model.entiteti.Student.Status;
-import view.exceptions.ExceptionProsek;
-import view.exceptions.ExceptionYearDifferenceIndeksUpis;
-import view.exceptions.ExceptionYearDifferenceUpisRodjenje;
+import view.components.MainFrame;
 import view.listeners.MyListenerStudent;
 import view.tables.StudentsTable;
 
@@ -127,9 +125,9 @@ public class EditStudentDialog extends NewStudentDialog {
 						prosek = Double.parseDouble(prosek_str);
 
 					if (prosek!=0.0 && trenutna_godina==1)
-						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+						throw new Exception("Studenti prve godine nemaju prosek (unesite /).");
 					else if (prosek==0.0 && trenutna_godina!=1)
-						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+						throw new Exception("Za studente visih godina morate uneti prosek.");
 
 					String datum_upisa = txt_datum_upisa.getText();
 
@@ -145,12 +143,12 @@ public class EditStudentDialog extends NewStudentDialog {
 					LocalDate datum_up = LocalDate.parse(datum_upisa,formatter);
 
 					if (datum_up.getYear() - datum_rodj.getYear() < 10)
-						throw new ExceptionYearDifferenceUpisRodjenje(getDialog());
+						throw new Exception("Godina rodjenja i godina upisa se moraju razlikovati bar za 10.");
 
 					String [] index_splits = indeks.split("/");
 
 					if (Integer.parseInt(index_splits[1]) < datum_up.getYear())
-						throw new ExceptionYearDifferenceIndeksUpis(getDialog());
+						throw new Exception("Godina indexa mora biti veca ili jednaka godini upisa.");
 					
 					Student s = new Student(ime,prezime,datum_rodjenja,adresa,telefon,email,indeks,datum_upisa,trenutna_godina,
 							status,prosek);
@@ -167,6 +165,7 @@ public class EditStudentDialog extends NewStudentDialog {
 				
 				}
 				catch(Exception ee) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), ee.getMessage(),"Izmena studenta", JOptionPane.ERROR_MESSAGE);
 
 				}
 

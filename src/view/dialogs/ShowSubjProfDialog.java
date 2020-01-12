@@ -40,8 +40,10 @@ public class ShowSubjProfDialog extends JDialog {
     public JDialog getDialog() {return this;}
 
     private void initList() {
+
         Profesor profa = ProfesorController.getInstance().getSelectedProfessorByID();
         System.out.println(profa);
+
         for (Predmet p : profa.getPredmeti()) {
             DLM.addElement(p.getSifra() + " " + p.getNaziv());
         }

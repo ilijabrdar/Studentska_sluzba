@@ -23,9 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import view.exceptions.ExceptionProsek;
-import view.exceptions.ExceptionYearDifferenceIndeksUpis;
-import view.exceptions.ExceptionYearDifferenceUpisRodjenje;
+import view.components.MainFrame;
 import controller.StudentController;
 import model.entiteti.Student;
 import model.entiteti.Student.Status;
@@ -109,8 +107,6 @@ public class NewStudentDialog extends JDialog {
 		txt_email.addKeyListener(k);
 		txt_adresa.addKeyListener(k);
 		txt_datum_upisa.addKeyListener(k);
-
-		//trenutna_godina_studija.addItemListener(k); TODO: pokusati srediti povezanost godine i proseka
 
 		rb_b.addActionListener(k);
 		rb_s.addActionListener(k);
@@ -319,21 +315,21 @@ public class NewStudentDialog extends JDialog {
 
 
 					if (prosek!=0.0 && trenutna_godina==1)
-						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+						throw new Exception("Studenti prve godine nemaju prosek (unesite /).");
 					else if (prosek==0.0 && trenutna_godina!=1)
-						throw new ExceptionProsek(getDialog(),trenutna_godina_studija,prosek);
+						throw new Exception("Za studente visih godina morate uneti prosek.");
 
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 					LocalDate datum_rodj = LocalDate.parse(datum_rodjenja, formatter);
 					LocalDate datum_up = LocalDate.parse(datum_upisa,formatter);
 
 					if (datum_up.getYear() - datum_rodj.getYear() < 10)
-						throw new ExceptionYearDifferenceUpisRodjenje(getDialog());
+						throw new Exception("Godina rodjenja i godina upisa se moraju razlikovati bar za 10.");
 
 					String [] index_splits = indeks.split("/");
 
 					if (Integer.parseInt(index_splits[1]) < datum_up.getYear())
-						throw new ExceptionYearDifferenceIndeksUpis(getDialog());
+						throw new Exception("Godina indexa mora biti veca ili jednaka godini upisa.");
 					
 					Status status;
 					
@@ -357,7 +353,7 @@ public class NewStudentDialog extends JDialog {
 				
 				}
 				catch(Exception ee) {
-
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), ee.getMessage(),"Dodavanje studenta", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}

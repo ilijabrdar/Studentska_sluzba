@@ -3,9 +3,10 @@
 
 
     David Drvar je rođen 21.07.1998. u Novom Sadu. Završio je srednju školu Jovan Jovanović Zmaj 
-    pohadjajući društveno jezički smer, kao i muzicku skolu Isidor Bajic na odseku za klavir. 
-    Fakulet Tehnickih Nauka, smer Racunarstvo i Automatika upisuje 2017. godine. 
-    Na fakultetu postaje demonstrator iz dva predmeta - Objektno-orijentisano programiranje i 
+    pohađajući društveno-jezički smer, kao i muzičku školu Isidor Bajić na odseku za klavir. 
+    Fakulet tehničkih nauka, smer Računarstvo i Automatika (Primenjene računarske nauke i informatika) 
+    upisuje 2017. godine. 
+    Na fakultetu je učestvovao kao demonstrator iz dva predmeta - Objektno-orijentisano programiranje i 
     Programski jezici i strukture podataka.
     U slobodno vreme rado vozi bicikli i gleda filmove.
 
@@ -16,3 +17,5 @@
     Na fakultetu je učestvovao u izvođenju nastave iz Programskih jezika i struktura podataka i
     Logičkog projektovanja računarskih sistema sa pozicije demonstratora.
     U oblast interesovanja ubraja numeriku, kao i algoritme i strukture podataka.
+
+

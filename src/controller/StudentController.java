@@ -28,12 +28,10 @@ public class StudentController {
 		return ret;
 	}
 	
-	public void izbrisiStudenta(int rowSelectedIndex) {
-		if (rowSelectedIndex < 0 )
-			return;
+	public void izbrisiStudenta(String indeks_studenta) {
 
 		BazaStudenata.getBazaStudenata().updateArrayList();
-		Student s = BazaStudenata.getBazaStudenata().getRow(rowSelectedIndex);
+		Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(indeks_studenta);
 		BazaStudenata.getBazaStudenata().removeStudent(s);
 		MainFrame.getInstance().updateTable();
 
@@ -88,7 +86,10 @@ public class StudentController {
 	}
 
 	//ime:Marko;prezime:Marković;indeks:sw-1-2019
-	public void findStudent(String text) {
+	public void findStudent(String text) throws Exception {
+		if (!text.matches("[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9.]+(;[ A-Za-zŠČĆŽĐšđčćž]+:[ A-Za-zŠČĆŽĐšđčćž0-9.]+)*"))
+			throw new Exception("Neispravno definisan kriterijum pretrage.");
+
 		String []splits = text.split(";");
 		String ime = "";
 		String prezime = "";
@@ -143,6 +144,8 @@ public class StudentController {
 				else
 					prosek = Double.parseDouble(search[1].trim());
 			}
+			else
+				throw new Exception("Neispravno uneto polje po kom se pretražuje.");
 		}
 
 		BazaStudenata.getBazaStudenata().find(ime,prezime,datum_rodjenja,adresa,telefon,email,index,datum_upisa,godina_stud,status,prosek);

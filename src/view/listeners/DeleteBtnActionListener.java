@@ -53,7 +53,7 @@ public class DeleteBtnActionListener implements ActionListener {
                 subjectController.removeStudFromSubj(indeks);
 
                 StudentController studentController = StudentController.getInstance();
-                studentController.izbrisiStudenta(row_student);
+                studentController.izbrisiStudenta(indeks);
             }
         }
         else if (TabbedPane.getInstance().isRunning("Studenti") && row_student == -1) {

@@ -289,7 +289,14 @@ public class BazaStudenata {
 				break;
 			}
 		}
-		students.remove(s);
+
+		for (Student temp : students) {
+			if (temp.getIndex().equalsIgnoreCase(s.getIndex())) {
+				students.remove(temp);
+				break;
+			}
+		}
+		//students.remove(s);
 	}
 
 	public void undo_search() {
