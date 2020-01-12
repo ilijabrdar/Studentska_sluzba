@@ -40,7 +40,7 @@ public class ShowSubjProfDialog extends JDialog {
 
     private void initList() {
         BazaProfesora.getBazaProfesora().updateArrayList();
-        int index = ProfesorTable.getProfesorTable().getSelectedRow(); //TODO PROVERITI GRESKA
+        int index = ProfesorTable.getProfesorTable().getSelectedRow();
         Profesor profa = BazaProfesora.getBazaProfesora().getRow(index);
         for (Predmet p : profa.getPredmeti()) {
             DLM.addElement(p.getSifra() + " " + p.getNaziv());

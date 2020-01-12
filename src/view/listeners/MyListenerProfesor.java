@@ -48,105 +48,135 @@ public class MyListenerProfesor implements KeyListener {
         JTextField j_txt = (JTextField) e.getComponent();
         String text = j_txt.getText();
 
-        if (j_txt.getName().equalsIgnoreCase("ime")) {
-            if (!text.matches("[A-ZČĆŽŠĐ].+")) {
-                btnOK.setEnabled(false);
-                flag_ime=0;
-                j_txt.setBackground(Color.pink);
-            } else {
-                j_txt.setBackground(Color.white);
-                flag_ime=1;
-            }
-        }
+        if (j_txt.getName().equalsIgnoreCase("ime"))
+            provera_ime(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("prezime")) {
-            if (!text.matches("[A-ZČĆŽŠĐ].+")) {
-                btnOK.setEnabled(false);
-                flag_prezime=0;
-                j_txt.setBackground(Color.pink);
-            } else {
-                j_txt.setBackground(Color.white);
-                flag_prezime=1;
-            }
-        }
-        else if (j_txt.getName().equalsIgnoreCase("datum rodjenja")) {
-            if (!text.matches("[0-3][0-9]\\.[0-9][0-9]\\.[0-9][0-9][0-9][0-9]\\.")) {
-                btnOK.setEnabled(false);
-                j_txt.setBackground(Color.pink);
-                flag_datum_r = 0;
-            } else {
-                try {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
-                    LocalDate datum_rodjenja = LocalDate.parse(text, formatter);
-                    LocalDate trenutni = LocalDate.now();
-                    if (!datum_rodjenja.isBefore(trenutni)) {
-                        btnOK.setEnabled(false);
-                        j_txt.setBackground(Color.pink);
-                        flag_datum_r = 0;
-                    } else {
-                        j_txt.setBackground(Color.white);
-                        flag_datum_r = 1;
-                    }
-                } catch (Exception ee) {
 
-                }
+        else if (j_txt.getName().equalsIgnoreCase("prezime"))
+            provera_prezime(text,j_txt);
 
-            }
-        }
+        else if (j_txt.getName().equalsIgnoreCase("datum rodjenja"))
+            provera_datum_rodjenja(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("telefon")) {
-            if (text.trim().matches("")) {
-                btnOK.setEnabled(false);
-                j_txt.setBackground(Color.pink);
-                flag_telefon=0;
-            } else {
-                flag_telefon=1;
-                j_txt.setBackground(Color.white);
-            }
-        }
-        else if (j_txt.getName().equalsIgnoreCase("email")) {
-            if (text.trim().matches("")) {
-                btnOK.setEnabled(false);
-                j_txt.setBackground(Color.pink);
-                flag_email=0;
-            } else {
-                flag_email=1;
-                j_txt.setBackground(Color.white);
-            }
-        }
-        else if (j_txt.getName().equalsIgnoreCase("adresa")) {
-            if (text.trim().matches("")) {
-                btnOK.setEnabled(false);
-                j_txt.setBackground(Color.pink);
-                flag_adresa=0;
-            } else {
-                flag_adresa=1;
-                j_txt.setBackground(Color.white);
-            }
-        }
-        else if (j_txt.getName().equalsIgnoreCase("kancelarija")) {
-            if (text.trim().matches("")) {
-                btnOK.setEnabled(false);
-                j_txt.setBackground(Color.pink);
-                flag_kanc=0;
-            } else {
-                flag_kanc=1;
-                j_txt.setBackground(Color.white);
-            }
-        }
+        else if (j_txt.getName().equalsIgnoreCase("telefon"))
+            provera_telefon(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("licna")) {
-            if (!text.trim().matches("[0-9]+")) {
-                btnOK.setEnabled(false);
-                j_txt.setBackground(Color.pink);
-                flag_licna=0;
-            } else {
-                flag_licna=1;
-                j_txt.setBackground(Color.white);
-            }
-        }
-        if (flag_adresa==1 && flag_email==1 && flag_telefon==1 && flag_kanc==1 && flag_datum_r==1 && flag_prezime==1 && flag_ime==1 && flag_licna==1) {
+        else if (j_txt.getName().equalsIgnoreCase("email"))
+            provera_email(text,j_txt);
+
+        else if (j_txt.getName().equalsIgnoreCase("adresa"))
+            provera_adresa(text,j_txt);
+
+        else if (j_txt.getName().equalsIgnoreCase("kancelarija"))
+            provera_kancelarija(text,j_txt);
+
+        else if (j_txt.getName().equalsIgnoreCase("licna"))
+            provera_licna(text,j_txt);
+
+        if (flag_adresa==1 && flag_email==1 && flag_telefon==1 && flag_kanc==1 && flag_datum_r==1 && flag_prezime==1 && flag_ime==1 && flag_licna==1)
             btnOK.setEnabled(true);
+
+    }
+
+    private void provera_licna(String text, JTextField j_txt) {
+        if (!text.trim().matches("[0-9]+")) {
+            btnOK.setEnabled(false);
+            j_txt.setBackground(Color.pink);
+            flag_licna=0;
+        } else {
+            flag_licna=1;
+            j_txt.setBackground(Color.white);
+        }
+    }
+
+    private void provera_kancelarija(String text, JTextField j_txt) {
+        if (text.trim().matches("")) {
+            btnOK.setEnabled(false);
+            j_txt.setBackground(Color.pink);
+            flag_kanc=0;
+        } else {
+            flag_kanc=1;
+            j_txt.setBackground(Color.white);
+        }
+    }
+
+    private void provera_adresa(String text, JTextField j_txt) {
+        if (text.trim().matches("")) {
+            btnOK.setEnabled(false);
+            j_txt.setBackground(Color.pink);
+            flag_adresa=0;
+        } else {
+            flag_adresa=1;
+            j_txt.setBackground(Color.white);
+        }
+    }
+
+    private void provera_email(String text, JTextField j_txt) {
+        if (text.trim().matches("")) {
+            btnOK.setEnabled(false);
+            j_txt.setBackground(Color.pink);
+            flag_email=0;
+        } else {
+            flag_email=1;
+            j_txt.setBackground(Color.white);
+        }
+    }
+
+    private void provera_telefon(String text, JTextField j_txt) {
+        if (text.trim().matches("")) {
+            btnOK.setEnabled(false);
+            j_txt.setBackground(Color.pink);
+            flag_telefon=0;
+        } else {
+            flag_telefon=1;
+            j_txt.setBackground(Color.white);
+        }
+    }
+
+    private void provera_datum_rodjenja(String text, JTextField j_txt) {
+        if (!text.matches("[0-3][0-9]\\.[0-9][0-9]\\.[0-9][0-9][0-9][0-9]\\.")) {
+            btnOK.setEnabled(false);
+            j_txt.setBackground(Color.pink);
+            flag_datum_r = 0;
+        } else {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+                LocalDate datum_rodjenja = LocalDate.parse(text, formatter);
+                LocalDate trenutni = LocalDate.now();
+                if (!datum_rodjenja.isBefore(trenutni)) {
+                    btnOK.setEnabled(false);
+                    j_txt.setBackground(Color.pink);
+                    flag_datum_r = 0;
+                } else {
+                    j_txt.setBackground(Color.white);
+                    flag_datum_r = 1;
+                }
+            } catch (Exception ee) {
+
+            }
+
+        }
+    }
+
+    private void provera_prezime(String text, JTextField j_txt) {
+        if (!text.matches("[A-ZČĆŽŠĐ].+")) {
+            btnOK.setEnabled(false);
+            flag_prezime=0;
+            j_txt.setBackground(Color.pink);
+        } else {
+            j_txt.setBackground(Color.white);
+            flag_prezime=1;
+        }
+    }
+
+    private void provera_ime(String text, JTextField j_txt) {
+        if (!text.matches("[A-ZČĆŽŠĐ].+")) {
+            btnOK.setEnabled(false);
+            flag_ime=0;
+            j_txt.setBackground(Color.pink);
+        } else {
+            j_txt.setBackground(Color.white);
+            flag_ime=1;
         }
     }
 }

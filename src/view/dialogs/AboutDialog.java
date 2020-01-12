@@ -13,7 +13,7 @@ public class AboutDialog extends JDialog {
         Dimension scrSize = kit.getScreenSize();
         int height = scrSize.height;
         int width = scrSize.width;
-        setSize(3 * width / 6, 3 * height / 4);
+        setSize(3 * width / 8, 3 * height / 6);
         setLocationRelativeTo(parent);
         setResizable(true);
         this.setLayout(new BorderLayout());
@@ -31,7 +31,7 @@ public class AboutDialog extends JDialog {
         this.add(sp,BorderLayout.CENTER);
     }
 
-    private String pullText() { //TODO: specijalni karakteri
+    private String pullText() {
         BufferedReader reader = null;
         StringBuilder sb = new StringBuilder();
         String [] data;

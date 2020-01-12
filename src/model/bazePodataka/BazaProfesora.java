@@ -188,8 +188,7 @@ public class BazaProfesora {
 				return false;
 		}
 
-		//TODO: ne smem dodati u oba, zasto?
-		//profesori.add(p);
+		//TODO: zasto ne smem dodati u oba?
 		database.add(p);
 		return true;
 	}
@@ -212,7 +211,7 @@ public class BazaProfesora {
 			return true;
 		}
 		else {
-			for (Profesor temp : profesori) { //TODO: popravi da se prepravljanje profesora vidi u prikazi profesore za predmet
+			for (Profesor temp : profesori) {
 				if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
 					return false;
 			}

@@ -5,23 +5,17 @@ import view.components.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import static java.lang.Thread.*;
 
 public class ApplicationMain {
 
 	private static final int TIME_VISIBLE = 30000;
 
 	public static void main(String[] args) {
-		runIntroPanel();
+		//runIntroPanel();
 
 		MainFrame frame = MainFrame.getInstance();
 		frame.setVisible(true);
-		
+
 	}
 
 	private static void runIntroPanel() {

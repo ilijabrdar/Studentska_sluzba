@@ -45,9 +45,9 @@ public class SearchBtnActionListener implements ActionListener {
             StudentController sc = StudentController.getInstance();
             if (search.getText().trim().length()!=0)
                 try {
-                    sc.findStudent(search.getText()); //TODO: ispis greske?
+                    sc.findStudent(search.getText());
                 } catch (Exception error) {
-                    JOptionPane.showMessageDialog(MainFrame.getInstance(), "Kriterijum pretrage je neispravno definisan.","Pretraga studenata", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(MainFrame.getInstance(), error.getMessage(),"Pretraga studenata", JOptionPane.ERROR_MESSAGE);
                 }
             else
                 sc.undo_search();

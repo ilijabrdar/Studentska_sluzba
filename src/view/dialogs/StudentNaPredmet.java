@@ -18,8 +18,6 @@ import java.awt.event.KeyListener;
 
 public class StudentNaPredmet extends JDialog{
 
-    //TODO: serialUID
-
     protected JButton btnOK = null;
     protected JButton btnCANCEL = null;
 
