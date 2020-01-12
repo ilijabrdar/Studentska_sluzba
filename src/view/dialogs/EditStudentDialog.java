@@ -182,8 +182,10 @@ public class EditStudentDialog extends NewStudentDialog {
 				int code = JOptionPane.showConfirmDialog(getDialog(), "Da li ste sigurni da želite da obustavite unos?\nIzmene neće biti sačuvane.",
 						"Izmena studenta", JOptionPane.YES_NO_OPTION);
 				
-				if(code == JOptionPane.YES_OPTION)
+				if(code == JOptionPane.YES_OPTION) {
 					getDialog().dispose();
+					MainFrame.getInstance().updateTable();
+				}
 			}
 		});
 	}

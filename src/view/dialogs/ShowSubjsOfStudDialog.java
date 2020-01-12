@@ -46,6 +46,7 @@ public class ShowSubjsOfStudDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 getDialog().dispose();
+                MainFrame.getInstance().updateTable();
             }
         });
 

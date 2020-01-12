@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import controller.ProfesorController;
 import model.bazePodataka.BazaProfesora;
 import model.entiteti.Profesor;
+import view.components.MainFrame;
 import view.listeners.MyListenerProfesor;
 import view.tables.ProfesorTable;
 
@@ -155,8 +156,10 @@ public class EditProfesorDialog extends NewProfesorDialog {
 				int code = JOptionPane.showConfirmDialog(getDialog(), "Da li ste sigurni da želite da obustavite unos?\nIzmene neće biti sačuvane.",
 						"Izmena profesora", JOptionPane.YES_NO_OPTION);
 				
-				if(code == JOptionPane.YES_OPTION)
+				if(code == JOptionPane.YES_OPTION) {
 					getDialog().dispose();
+					MainFrame.getInstance().updateTable();
+				}
 			}
 		});
 	}
