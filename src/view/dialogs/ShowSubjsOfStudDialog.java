@@ -52,7 +52,7 @@ public class ShowSubjsOfStudDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 getDialog().dispose();
-                MainFrame.getInstance().updateTable();
+                MainFrame.getInstance().updateTable(); //resava bug pogresnog prikaza studenata ako se izadje iz prikaza predmeta, a prethodno sortira tabela
             }
         });
 
@@ -62,11 +62,12 @@ public class ShowSubjsOfStudDialog extends JDialog {
         boolean nasao = false;
         BazaStudenata.getBazaStudenata().updateArrayList();
         Student selected = BazaStudenata.getBazaStudenata().getRow(MainFrame.getInstance().getStudent_table().getSelectedRow());
-        for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
+
+        for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) { //pretragu koje predmete pohadja student vrsimo preko BazePredmeta jer polje predmeti u klasi Student nije serijalizovano zasebno, vec uokviru fajla StudentSubjListing.txt
             for (Student s : p.getStudenti()) {
                 if (s.getIndex().equalsIgnoreCase(selected.getIndex())) {
                     DLM.addElement(p.getSifra() + "   " + p.getNaziv());
-                    nasao = true;
+                    nasao = true; //ukoliko je nadjen bar jedan predmet onda lista nije prazna
                 }
             }
         }

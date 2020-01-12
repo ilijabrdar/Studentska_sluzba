@@ -18,8 +18,6 @@ public class Menu extends JMenuBar {
 	private static final long serialVersionUID = 2401343171737574518L;
 
 	public Menu() {
-		//mnemonik je skracenica da ti udje u taj odeljak menija
-		//akcelerator je da ti odradi do kraja
 
 		this.setBackground(Color.WHITE);
 
@@ -37,7 +35,7 @@ public class Menu extends JMenuBar {
 
 		ImageIcon imageIcon_new = new ImageIcon(new ImageIcon("resources/imgs/069-plus.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		file_new.setIcon(imageIcon_new);
-		file_new.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK)); //CTRL
+		file_new.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK)); //CTRL+N
 
 		JMenuItem file_close = new JMenuItem("Close");
 		ImageIcon imageIcon_close = new ImageIcon(new ImageIcon("resources/imgs/020-close.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)); //skaliranje ikonice
@@ -46,7 +44,7 @@ public class Menu extends JMenuBar {
 
 		file_close.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //salje event da se prozor zatvara sto pokrece listener u MainFrame
 				MainFrame.getInstance().dispatchEvent(new WindowEvent(MainFrame.getInstance(),WindowEvent.WINDOW_CLOSING)); //trigeruje listener-a
 			}
 		});
@@ -60,18 +58,18 @@ public class Menu extends JMenuBar {
 
 	private void setEdit() {
 		JMenu edit = new JMenu("Edit");
-		edit.setMnemonic(KeyEvent.VK_E);
+		edit.setMnemonic(KeyEvent.VK_E);//ALT+E
 
 		JMenuItem edit_edit = new JMenuItem("Edit");
 		ImageIcon imageIcon_edit = new ImageIcon(new ImageIcon("resources/imgs/062-pencil.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		edit_edit.setIcon(imageIcon_edit);
-		edit_edit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		edit_edit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));//CTRL+E
 		edit_edit.addActionListener(new EditBtnActionListener());
 
 		JMenuItem edit_delete = new JMenuItem("Delete");
 		ImageIcon imageIcon_delete = new ImageIcon(new ImageIcon("resources/imgs/076-remove.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		edit_delete.setIcon(imageIcon_delete);
-		edit_delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		edit_delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));//CTRL+D
 		edit_delete.addActionListener(new DeleteBtnActionListener());
 
 		edit.add(edit_edit);
@@ -84,12 +82,12 @@ public class Menu extends JMenuBar {
 	private void setHelp() {
 
 		JMenu help = new JMenu("Help");
-		help.setMnemonic(KeyEvent.VK_H);
+		help.setMnemonic(KeyEvent.VK_H);//ALT+H
 
 		JMenuItem help_help = new JMenuItem("Help");
 		ImageIcon imageIcon_help = new ImageIcon(new ImageIcon("resources/imgs/050-info.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		help_help.setIcon(imageIcon_help);
-		help_help.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+		help_help.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));//CTRL+H
 
 		help_help.addActionListener(new ActionListener() {
 			@Override
@@ -102,7 +100,7 @@ public class Menu extends JMenuBar {
 		JMenuItem help_about = new JMenuItem("About");
 		ImageIcon imageIcon_about = new ImageIcon(new ImageIcon("resources/imgs/045-heart.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		help_about.setIcon(imageIcon_about);
-		help_about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		help_about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));//CTRL+A
 
 		help_about.addActionListener(new ActionListener() {
 			@Override

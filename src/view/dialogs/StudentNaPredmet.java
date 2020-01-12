@@ -83,23 +83,23 @@ public class StudentNaPredmet extends JDialog{
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent e) { //provera da li uneseni index postoji i da li se godina studija tog studenta poklapa sa godinom predmeta
                 String indeks = txt_indeks.getText();
-                Predmet p = BazaPredmeta.getBazaPredmeta().getRow(MainFrame.getInstance().getStable().getSelectedRow());
+                Predmet p =  SubjectController.getSubjectController().getSelectedSubjectByID();
                 int p_godina = Integer.parseInt(p.getGodina());
                 Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(indeks);
 
                 if (s!=null) {
-                    if (s.getGodina_studija()!=p_godina) {
+                    if (s.getGodina_studija()!=p_godina) {//ako postoji i godina mu je razlicita
                         btnOK.setEnabled(false);
                         txt_indeks.setBackground(Color.pink);
                     }
-                    else {
+                    else { //postoji i godina ista
                         btnOK.setEnabled(true);
                         txt_indeks.setBackground(Color.white);
                     }
                 }
-                else {
+                else { //ako student ne postoji
                     btnOK.setEnabled(false);
                     txt_indeks.setBackground(Color.pink);
                 }
@@ -116,8 +116,8 @@ public class StudentNaPredmet extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 String indeks = txt_indeks.getText();
                 SubjectController sc = SubjectController.getSubjectController();
-                int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
-                Predmet p = BazaPredmeta.getBazaPredmeta().getRow(row_subject);
+                Predmet p = SubjectController.getSubjectController().getSelectedSubjectByID();
+
                 if (!sc.addStudentToSubject(indeks))
                     JOptionPane.showMessageDialog(MainFrame.getInstance(), "Unetom studentu je već dodeljen predmet.",
                             "Dodavanje studenta na predmet | " + p.getNaziv(), JOptionPane.ERROR_MESSAGE);

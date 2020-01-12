@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class ShowProfsStudsDialog extends JDialog {
     protected JButton delete = null, back = null;
-    protected DefaultListModel DLM;
+    protected DefaultListModel DLM; //podaci se pune u DLM, a model JList postavi na DLM
     protected JList list;
 
     public ShowProfsStudsDialog(Frame owner, String title, boolean modal) {

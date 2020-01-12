@@ -24,7 +24,7 @@ public class EditStudentDialog extends NewStudentDialog {
 	public EditStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
-		BazaStudenata.getBazaStudenata().updateArrayList();
+		BazaStudenata.getBazaStudenata().updateArrayList(); //radi se update indeksa u tabeli students kako bi se ispravno izvrsila naredna naredba getSelectedRow() jer sortiranje pobrka indekse
 
 		int row = StudentsTable.getStudentsTable().getSelectedRow();
 		Student s = BazaStudenata.getBazaStudenata().getRow(row);
@@ -39,7 +39,7 @@ public class EditStudentDialog extends NewStudentDialog {
 		txt_datum_upisa.setText(s.getDatum_upisa());
 
 		double prosek = s.getProsek();
-		if (prosek==0)
+		if (prosek==0) //maskiranje da je '/' u proseku zapravo 0
 			txt_prosek.setText("/");
 		else
 			txt_prosek.setText(Double.toString(s.getProsek()));
@@ -93,7 +93,6 @@ public class EditStudentDialog extends NewStudentDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				
 				String ime = txt_ime.getText();
 				String prezime = txt_prezime.getText();
@@ -112,7 +111,6 @@ public class EditStudentDialog extends NewStudentDialog {
 						trenutna_godina = 1;
 					else if (trenutna_godina_studija.getSelectedIndex()==1)
 						trenutna_godina = 2;
-
 					else if (trenutna_godina_studija.getSelectedIndex()==2)
 						trenutna_godina = 3;
 					else
@@ -184,7 +182,7 @@ public class EditStudentDialog extends NewStudentDialog {
 				
 				if(code == JOptionPane.YES_OPTION) {
 					getDialog().dispose();
-					MainFrame.getInstance().updateTable();
+					MainFrame.getInstance().updateTable(); // ovo resava bug pogresnog prikazivanja celija ukoliko se odustane od edita a prethodno se uradi sortiranje tabele
 				}
 			}
 		});

@@ -48,29 +48,28 @@ public class MyListenerProfesor implements KeyListener {
         JTextField j_txt = (JTextField) e.getComponent();
         String text = j_txt.getText();
 
-        if (j_txt.getName().equalsIgnoreCase("ime"))
+        if (j_txt.getName().equalsIgnoreCase("ime")) //mora poceti veikim slovom
             provera_ime(text,j_txt);
 
-
-        else if (j_txt.getName().equalsIgnoreCase("prezime"))
+        else if (j_txt.getName().equalsIgnoreCase("prezime")) //mora poceti veikim slovom
             provera_prezime(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("datum rodjenja"))
+        else if (j_txt.getName().equalsIgnoreCase("datum rodjenja")) //ne sme biti posle trenutnog datuma, zabrana neispravnih datuma tipa 00.01.0000. se postize try/catch blokom
             provera_datum_rodjenja(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("telefon"))
+        else if (j_txt.getName().equalsIgnoreCase("telefon")) //ne sme biti prazan, korisnik sam odlucuje koji karakter da stavi ako objekat nema telefon
             provera_telefon(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("email"))
+        else if (j_txt.getName().equalsIgnoreCase("email"))//ne sme biti prazan, korisnik sam odlucuje koji karakter da stavi ako objekat nema email
             provera_email(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("adresa"))
+        else if (j_txt.getName().equalsIgnoreCase("adresa")) //ne sme biti prazan, korisnik sam odlucuje koji karakter da stavi ako objekat nema adresu
             provera_adresa(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("kancelarija"))
+        else if (j_txt.getName().equalsIgnoreCase("kancelarija")) //ne sme biti prazan, korisnik sam odlucuje koji karakter da stavi ako objekat nema kancelariju
             provera_kancelarija(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("licna"))
+        else if (j_txt.getName().equalsIgnoreCase("licna")) //mora sadrzati brojeve 0-9
             provera_licna(text,j_txt);
 
         if (flag_adresa==1 && flag_email==1 && flag_telefon==1 && flag_kanc==1 && flag_datum_r==1 && flag_prezime==1 && flag_ime==1 && flag_licna==1)

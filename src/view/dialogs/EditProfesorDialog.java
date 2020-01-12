@@ -20,7 +20,8 @@ public class EditProfesorDialog extends NewProfesorDialog {
 	public EditProfesorDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
-		BazaProfesora.getBazaProfesora().updateArrayList();
+		BazaProfesora.getBazaProfesora().updateArrayList();//radi se update indeksa u tabeli profesors kako bi se ispravno izvrsila naredna naredba getSelectedRow() jer sortiranje pobrka indekse
+
 		int index = ProfesorTable.getProfesorTable().getSelectedRow();
 		Profesor p = BazaProfesora.getBazaProfesora().getRow(index);
 		
@@ -96,7 +97,6 @@ public class EditProfesorDialog extends NewProfesorDialog {
 					String adresa = txt_adresa.getText();
 					String email = txt_email.getText();
 					String kancelarija = txt_kancelarija.getText();
-					//String zvanje = txt_zvanje.getText();
 					String licna = txt_licna.getText();
 
 					//{Dipl,Mast,Spec,Dr,Struk,SpecStruk};
@@ -141,7 +141,7 @@ public class EditProfesorDialog extends NewProfesorDialog {
 					} else
 						JOptionPane.showMessageDialog(getDialog(), "Već postoji profesor sa istim brojem lične karte.", "Greška", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception ee) {
-					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");
+
 				}
 			}
 		});
@@ -158,7 +158,8 @@ public class EditProfesorDialog extends NewProfesorDialog {
 				
 				if(code == JOptionPane.YES_OPTION) {
 					getDialog().dispose();
-					MainFrame.getInstance().updateTable();
+					MainFrame.getInstance().updateTable();// ovo resava bug pogresnog prikazivanja celija ukoliko se odustane od edita a prethodno se uradi sortiranje tabele
+
 				}
 			}
 		});

@@ -12,8 +12,8 @@ public class BazaProfesora {
 	
 	private static BazaProfesora instance = new BazaProfesora();
 	private ArrayList<String> columns;
-	private ArrayList<Profesor> profesori;
-	private ArrayList<Profesor> database;
+	private ArrayList<Profesor> profesori;//sadrzi trenutni prikaz tabele, menja se prilikom pretrage i sortiranja...
+	private ArrayList<Profesor> database;//sadrzi sve podatke
 
 	public static BazaProfesora getBazaProfesora() {
 		return instance;
@@ -107,7 +107,7 @@ public class BazaProfesora {
 		this.database = database;
 	}
 
-	public void updateArrayList() {
+	public void updateArrayList() {//posto indeksi liste profesors odgovaraju indeksima tabele Profesori, svako sortiranje tabele poremeti indekse i onda pre svakog uzimanja profesora iz tabele moraju da se poprave indeksi za slucaj ako je doslo do sortiranja
 		ArrayList<Profesor> pomocna = new ArrayList<Profesor>();
 
 		for (int row = 0; row< MainFrame.getInstance().getProfesor_table().getRowCount(); row++) {
@@ -183,18 +183,19 @@ public class BazaProfesora {
 	}
 	
 	public boolean addProfesor(Profesor p) {
-		for (Profesor temp : database) {
+		for (Profesor temp : database) {//provera da li profesor sa navedenim brojem licne vec postoji u bazi, prolazi se kroz database, a ne kroz profesors jer ukoliko je uradjena pretraga
+										//profesora lista profesors ne sadrzi sve podatke
 			if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
 				return false;
 		}
 
-		//TODO: zasto ne smem dodati u oba?
-		database.add(p);
+		database.add(p);//dodaje se u database zato sto profesors uzima podatke iz database
 		return true;
 	}
 	
 	public boolean editProfesor(int index_tabele, Profesor p) {
-		String licna_starog = getValueAt(index_tabele,2);
+		String licna_starog = getValueAt(index_tabele,2); //uzimamo licnu tog profesora pre izvrsavanja promene kako bi se utvrdilo da li se broj licne promenio, ako jeste onda moramo pretraziti bazu i utvrditi da ne postoji profesor sa tom licnom
+
 		Profesor stari = getProfesor(licna_starog);
 
 		if (licna_starog.equalsIgnoreCase(p.getLicna())) {
@@ -211,7 +212,8 @@ public class BazaProfesora {
 			return true;
 		}
 		else {
-			for (Profesor temp : profesori) {
+			for (Profesor temp : database) {//prolazis kroz database jer onda sadrzi sve podatke, ako prolazimo kroz profesors onda ukoliko se pretrazuje tada se moze izmeniti broj licne na vec postojeci
+
 				if (temp.getLicna().equalsIgnoreCase(p.getLicna()))
 					return false;
 			}
@@ -252,14 +254,6 @@ public class BazaProfesora {
 	
 	public Profesor getProfesor(String ID) {
 		for(Profesor p : database) //prepravio profesore u database
-			if(p.getLicna().equalsIgnoreCase(ID)) {
-				return p;
-			}
-		return null;
-	}
-
-	public Profesor getProfesorFromProf(String ID) {
-		for(Profesor p : profesori) //prepravio profesore u database
 			if(p.getLicna().equalsIgnoreCase(ID)) {
 				return p;
 			}

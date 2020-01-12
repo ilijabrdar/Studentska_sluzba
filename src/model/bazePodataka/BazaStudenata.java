@@ -16,8 +16,8 @@ public class BazaStudenata {
 	
 	private static BazaStudenata instance = new BazaStudenata();
 	private ArrayList<String> columns;
-	private ArrayList<Student> students;
-	private ArrayList<Student> database;
+	private ArrayList<Student> students; //sadrzi trenutni prikaz tabele, menja se prilikom pretrage i sortiranja...
+	private ArrayList<Student> database;//sadrzi sve podatke
 
 	
 	public static BazaStudenata getBazaStudenata() {
@@ -99,13 +99,12 @@ public class BazaStudenata {
 
 	//ovo je zbog buttonColumn
 	public int getColumnCount() {
-		return 10; //PAZI!
+		return 10;
 	}
 
 	public void setColumns(ArrayList<String> columns) {
 		this.columns = columns;
 	}
-	
 
 	public ArrayList<Student> getDatabase() {
 		return database;
@@ -123,7 +122,7 @@ public class BazaStudenata {
 		this.students = students;
 	}
 
-	public void updateArrayList() {
+	public void updateArrayList() { //posto indeksi liste students odgovaraju indeksima tabele Students, svako sortiranje tabele poremeti indekse i onda pre svakog uzimanja studenta iz tabele moraju da se poprave indeksi za slucaj ako je doslo do sortiranja
 		ArrayList<Student> pomocna = new ArrayList<Student>();
 
 		for (int row = 0; row< MainFrame.getInstance().getStudent_table().getRowCount(); row++) {
@@ -170,7 +169,7 @@ public class BazaStudenata {
 		case 4:
 			return student.getStatus().toString();
 		case 5:
-			if (student.getProsek()==0)
+			if (student.getProsek()==0) //maskiranje proseka da prikazuje '/' ako je 0
 				return "/";
 
 			return Double.toString(student.getProsek());
@@ -190,7 +189,7 @@ public class BazaStudenata {
 	}
 
 	public Student getStudentPrekoIndeksa(String index) {
-		for (Student s : database) {
+		for (Student s : database) { //prolazimo kroz database jer students mozda ne sadrzi celokupan prikaz (zbog pretrage)
 			if (s.getIndex().equalsIgnoreCase(index))
 				return s;
 		}
@@ -208,18 +207,18 @@ public class BazaStudenata {
 	}
 	
 	public boolean addStudent(Student s) {
-		for (Student temp : database)  {
+		for (Student temp : database)  { //provera da li student sa navedenim indexom vec postoji u bazi, prolazi se kroz database, a ne kroz students jer ukoliko je uradjena pretraga
+										//studenata lista students ne sadrzi sve podatke
 			if (temp.getIndex().equalsIgnoreCase(s.getIndex()))
 				return false;
 		}
-		
-		//students.add(s); TODO: ne smem da dodam u oba - zasto?
-		database.add(s);
+
+		database.add(s); //dodaje se u database zato sto students uzima podatke iz database
 		return true;
 	}
 	
 	public boolean editStudent(int index_tabele, Student s) {
-		String indeks_starog = getValueAt(index_tabele,0);
+		String indeks_starog = getValueAt(index_tabele,0); //uzimamo indeks tog studenta pre izvrsavanja promene kako bi se utvrdilo da li se indeks promenio, ako jeste onda moramo pretraziti bazu i utvrditi da ne postoji student sa tim indeksom
 		Student stari = getStudentPrekoIndeksa(indeks_starog);
 
 		if (indeks_starog.equalsIgnoreCase(s.getIndex())) {//ostao im je nepromenjen index
@@ -228,7 +227,7 @@ public class BazaStudenata {
 			stari.setDatum(s.getDatum());
 			stari.setDatum_upisa(s.getDatum_upisa());
 
-			if (stari.getGodina_studija()!=s.getGodina_studija()) {
+			if (stari.getGodina_studija()!=s.getGodina_studija()) { //ako se promenila godina studija, brisu se svi predmeti tog studenta
 				for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
 					for (Student temp : p.getStudenti()) {
 						if (temp.getIndex().equalsIgnoreCase(s.getIndex())) {
@@ -249,7 +248,7 @@ public class BazaStudenata {
 			return true;
 		}
 		else { //promenjen index pa moras proveriti da li taj index vec postoji
-			for (Student temp : students) {
+			for (Student temp : database) {//prolazis kroz database jer onda sadrzi sve podatke, ako prolazimo kroz students onda ukoliko se pretrazuje tada se moze izmeniti indeks na vec postojeci
 				if (temp.getIndex().equalsIgnoreCase(s.getIndex()))
 					return false;
 			}
@@ -258,7 +257,7 @@ public class BazaStudenata {
 			stari.setDatum(s.getDatum());
 			stari.setDatum_upisa(s.getDatum_upisa());
 
-			if (stari.getGodina_studija() != s.getGodina_studija()) {
+			if (stari.getGodina_studija() != s.getGodina_studija()) { //ako se promenila i godina brisemo sve predmete tog studenta
 				for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
 					for (Student temp : p.getStudenti()) {
 						if (temp.getIndex().equalsIgnoreCase(stari.getIndex())) {
@@ -296,7 +295,7 @@ public class BazaStudenata {
 				break;
 			}
 		}
-		//students.remove(s);
+
 	}
 
 	public void undo_search() {

@@ -49,11 +49,6 @@ public class SubjectController {
 		else
 			MainFrame.getInstance().updateTable();
 	}
-	
-	public Predmet getSelectedSubject() {
-		selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
-		return BazaPredmeta.getBazaPredmeta().getRow(selectedRow); 
-	}
 
 	public Predmet getSelectedSubjectByID() {
 		Predmet retVal = null;
@@ -187,17 +182,15 @@ public class SubjectController {
 	}
 
 	public boolean addStudentToSubject(String indeks) {
-		Predmet p = getSelectedSubject();
+		Predmet p = getSelectedSubjectByID();
 		Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(indeks);
 		if (s == null) //provera  da li student sa datim indeksom postoji
 			return false;
 
-		boolean ret1 = p.addStudent(s);
-		boolean ret2 = s.dodajPredmetStudentu(p);
-		if (ret1==true && ret2==true)
+		if (p.addStudent(s) && s.dodajPredmetStudentu(p)) //ukoliko je ispravno dodat predmet studentu i predmetu student
 			return true;
-		else
-			return false;
+
+		return false;
 	}
 
 	public void removeProfFromSubj(String ID) {
@@ -245,7 +238,8 @@ public class SubjectController {
 	}
 
     public void removeStudFromSubj(String indeks) {
-		for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) {
+		for (Predmet p : BazaPredmeta.getBazaPredmeta().getSubjects()) { //predmeti koje student slusa nalazimo iz baze predmeta jer ona iz StudentSubjListing.txt uzima podatke o studentima koji slusaju odredjene predmete
+																		//nigde drugde ne postoji podatak o tome koji student pohadja koji predmet osim u tom listingu; polje predmeti klase Student nije korisceno kako bi i serijalizacija toga
 			for (Student temp : p.getStudenti()) {
 				if (temp.getIndex().equalsIgnoreCase(indeks)) {
 					p.getStudenti().remove(temp);

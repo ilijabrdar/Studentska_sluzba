@@ -37,39 +37,20 @@ public class NewStudentDialog extends JDialog {
 	
 	protected JTextField txt_ime = null;
 	protected JTextField txt_prezime = null;
-	protected static JTextField txt_datum_rodjenja = null;
+	protected JTextField txt_datum_rodjenja = null;
 	protected JTextField txt_telefon = null;
 	protected JTextField txt_adresa = null;
 	protected JTextField txt_email = null;
 	
-	protected static JTextField txt_indeks = null;
-	protected static JTextField txt_datum_upisa = null;
-	protected static JTextField txt_prosek = null;
+	protected JTextField txt_indeks = null;
+	protected JTextField txt_datum_upisa = null;
+	protected JTextField txt_prosek = null;
 	
-	protected static JComboBox<String> trenutna_godina_studija = null;
+	protected JComboBox<String> trenutna_godina_studija = null;
 	
 	protected JRadioButton rb_s = null;
 	protected JRadioButton rb_b = null;
 
-	public static JTextField getTxt_datum_rodjenja() {
-		return txt_datum_rodjenja;
-	}
-
-	public static JTextField getTxt_datum_upisa() {
-		return txt_datum_upisa;
-	}
-
-	public static JComboBox<String> getTrenutna_godina_studija() {
-		return trenutna_godina_studija;
-	}
-
-	public static JTextField getTxt_prosek() {
-		return txt_prosek;
-	}
-
-	public static JTextField getTxt_indeks() {
-		return txt_indeks;
-	}
 
 	public NewStudentDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -86,7 +67,6 @@ public class NewStudentDialog extends JDialog {
 
 		
 		setFields();
-		
 		addActionsWind();
 		addKeyListeners();
 		addActionsOK();
@@ -122,7 +102,7 @@ public class NewStudentDialog extends JDialog {
 		JLabel prezime = new JLabel("Prezime:*");
 		JLabel adresa = new JLabel("Adresa stanovanja:*");
 		JLabel datum_rodjenja = new JLabel("Datum rođenja:*");
-		JLabel telefon = new JLabel ("Telefon:* ");
+		JLabel telefon = new JLabel ("Kontakt telefon:* ");
 		JLabel email = new JLabel("E-mail adresa:* ");
 		JLabel indeks = new JLabel("Broj indeksa:* ");
 		JLabel datum_upisa = new JLabel("Datum upisa:* ");
@@ -182,7 +162,7 @@ public class NewStudentDialog extends JDialog {
 		trenutna_godina_studija.setPreferredSize(new Dimension(100, 28));
 		
 		
-		BackgroundPanel bigPanel = new BackgroundPanel();
+		BackgroundPanel bigPanel = new BackgroundPanel(); //komponente se prvo stavljaju u male panele, pa onda svaki mali panel u veliki i onda na kraju veliki u CENTER
 		bigPanel.setBorder(new TitledBorder(new EtchedBorder(), "Podaci o studentu"));
 		bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
 		
@@ -241,9 +221,7 @@ public class NewStudentDialog extends JDialog {
 		panel11.add(status);
 		panel11.add(rb_s);
 		panel11.add(rb_b);
-		
-		
-		
+
 		bigPanel.add(panel1);
 		bigPanel.add(panel2);
 		bigPanel.add(panel3);
@@ -256,12 +234,12 @@ public class NewStudentDialog extends JDialog {
 		bigPanel.add(panel10);
 		bigPanel.add(panel11);
 		
-		
 		JPanel closingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		closingPanel.setBackground(Color.white);
+
 		btnOK = new JButton("Sačuvaj");
-		btnOK.setEnabled(true);
 		btnCANCEL = new JButton("Odustani");
+
 		closingPanel.add(btnOK);
 		closingPanel.add(btnCANCEL);
 		
@@ -308,7 +286,7 @@ public class NewStudentDialog extends JDialog {
 						trenutna_godina=4;
 
 
-					if (prosek_str.equalsIgnoreCase("/"))
+					if (prosek_str.equalsIgnoreCase("/"))	// '/' za prosek predstavlja 0, maskira se korisniku da zapravo radi sa 0 sve vreme
 						prosek = 0.0;
 					else
 						prosek = Double.parseDouble(prosek_str);
@@ -334,7 +312,7 @@ public class NewStudentDialog extends JDialog {
 					
 					Status status;
 					
-					if (rb_s.isSelected()) 
+					if (rb_s.isSelected()) 	//samo jedno do radioButton-a mogu biti selektovani zato sto pripadaju isto ButtonGroup
 						status = Status.S;
 					else
 						status= Status.B;
@@ -344,7 +322,7 @@ public class NewStudentDialog extends JDialog {
 							status,prosek);
 					
 					StudentController student_controller = StudentController.getInstance();
-					if (student_controller.dodajStudenta(s)) {
+					if (student_controller.dodajStudenta(s)) { //dodavanje uspesno ukoliko ne postoji student sa tim indexom u bazi podataka
 						JOptionPane.showMessageDialog(getDialog(), "Uspešno dodat student.");
 						getDialog().dispose();
 					}

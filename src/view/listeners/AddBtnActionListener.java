@@ -9,7 +9,7 @@ import view.dialogs.NewSubjectDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddBtnActionListener implements ActionListener {
+public class AddBtnActionListener implements ActionListener { //klasa za implementaciju dodavanja objekta u bazu podataka
     @Override
     public void actionPerformed(ActionEvent e) {
         //ZAVISI KOJI JE TAB SELEKTOVAN

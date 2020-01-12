@@ -30,8 +30,8 @@ public class ShowStudsDialog extends ShowProfsStudsDialog{
     }
 
     private void initList() {
-        Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID();
-        for (Student s : predmet.getStudenti()) {
+        Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID(); //dobijamo trenutno selektovani predmet
+        for (Student s : predmet.getStudenti()) { //svakog studenta tog predmeta dodajemo u DLM
             DLM.addElement(s.getIndex() + " " + s.getIme() + " " + s.getPrezime());
         }
     }
@@ -43,12 +43,18 @@ public class ShowStudsDialog extends ShowProfsStudsDialog{
                 delete.setEnabled(true);
                 int selectedRow = SubjectTable.getSubjectTable().getSelectedRow();
                 int index_list = list.getSelectedIndex();
-                if (index_list!= -1) {
+                if (index_list!= -1) { //brisanje se desava samo ukoliko je neki student selektovan
                     String ret = (String) DLM.remove(index_list);
-                    String [] splits = ret.split("\\s");
-                    String index = splits[0] + " " + splits[1];
-                    Predmet predmet = BazaPredmeta.getBazaPredmeta().getRow(selectedRow);
+                    String [] splits = ret.split("\\s"); //posto je sadrzaj DLM elementa index studenta sa imenom i
+                                                                // prezimenom moramo splitovati po ' ' i uzeti prvi clan kako bismo uzeli index studenta za brisanje sa liste predmeta
+                    String index = splits[0] + " " + splits[1]; //splits[0] je XX, splits[1] je XXX/YYYY i razmak izmedju da se sacini index
+
+                    Predmet predmet = SubjectController.getSubjectController().getSelectedSubjectByID(); //uzimanje predmeta za brisanje
                     predmet.getStudenti().remove(BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(index));
+
+                    Student s = BazaStudenata.getBazaStudenata().getStudentPrekoIndeksa(index);
+                    s.getPredmeti().remove(predmet); //brisanje tog predmeta kod studenta
+
                 }
                 if (DLM.size() == 0) getDialog().dispose();
             }

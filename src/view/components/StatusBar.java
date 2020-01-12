@@ -16,34 +16,27 @@ import javax.swing.border.BevelBorder;
 
 
 public class StatusBar extends JPanel {
-	
-	
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7960319300551657388L;
 
 	public StatusBar() {
 		
 		this.setLayout(new BorderLayout());
-		this.setBorder(new BevelBorder(BevelBorder.LOWERED)); //MMM efekat
+		this.setBorder(new BevelBorder(BevelBorder.LOWERED)); //kul efekat
 		
 		JPanel levi = new JPanel();
 		JPanel desni = new JPanel();
 		
 		levi.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 4));
 		desni.setLayout(new FlowLayout(FlowLayout.RIGHT,10,4));
-		
+
+		//u levi panel se stavlja naziv
 		JLabel naziv = new JLabel("status");
 		naziv.setText("Studentska Služba");
-		
 
 		levi.add(naziv);
 		
-	
-		
-		//ovde sada resavas desni datum i vreme
+		//ovde sada resavas desni - datum i vreme
 		SimpleDateFormat sdf = new SimpleDateFormat( "hh: mm    dd MMM yyyy" );
 		JLabel vreme = new JLabel (sdf.format( new GregorianCalendar().getTime()));
 		Timer timer = new Timer (500, new ActionListener() {
@@ -62,9 +55,7 @@ public class StatusBar extends JPanel {
 		
 		this.add(desni, BorderLayout.EAST);
 		this.add(levi, BorderLayout.WEST);
-		
-		
-		
+
 	}
 	
 }

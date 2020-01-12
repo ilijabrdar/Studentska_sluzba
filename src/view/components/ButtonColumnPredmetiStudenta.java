@@ -22,7 +22,7 @@ public class ButtonColumnPredmetiStudenta extends ButtonColumn {
                 fireEditingStopped();
 
                 ShowSubjsOfStudDialog dialog = new ShowSubjsOfStudDialog(MainFrame.getInstance(), msg, true);
-                boolean ret = dialog.initList();
+                boolean ret = dialog.initList(); //vraca false nije pronadjen nijedan predmet studenta
 
                 if (!ret)
                     JOptionPane.showMessageDialog(MainFrame.getInstance(),"Ne postoje predmeti za tog studenta.");

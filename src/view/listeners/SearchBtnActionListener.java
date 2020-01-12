@@ -17,6 +17,7 @@ public class SearchBtnActionListener implements ActionListener {
         JButton comp = (JButton) e.getSource();
         JPanel pane = (JPanel) comp.getParent();
         JTextField search = (JTextField) pane.getComponent(0);
+
         if(TabbedPane.getInstance().isRunning("Predmeti")) {
             SubjectController sc = SubjectController.getSubjectController();
             if(search.getText().trim().length() !=0)
@@ -50,7 +51,7 @@ public class SearchBtnActionListener implements ActionListener {
                     JOptionPane.showMessageDialog(MainFrame.getInstance(), error.getMessage(),"Pretraga studenata", JOptionPane.ERROR_MESSAGE);
                 }
             else
-                sc.undo_search();
+                sc.undo_search(); //povratak na pocetno stanje tabele ukoliko je prazno polje za unos
 
         }
     }

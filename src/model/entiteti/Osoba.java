@@ -80,7 +80,7 @@ public class Osoba {
 		return this.email.equalsIgnoreCase(email);
 	}
 
-	public boolean search_ime(String ime) {
+	public boolean search_ime(String ime) { //ako je ime defaultna vrednost postavljena u metodi findStudent studentControllera, onda znaci da se ne pretrazuje po imenu i nebitno je koje je ime studenta
 		if (ime.equals(""))
 			return true;
 

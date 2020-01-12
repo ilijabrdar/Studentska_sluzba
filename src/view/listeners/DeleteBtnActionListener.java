@@ -45,12 +45,12 @@ public class DeleteBtnActionListener implements ActionListener {
                     "Brisanje studenta", JOptionPane.YES_NO_OPTION);
             if(code == JOptionPane.YES_OPTION) {
 
-                BazaStudenata.getBazaStudenata().updateArrayList();
+                BazaStudenata.getBazaStudenata().updateArrayList(); //radi se update indeksa tabele students zbog sortiranja
                 Student s = BazaStudenata.getBazaStudenata().getRow(row_student);
                 String indeks = s.getIndex();
 
                 SubjectController subjectController = SubjectController.getSubjectController();
-                subjectController.removeStudFromSubj(indeks);
+                subjectController.removeStudFromSubj(indeks); //brisanje tog studenta sa svih predmeta
 
                 StudentController studentController = StudentController.getInstance();
                 studentController.izbrisiStudenta(indeks);

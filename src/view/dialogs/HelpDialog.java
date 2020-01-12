@@ -24,13 +24,12 @@ public class HelpDialog extends JDialog {
         setResizable(true);
         this.setLayout(new BorderLayout());
 
-
-        JTextArea txt = new JTextArea();
+        JTextArea txt = new JTextArea(); //u text area se smesta ceo string iz Help.txt
 
         String msg = pullText();
 
         txt.setText(msg);
-        txt.setEditable(false);
+        txt.setEditable(false); //iskljucivanje mogucnosti da korisnik moze da promeni nas sadrzaj
         txt.setWrapStyleWord(true);
 
         JScrollPane sp = new JScrollPane(txt);
@@ -47,8 +46,6 @@ public class HelpDialog extends JDialog {
             String line = null;
             while((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
-
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

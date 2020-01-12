@@ -27,7 +27,7 @@ public class StudentsTable extends JTable {
 		new ButtonColumnPredmetiStudenta(this,11,"...");
 
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(this.getModel());
-		sorter.setSortable(11,false);
+		sorter.setSortable(11,false); //onemogucivanje sortiranje kolone sa dugmetom
 		this.setRowSorter(sorter);
 		this.setUpdateSelectionOnSort(true);
 

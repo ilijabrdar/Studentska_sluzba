@@ -61,31 +61,31 @@ public class MyListenerStudent implements KeyListener, ActionListener {
         JTextField j_txt = (JTextField) e.getComponent();
         String text = j_txt.getText();
 
-        if (j_txt.getName().equalsIgnoreCase("prosek"))
+        if (j_txt.getName().equalsIgnoreCase("prosek")) //kontrola da moze biti ili '/' ili 6-10 opseg, dvostruka preciznost mora
             provera_prosek(text, j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("ime"))
+        else if (j_txt.getName().equalsIgnoreCase("ime")) //mora poceti veikim slovom
             provera_ime(text, j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("prezime"))
+        else if (j_txt.getName().equalsIgnoreCase("prezime"))//mora poceti veikim slovom
             provera_prezime(text,j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("datum rodjenja"))
+        else if (j_txt.getName().equalsIgnoreCase("datum rodjenja")) //ne sme biti posle trenutnog datuma, ostale kontrole se prebacuju u dijalog preko Exceptiona, zabrana neispravnih datuma tipa 00.01.0000. se postize try/catch blokom
             provera_datum_rodjenja(text, j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("datum upisa"))
+        else if (j_txt.getName().equalsIgnoreCase("datum upisa")) //ne sme biti posle trenutnog datuma, ostale kontrole se prebacuju u dijalog preko Exceptiona, zabrana neispravnih datuma tipa 00.01.0000. se postize try/catch blokom
             provera_datum_upisa(text, j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("telefon"))
+        else if (j_txt.getName().equalsIgnoreCase("telefon")) //ne sme biti prazan, korisnik sam odlucuje koji karakter da stavi ako objekat nema telefon
             provera_telefon(text, j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("email"))
+        else if (j_txt.getName().equalsIgnoreCase("email"))//ne sme biti prazan, korisnik sam odlucuje koji karakter da stavi ako objekat nema email
             provera_email(text, j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("adresa"))
+        else if (j_txt.getName().equalsIgnoreCase("adresa"))//ne sme biti prazan, korisnik sam odlucuje koji karakter da stavi ako objekat nema adresu
             provera_adresa(text, j_txt);
 
-        else if (j_txt.getName().equalsIgnoreCase("indeks"))
+        else if (j_txt.getName().equalsIgnoreCase("indeks")) //kontrola da mora biti u formatu SS XXX/YYYY i da godina indeksa ne sme biti posle trenutne
             provera_indeks(text, j_txt);
 
 
@@ -106,7 +106,6 @@ public class MyListenerStudent implements KeyListener, ActionListener {
         } else {
             try {
                 String[] splits = text.trim().split("/");
-                String[] splits_datum_upisa = NewStudentDialog.getTxt_datum_upisa().getText().split("\\.");
                 LocalDate trenutno = LocalDate.now();
                 if (Integer.parseInt(splits[1]) > trenutno.getYear()) { //ne moze godina indexa biti veca od trenutne
                     btnOK.setEnabled(false);
@@ -231,7 +230,7 @@ public class MyListenerStudent implements KeyListener, ActionListener {
     private void provera_prosek(String text, JTextField j_txt) {
         if (!text.matches("/|([0-9]?[0-9]\\.[0-9][0-9])")) {
             btnOK.setEnabled(false);
-            flag_prosek=0; //ako dobro unesem pa izbrisem i dalje ce biti ukljucen btnOK sto ne treba
+            flag_prosek=0;
             j_txt.setBackground(Color.pink);
         } else {
             if (text.matches("[0-9]?[0-9]\\.[0-9][0-9]")) {
