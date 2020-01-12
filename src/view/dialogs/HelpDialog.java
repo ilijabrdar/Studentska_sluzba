@@ -18,6 +18,7 @@ public class HelpDialog extends JDialog {
         Dimension scrSize = kit.getScreenSize();
         int height = scrSize.height;
         int width = scrSize.width;
+
         setSize(3 * width / 6, 3 * height / 4);
         setLocationRelativeTo(parent);
         setResizable(true);

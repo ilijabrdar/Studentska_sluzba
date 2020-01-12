@@ -19,7 +19,12 @@ public class ShowProfsStudsDialog extends JDialog {
         this.list = new JList();
         this.list.setModel(DLM);
 
-        this.setSize(200, 250);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension scrSize = kit.getScreenSize();
+        int height = scrSize.height;
+        int width = scrSize.width;
+
+        setSize(width / 6, height / 3);
         this.setLocationRelativeTo(MainFrame.getInstance());
         this.setResizable(false);
         this.setLayout(new BorderLayout());

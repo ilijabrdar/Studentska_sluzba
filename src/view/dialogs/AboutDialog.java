@@ -13,6 +13,7 @@ public class AboutDialog extends JDialog {
         Dimension scrSize = kit.getScreenSize();
         int height = scrSize.height;
         int width = scrSize.width;
+
         setSize(3 * width / 8, 3 * height / 6);
         setLocationRelativeTo(parent);
         setResizable(true);

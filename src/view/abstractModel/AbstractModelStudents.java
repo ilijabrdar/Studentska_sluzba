@@ -35,6 +35,6 @@ public class AbstractModelStudents extends AbstractTableModel{
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return columnIndex >= 11;
-	}
+	} //ovaj deo se unosi za ButtonColumnStudenti da bi se omogucio klik na dugme
 
 }

@@ -1,10 +1,6 @@
 package view.dialogs;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,8 +37,13 @@ public class NewProfesorDialog extends JDialog {
 
 	public NewProfesorDialog(Frame parent, String title, boolean modal) {
 		super(parent,title,modal);
-		
-		setSize(600, 600);
+
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension scrSize = kit.getScreenSize();
+		int height = scrSize.height;
+		int width = scrSize.width;
+
+		setSize(3 * width / 8, 3 * height / 4);
 		setLocationRelativeTo(parent);
 		setResizable(false);
 		this.setLayout(new BorderLayout());

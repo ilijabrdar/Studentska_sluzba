@@ -25,9 +25,15 @@ public class ShowSubjsOfStudDialog extends JDialog {
         this.list = new JList();
         this.list.setModel(DLM);
 
+
         this.setTitle("Prikaz predmeta");
 
-        this.setSize(400, 350);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension scrSize = kit.getScreenSize();
+        int height = scrSize.height;
+        int width = scrSize.width;
+
+        this.setSize(width / 5, height / 4);
         this.setLocationRelativeTo(MainFrame.getInstance());
         this.setResizable(false);
         this.setLayout(new BorderLayout());

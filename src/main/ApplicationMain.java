@@ -11,7 +11,7 @@ public class ApplicationMain {
 	private static final int TIME_VISIBLE = 30000;
 
 	public static void main(String[] args) {
-		runIntroPanel();
+		//runIntroPanel();
 
 		MainFrame frame = MainFrame.getInstance();
 		frame.setVisible(true);

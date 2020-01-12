@@ -160,18 +160,18 @@ public class ToolBar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row_subject = SubjectTable.getSubjectTable().getSelectedRow();
-				Predmet p = BazaPredmeta.getBazaPredmeta().getRow(row_subject);
 				if(row_subject == -1)
 					JOptionPane.showMessageDialog(MainFrame.getInstance(),
 							"Pre dodavanja studenta selektujete predmet.", "Greška", JOptionPane.ERROR_MESSAGE);
 				else {
-					StudentNaPredmet sp = new StudentNaPredmet(MainFrame.getInstance(),"Dodavanje studenta na predmet | " + p.getNaziv(),true);
+					StudentNaPredmet sp = new StudentNaPredmet(MainFrame.getInstance(),"Dodavanje studenta na predmet | " + SubjectTable.getSubjectTable().getValueAt(row_subject, 1),true);
 					sp.setVisible(true);
 				}
 
 				
 			}
 		});
+
 		}
 
 	

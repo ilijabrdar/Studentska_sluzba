@@ -29,7 +29,12 @@ public class StudentNaPredmet extends JDialog{
 
         BackgroundPanel bigPanel = new BackgroundPanel();
 
-        setSize(550,150);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension scrSize = kit.getScreenSize();
+        int height = scrSize.height;
+        int width = scrSize.width;
+
+        setSize(width / 4,height / 6);
         setLocationRelativeTo(parent);
         setResizable(false);
         this.setLayout(new BorderLayout());
