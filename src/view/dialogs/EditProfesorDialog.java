@@ -136,10 +136,10 @@ public class EditProfesorDialog extends NewProfesorDialog {
 					int index = ProfesorTable.getProfesorTable().getSelectedRow();
 
 					if (profesor_controller.izmeniProfesora(index, p)) {
-						JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen profesor.");
+						JOptionPane.showMessageDialog(getDialog(), "Uspešno izmenjen profesor.");
 						getDialog().dispose();
 					} else
-						JOptionPane.showMessageDialog(getDialog(), "Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getDialog(), "Već postoji profesor sa istim brojem lične karte.", "Greška", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception ee) {
 					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");
 				}

@@ -119,11 +119,11 @@ public class NewStudentDialog extends JDialog {
 	private void setFields() {
 		JLabel ime = new JLabel("Ime:*");
 		JLabel prezime = new JLabel("Prezime:*");
-		JLabel adresa = new JLabel("Adresa:*");
+		JLabel adresa = new JLabel("Adresa stanovanja:*");
 		JLabel datum_rodjenja = new JLabel("Datum rođenja:*");
 		JLabel telefon = new JLabel ("Telefon:* ");
-		JLabel email = new JLabel("Email:* ");
-		JLabel indeks = new JLabel("Indeks:* ");
+		JLabel email = new JLabel("E-mail adresa:* ");
+		JLabel indeks = new JLabel("Broj indeksa:* ");
 		JLabel datum_upisa = new JLabel("Datum upisa:* ");
 		JLabel godina_studija = new JLabel("Trenutna godina studija:* ");
 		JLabel prosek = new JLabel("Prosek:* ");
@@ -317,19 +317,19 @@ public class NewStudentDialog extends JDialog {
 					if (prosek!=0.0 && trenutna_godina==1)
 						throw new Exception("Studenti prve godine nemaju prosek (unesite /).");
 					else if (prosek==0.0 && trenutna_godina!=1)
-						throw new Exception("Za studente visih godina morate uneti prosek.");
+						throw new Exception("Za studente viših godina morate uneti prosek.");
 
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 					LocalDate datum_rodj = LocalDate.parse(datum_rodjenja, formatter);
 					LocalDate datum_up = LocalDate.parse(datum_upisa,formatter);
 
 					if (datum_up.getYear() - datum_rodj.getYear() < 10)
-						throw new Exception("Godina rodjenja i godina upisa se moraju razlikovati bar za 10.");
+						throw new Exception("Godina rođenja i godina upisa se moraju razlikovati bar za 10.");
 
 					String [] index_splits = indeks.split("/");
 
 					if (Integer.parseInt(index_splits[1]) < datum_up.getYear())
-						throw new Exception("Godina indexa mora biti veca ili jednaka godini upisa.");
+						throw new Exception("Godina broja indeksa mora biti veća ili jednaka godini upisa.");
 					
 					Status status;
 					
@@ -348,7 +348,7 @@ public class NewStudentDialog extends JDialog {
 						getDialog().dispose();
 					}
 					else {
-						JOptionPane.showMessageDialog(getDialog(),"Vec postoji student sa istim indexom", "Greška", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getDialog(),"Već postoji student sa istim brojem indeksa", "Greška", JOptionPane.ERROR_MESSAGE);
 					}
 				
 				}

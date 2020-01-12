@@ -1,8 +1,8 @@
-RA 1/2019|Luka|Jovanović|1|B|7.65|01.01.2000.|Karađorđeva 83, Novi Sad|021/333-555|luka.jovanovic@mailinator.com|01.07.2019.
-RA 5/2019|Sofija|Petrović|1|B|8.65|16.05.2000.|Miloša Pocerca 55, Šabac|015/343-356|sofija.petrovic@mailinator.com|11.07.2019.
-RA 3/2019|Stefan|Nikolić|1|B|7.45|18.03.2000.|Knez Mihajlova 16, Beograd|011/9234-857|stefan.nikolic@mailinator.com|03.07.2019.
-RA 2/2019|Dunja|Ilić|1|S|6.34|11.11.2000.|Petefi Šandora 15, Novi Sad|021/433-958|dunja.ilic@mailinator.com|01.07.2019.
-RA 4/2019|Lazar|Đorđević|1|S|9.86|03.12.2000.|Josip Broz Tito 13, Subotica|024/333-559|lazar.djordjevic@mailinator.com|06.07.2019.
+RA 1/2019|Luka|Jovanović|1|B|0.0|01.01.2000.|Karađorđeva 83, Novi Sad|021/333-555|luka.jovanovic@mailinator.com|01.07.2019.
+RA 5/2019|Sofija|Petrović|1|B|0.0|16.05.2000.|Miloša Pocerca 55, Šabac|015/343-356|sofija.petrovic@mailinator.com|11.07.2019.
+RA 3/2019|Stefan|Nikolić|1|B|0.0|18.03.2000.|Knez Mihajlova 16, Beograd|011/9234-857|stefan.nikolic@mailinator.com|03.07.2019.
+RA 2/2019|Dunja|Ilić|1|S|0.0|11.11.2000.|Petefi Šandora 15, Novi Sad|021/433-958|dunja.ilic@mailinator.com|01.07.2019.
+RA 4/2019|Lazar|Đorđević|1|S|0.0|03.12.2000.|Josip Broz Tito 13, Subotica|024/333-559|lazar.djordjevic@mailinator.com|06.07.2019.
 RA 3/2018|Sara|Pavlović|2|B|8.76|03.12.1999.|Vojvode Mišića 23, Šabac|015/313-061|sara.pavlovic@mailinator.com|01.07.2018.
 RA 15/2018|Vuk|Marković|2|B|9.34|03.12.1999.|Temerinska 133, Novi Sad|021/351-091|vuk.markovic@mailinator.com|11.07.2018.
 RA 133/2017|Teodora|Popović|2|S|10.0|03.12.1998.|Surepova 15, Šabac|015/324-500|teodora.popovic@mailinator.com|03.07.2017.

@@ -82,11 +82,11 @@ public class NewProfesorDialog extends JDialog {
 	void setFields() {
 		JLabel ime = new JLabel("Ime:*");
 		JLabel prezime = new JLabel("Prezime:*");
-		JLabel adresa = new JLabel("Adresa:*");
+		JLabel adresa = new JLabel("Adresa stanovanja:*");
 		JLabel datum_rodjenja = new JLabel("Datum rođenja:* ");
 		JLabel telefon = new JLabel ("Telefon:* ");
-		JLabel email = new JLabel("Email:* ");
-		JLabel kancelarija = new JLabel("Kancelarija:* ");
+		JLabel email = new JLabel("E-mail adresa:* ");
+		JLabel kancelarija = new JLabel("Adresa kancelarije:* ");
 		JLabel licna = new JLabel("Broj lične karte:* ");
 		JLabel titula = new JLabel("Titula:* ");
 		JLabel zvanje = new JLabel("Zvanje:* ");
@@ -268,7 +268,7 @@ public class NewProfesorDialog extends JDialog {
 						JOptionPane.showMessageDialog(getDialog(), "Uspešno dodat profesor.");
 						getDialog().dispose();
 					} else {
-						JOptionPane.showMessageDialog(getDialog(), "Vec postoji profesor sa istim brojem licne karte", "Greška", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getDialog(), "Već postoji profesor sa istim brojem lične karte.", "Greška", JOptionPane.ERROR_MESSAGE);
 					}
 				} catch (Exception ee) {
 					JOptionPane.showMessageDialog(getDialog(),"Unesite ispravan datum u formatu dd.mm.yyyy.");

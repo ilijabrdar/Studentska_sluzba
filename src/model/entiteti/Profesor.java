@@ -38,7 +38,10 @@ public class Profesor extends Osoba {
 	private Titula titula;
 	private Zvanje zvanje;
 	private ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
-	
+
+	public Profesor() {
+	}
+
 	public Profesor(String i, String p, String d, String a, String t, String e, String k, String l, Titula tit, Zvanje z) {
 		super(i, p, d, a, t, e);
 		this.kanc = k;

@@ -12,7 +12,10 @@ public class Osoba {
 	protected String email;
 
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
-	
+
+	public Osoba() {
+	}
+
 	public Osoba(String ime, String prezime, String datum, String adresa, String telefon, String email) {
 		this.ime = ime;
 		this.prezime = prezime;

@@ -38,7 +38,7 @@ public class EditStudentDialog extends NewStudentDialog {
 		txt_indeks.setText(s.getIndex());
 		txt_datum_upisa.setText(s.getDatum_upisa());
 
-		double prosek = s.getProsek(); //MORAS DOUBLE KORISTITI
+		double prosek = s.getProsek();
 		if (prosek==0)
 			txt_prosek.setText("/");
 		else
@@ -50,9 +50,9 @@ public class EditStudentDialog extends NewStudentDialog {
 		else if (godina_studija ==2)
 			trenutna_godina_studija.setSelectedItem("Druga");
 		else if (godina_studija ==3)
-			trenutna_godina_studija.setSelectedItem("Treca");
+			trenutna_godina_studija.setSelectedItem("Treća");
 		else
-				trenutna_godina_studija.setSelectedItem("Cetvrta");
+				trenutna_godina_studija.setSelectedItem("Četvrta");
 		
 		Student.Status status = s.getStatus();
 		if (status == Status.B) {
@@ -127,7 +127,7 @@ public class EditStudentDialog extends NewStudentDialog {
 					if (prosek!=0.0 && trenutna_godina==1)
 						throw new Exception("Studenti prve godine nemaju prosek (unesite /).");
 					else if (prosek==0.0 && trenutna_godina!=1)
-						throw new Exception("Za studente visih godina morate uneti prosek.");
+						throw new Exception("Za studente viših godina morate uneti prosek.");
 
 					String datum_upisa = txt_datum_upisa.getText();
 
@@ -143,12 +143,12 @@ public class EditStudentDialog extends NewStudentDialog {
 					LocalDate datum_up = LocalDate.parse(datum_upisa,formatter);
 
 					if (datum_up.getYear() - datum_rodj.getYear() < 10)
-						throw new Exception("Godina rodjenja i godina upisa se moraju razlikovati bar za 10.");
+						throw new Exception("Godina rođenja i godina upisa se moraju razlikovati bar za 10.");
 
 					String [] index_splits = indeks.split("/");
 
 					if (Integer.parseInt(index_splits[1]) < datum_up.getYear())
-						throw new Exception("Godina indexa mora biti veca ili jednaka godini upisa.");
+						throw new Exception("Godina broja indeksa mora biti veća ili jednaka godini upisa.");
 					
 					Student s = new Student(ime,prezime,datum_rodjenja,adresa,telefon,email,indeks,datum_upisa,trenutna_godina,
 							status,prosek);
@@ -156,11 +156,11 @@ public class EditStudentDialog extends NewStudentDialog {
 					StudentController student_controller = StudentController.getInstance();
 					int index_tabele = StudentsTable.getStudentsTable().getSelectedRow();
 					if (student_controller.izmeniStudenta(index_tabele, s)) {
-						JOptionPane.showMessageDialog(getDialog(), "Uspesno izmenjen student.");
+						JOptionPane.showMessageDialog(getDialog(), "Uspešno izmenjen student.");
 						getDialog().dispose();
 					}
 					else {
-						JOptionPane.showMessageDialog(getDialog(),"Vec postoji student sa istim indexom", "Greška", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getDialog(),"Već postoji student sa istim brojem indeksa.", "Greška", JOptionPane.ERROR_MESSAGE);
 					}
 				
 				}
